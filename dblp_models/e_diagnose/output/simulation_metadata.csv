@@ -1,6 +1,6 @@
 model,seed,n_sim,n_years,generated_from_age,orientation,minimum,maximum,finite
-arw4,63,10000,21,1,age x scholar,6.462149679631324e-05,59.81236846821953,True
+arw4,63,10000,21,1,age x scholar,6.462149679631324e-05,59.812368467672144,True
 lognormal_grw,63,10000,21,1,age x scholar,0.0,49481649.81894947,True
-ar1_s,63,10000,21,1,age x scholar,0.0,800.9919555071632,True
-hurdle_ar1_s_p,63,10000,21,1,age x scholar,0.0,180.69150102471892,True
-ar6_6,63,10000,21,6,age x scholar,0.0,136.11939047174224,True
+ar1_s,63,10000,21,1,age x scholar,0.0,800.9919555070351,True
+hurdle_ar1_s_p,63,10000,21,1,age x scholar,0.0,180.69150102471605,True
+ar6_6,63,10000,21,6,age x scholar,0.0,136.1193904717432,True
