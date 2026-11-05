@@ -1,6 +1,23 @@
+# local noise
 .DS_Store
+._*
 .ipynb_checkpoints/
 __pycache__/
+*.py[cod]
 .venv/
 venv/
 .env
+.env.*
+.vscode/
+.idea/
+
+# source and prepared data; matches directory symlinks too
+**/a_import/input
+**/a_import/output
+**/b_prepare/input
+**/b_prepare/output
+
+# simulated trajectories and sampled scholar IDs
+*.npy
+*.npz
+**/d_simulate/output/ar6_6/prefix_sources.csv

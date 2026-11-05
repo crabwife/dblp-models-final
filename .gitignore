@@ -12,12 +12,12 @@ venv/
 .idea/
 
 # source and prepared data; matches directory symlinks too
-/a_import/input
-/a_import/output
-/b_prepare/input
-/b_prepare/output
+**/a_import/input
+**/a_import/output
+**/b_prepare/input
+**/b_prepare/output
 
 # simulated trajectories and sampled scholar IDs
 *.npy
 *.npz
-/d_simulate/output/ar6_6/prefix_sources.csv
+**/d_simulate/output/ar6_6/prefix_sources.csv
