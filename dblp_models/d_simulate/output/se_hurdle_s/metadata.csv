@@ -1,0 +1,2 @@
+model,seed,n_sim,n_years,generated_from_age,orientation,minimum,maximum,finite
+se_hurdle_s,63,10000,21,1,age x scholar,0.0,222.09750925553138,True

@@ -10,9 +10,9 @@ Install `dblp_models/requirements.txt`, place the original CSV at `dblp_models/a
 |---|---|
 | a_import | Import attached CSV; source contract and checksum |
 | b_prepare | Legacy DBLP cohort, panel and adjacent-year transitions |
-| c_fit | ARW4, pooled Lognormal GRW, AR(1)-S, productivity-dependent Hurdle-AR(1)-S, AR(6,6) |
+| c_fit | ARW4, pooled Lognormal GRW, AR(1)-S, productivity-dependent Hurdle-AR(1)-S, AR(6,6), SE-Hurdle-S |
 | d_simulate | Matching seed-63 simulations |
-| e_diagnose | `diagnose.ipynb` followed by `historic.ipynb`: diagnostic tables |
+| e_diagnose | `diagnose.ipynb`, `historic.ipynb`, then `model_comparison.ipynb`: diagnostic tables |
 | f_plot | Numbered historic figure notebooks followed by `plot.ipynb` |
 
 Every task has input/output/src. Input links point to the preceding task output; dependency links carry the panel and parameter tables forward through that chain. Source columns include `dblp`, `phd_year`, `year`, `CareerAge`, `pubs_adj`. The legacy cohort uses phd_year ≥1980, CareerAge 1–21, the observed age-5 productivity filter, and terminal source-row removal. `age = CareerAge - 1`. The supplied CSV gives 2,086 scholars and 510 complete careers. Missing follow-up is never treated as zero.
@@ -36,6 +36,18 @@ Every task has input/output/src. Input links point to the preceding task output;
 Annual productivity ranks are the primary curves: Spearman(R_t,R_0), Spearman(R_t,R_(t−3)), and Spearman(R_t,R_(t−5)). Use years t=0–20, t=3–20 and t=5–20 respectively, retaining observed zero ties with average ranks. The empirical comparison uses the same fixed complete-career cohort for every t and model. Tables include n and reference year. Cumulative-productivity ranks are exported and plotted separately; they are not substituted for annual ranks.
 
 AR(6,6) jointly resamples the first six empirical years and starts generating at year 6. Shading marks the prefix. `rank_mixing.csv` marks whether both compared years are generated. Year-0 comparisons for AR(6,6) always condition on an empirical starting rank. Full-career/stage/pooled diagnostics include the prefix; a common generated-years 6–20 total is also available. All diagnostics are in-sample generative checks, not held-out prediction scores.
+
+## Restored SE-Hurdle-S
+
+`c_fit/src/06_se_hurdle_s.ipynb` restores the stage-specific SE-Hurdle-S from `spaarw_followup/self_exciting/src/SE_Hurdle_S_notebook.ipynb` at commit `3b3e9e36fcb06380cbd545c413db609d9f7eb3ba`. Activity uses log1p(previous output), previous activity, and normalized exponential history; positive log-intensity uses log1p(previous output), a restart indicator, and the same history. History excludes the immediately preceding observation, which enters separately. History coefficients are constrained nonnegative; positive residuals are Normal. The original numerical log-intensity guard [-30, 30] is retained.
+
+The fit uses the 510 complete careers, matching the original SE workflow's complete-career design, without imputing missing years. Other models retain their available-observation fits. This difference is explicit in `fit_support.csv` and `model_comparison.csv`; these are descriptive comparisons, not a controlled same-training-cohort ablation. Five scholar-level folds select rho over the original 51-point grid from 0 to .98. The selected grid minimum is a tuning score, not an independent held-out score. No original bootstrap uncertainty estimates are transferred to this cohort.
+
+`d_simulate/src/06_se_hurdle_s.ipynb` resamples complete-cohort year-0 values and generates years 1–20 with seed 63 and 10,000 careers. The legacy standalone notebook used seed 65 for its final simulation; the restored pipeline follows this project's seed-63 convention. SE-Hurdle-S receives no six-year empirical prefix. Its equations and trajectories were checked against the original functions at the same seed (agreement within numerical precision).
+
+All existing diagnostics and figures include `se_hurdle_s`. Seven-source panels expand to retain every source. `e_diagnose/src/model_comparison.ipynb` exports `model_comparison.csv`, including terminal annual rank correlations, rank-curve RMSE over years 11–20, career and generated-years totals and Gini, final inactivity, and generated-years KS distance. AR(6,6)'s lag-3 and lag-5 comparisons over this late window use fully generated pairs; its age-0 comparisons remain prefix-conditioned.
+
+The restored run selects rho = .6664 (half-life 1.71 years). SE-Hurdle-S gives mean career total 151.49 vs 153.00 empirically, final zero fraction .1434 vs .1412, and year-20 lag-5 rank correlation .5530 vs .5827. These are current-cohort results; earlier reported numeric scores should not be substituted for them.
 
 ## Statistical conventions
 
