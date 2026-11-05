@@ -1,0 +1,2 @@
+model,seed,n_sim,n_years,generated_from_age,orientation,minimum,maximum,finite
+ar6_6,63,10000,21,6,age x scholar,0.0,136.1193904717432,True

@@ -1,0 +1,13 @@
+{
+  "seed": 63,
+  "eps": 0.49,
+  "last_year": 20,
+  "n_sim": 10000,
+  "models": [
+    "arw4",
+    "lognormal_grw",
+    "ar1_s",
+    "hurdle_ar1_s_p",
+    "ar6_6"
+  ]
+}
