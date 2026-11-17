@@ -1,0 +1,9 @@
+metric,interpretation
+annual mean/median/variance curves,evolution of the population distribution; does not establish individual path agreement
+increment mean/median/variance curves,year-to-year changes; destination age labels and fully generated endpoints
+NRMSE,RMSE divided by RMS of empirical curve over the same years; undefined when empirical RMS is zero
+common_generated annual,career years 6--20; generated values for every model
+common_generated increment,destination years 7--20; both endpoints generated for every model
+common_late rank,years 11--20; lag-3/5 pairs generated; initial-rank comparisons remain initial-conditioned
+reentry agreement,"pooled generated transitions, empirical complete-cohort risk weights, at least 20 empirical cases per duration; not age-standardized"
+fit comparison,"SE fits complete careers; others use available observations; in-sample checks without uncertainty, not a controlled ablation"

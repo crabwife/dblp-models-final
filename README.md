@@ -14,6 +14,7 @@ Install `dblp_models/requirements.txt`, place the original CSV at `dblp_models/a
 | d_simulate | Matching seed-63 simulations |
 | e_diagnose | `diagnose.ipynb`, `historic.ipynb`, then `model_comparison.ipynb`: diagnostic tables |
 | f_plot | Numbered historic and manuscript figure notebooks followed by `plot.ipynb` |
+| g_trajectory | Annual/increment curve errors, rank/reentry agreement, within-career path-feature distributions, discussion options and figures |
 
 Every task has input/output/src. Input links point to the preceding task output; dependency links carry the panel and parameter tables forward through that chain. Source columns include `dblp`, `phd_year`, `year`, `CareerAge`, `pubs_adj`. The legacy cohort uses phd_year ≥1980, CareerAge 1–21, the observed age-5 productivity filter, and terminal source-row removal. `age = CareerAge - 1`. The supplied CSV gives 2,086 scholars and 510 complete careers. Missing follow-up is never treated as zero.
 
@@ -83,6 +84,26 @@ Count and increment logs use ln(q+0.49); the hurdle model's separate positive-in
 CDF figures use every finite observation through seaborn.ecdfplot. Exported CDF tables contain up to 401 quantile knots plus zero/endpoints, with exact left and right empirical probabilities at those knots. They are compact summary curves, not raw trajectory exports. Distances use full observations. Two-sample KS D and Wasserstein are descriptive, with no fitted-parameter KS p-values. QQ tables give R and R² using every positive total's log2 value; figures retain up to 401 ordered points, standardized with ddof=1. Standard windows include 0, 1–4, 5–7, 8–20, through-5, 17–20, whole career, and generated-common 6–20. Historical last-four-observed empirical totals are labelled separately from complete-cohort years 17–20.
 
 Increment stages refer to transition starts: 0, 1–4, 5–7, 8–19, plus pooled 0–19. Raw increments get descriptive Laplace fits; offset-log increments get Normal fits. Histogram figures display the central 99% (initialization 99.5%); densities use full N rather than renormalizing the cropped mass. Fit statistics always use the full sample. CDFs show full tails, including zero. Raw moment/trajectory plots use symlog when needed to keep GRW visible without truncating it. The rounded annual-output PMF explicitly labels its last bin 20+; zero-year survival is P(count ≥ k). First maximum wins ties. Conditional history uses ±0.5 neighborhoods, widening to up to 2,500 nearest cases only when fewer than 400 are available; bounds and widening flags are saved.
+
+## Trajectory agreement
+
+The pipeline now ends with `g_trajectory`. Its `input` is a relative link to `f_plot/output`; `f_plot/output/diagnostics -> ../input` carries the existing diagnostic tables and simulation link forward through the task chain. `run.ipynb` recreates both links on fresh checkouts. The original annual mean, median, variance, SD and quantile curves already exist in `e_diagnose/output/count_moments.csv`; annual increment moments, rank curves and reentry risks are also available upstream.
+
+| Notebook | Outputs and purpose |
+|---|---|
+| g_trajectory/src/01_agreement.ipynb | `curve_agreement.csv`, per-year errors, `rank_agreement.csv`, reentry comparisons, `discussion_options.csv` and metric definitions |
+| g_trajectory/src/02_path_features.ipynb | `path_summary.csv`, `path_agreement.csv`, compact path ECDFs, `path_discussion_options.csv` and descriptor definitions |
+| g_trajectory/src/03_figures.ipynb | Annual mean/median/variance curves in raw and offset-log scales, full-model and GRW-omitted views, increment curves and six path-feature distribution panels; PDF/PNG exports and figure notes |
+
+`curve_agreement.csv` reports bias, MAE, RMSE, maximum absolute error and NRMSE for each annual or increment statistic. NRMSE divides RMSE by the root mean square of the empirical curve over the same years, not by a near-zero yearly mean or median. An identically zero empirical curve has undefined NRMSE. Percentages in `discussion_options.csv` are 100 times this NRMSE, not percentage bias. Variances use ddof=0 as upstream.
+
+Two windows distinguish initialized observations from generated ones. `post_initialization` uses destination ages 1--20 and flags AR(6,6)'s empirical prefix. `common_generated` uses ages 6--20 for annual levels and destination ages 7--20 for increments, so both increment endpoints are generated for every model. Rank RMSE has a `common_late` window of ages 11--20, making every lag-three and lag-five pair generated. Initial-rank comparisons are separately labeled initial-conditioned. Reentry summaries compare pooled generated transitions with empirical-complete-cohort risk weights over durations having at least 20 empirical at-risk cases. Missing simulated duration support is reported, not silently dropped; these hazards are not age-standardized.
+
+Path comparisons use full years 0--20 and common generated years 6--20, with AR(6,6)'s prefix flagged in the full view. Descriptors are active-year fraction, longest observed inactive run, largest consecutive-three-year output share, absolute annual variation divided by total output, first year of maximum output, and the within-path OLS slope of log1p output against age. The active fraction is time-order invariant; the other descriptors probe different aspects of ordering. Three-year concentration is descriptive and is not a new shuffled-null test. Zero-output paths have undefined concentration and peak age; their exclusion counts are recorded. Observed runs may be truncated at window boundaries. KS and Wasserstein distances compare unpaired descriptor distributions; synthetic researchers are never arbitrarily paired to observed researchers. Plotted path CDFs connect compact quantile knots; distances use every defined observation.
+
+All empirical curves use the fixed complete-career cohort. These are in-sample descriptive checks without uncertainty estimates; SE uses complete careers for fitting while other models use available observations. Population-curve agreement and path-feature agreement are reported separately, with no single overall winner score.
+
+**Validation and results status:** `01_agreement.ipynb` was executed against diagnostic tables from commit `0f35fa7e66b3a0ccc8f39ebf9db4f637de02a001`. Its aggregate agreement tables, discussion options and definitions are committed in `g_trajectory/output`. Known-path calculations, the distinction between unchanged annual distributions and changed temporal structure, integration, and rendering were checked using seed-63 synthetic fixtures. Synthetic fixtures and their path results/figures are not committed. Run the full pipeline with the local source data to generate the real path-feature outputs and all new figures.
 
 ## Provenance
 
