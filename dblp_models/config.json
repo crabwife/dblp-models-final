@@ -10,5 +10,11 @@
     "hurdle_ar1_s_p",
     "ar6_6",
     "se_hurdle_s"
+  ],
+  "primary_plot_models": [
+    "lognormal_grw",
+    "ar1_s",
+    "hurdle_ar1_s_p",
+    "se_hurdle_s"
   ]
 }

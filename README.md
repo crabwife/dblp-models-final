@@ -15,7 +15,7 @@ Install `dblp_models/requirements.txt`, place the original CSV at `dblp_models/a
 | e_diagnose | `diagnose.ipynb`, `historic.ipynb`, then `model_comparison.ipynb`: diagnostic tables |
 | f_plot | Numbered historic and manuscript figure notebooks followed by `plot.ipynb` |
 | g_report | Selected diagnostic CSVs to generated LaTeX macros and a provenance manifest |
-| h_trajectory | Annual/increment curve errors, rank/reentry agreement, within-career path-feature distributions, discussion options and figures |
+| h_trajectory | Annual/increment curve errors, annual Wasserstein-1, rank/reentry agreement, within-career path-feature distributions and figures |
 
 Every task has input/output/src. Input links point to the preceding task output; dependency links carry the panel and parameter tables forward through that chain. Source columns include `dblp`, `phd_year`, `year`, `CareerAge`, `pubs_adj`. The legacy cohort uses phd_year ≥1980, CareerAge 1–21, the observed age-5 productivity filter, and terminal source-row removal. `age = CareerAge - 1`. The supplied CSV gives 2,086 scholars and 510 complete careers. Missing follow-up is never treated as zero.
 
@@ -50,7 +50,7 @@ In the idealized process without the offset or boundary, conditional on fixed po
 | f_plot/src/07_dblp_rank_mixing.ipynb | Empirical-only DBLP annual rank mixing: initial-year, lag-three and lag-five correlations on one axis; PDF/PNG, curve table, terminal summary and caption |
 | f_plot/src/plot.ipynb | Core diagnostics and the requested three-panel Spearman rank-mixing curves, annual and cumulative separately |
 
-`SELECTED` in each figure notebook controls its model view. GRW-excluded moment figures are additional views; full-model tables and figures remain available. Figure exports are PNG/PDF; notebook figure outputs are cleared before commit to avoid duplicating the images.
+The primary comparisons show DBLP, GRW, AR(1), AR(1)-H, and SE-H. Where figures also compare ARW4 or AR(6,6), the expanded panels and model-specific figures are saved under the task's `output/secondary/`. Figures showing only DBLP are kept with the primary outputs. GRW-excluded moment panels are additional views. Data tables still cover all models. Figures are exported as PDF and PNG.
 
 ## Manuscript figure
 
@@ -82,7 +82,7 @@ The fit uses the 510 complete careers, matching the original SE workflow's compl
 
 `d_simulate/src/06_se_hurdle_s.ipynb` resamples complete-cohort year-0 values and generates years 1–20 with seed 63 and 10,000 careers. The legacy standalone notebook used seed 65 for its final simulation; the restored pipeline follows this project's seed-63 convention. SE-Hurdle-S receives no six-year empirical prefix. Its equations and trajectories were checked against the original functions at the same seed (agreement within numerical precision).
 
-All existing diagnostics and figures include `se_hurdle_s`. Seven-source panels expand to retain every source. `e_diagnose/src/model_comparison.ipynb` exports `model_comparison.csv`, including terminal annual rank correlations, rank-curve RMSE over years 11–20, career and generated-years totals and Gini, final inactivity, and generated-years KS distance. AR(6,6)'s lag-3 and lag-5 comparisons over this late window use fully generated pairs; its age-0 comparisons remain prefix-conditioned.
+Model-comparison diagnostics include `se_hurdle_s`. Secondary panels retain all seven sources. `e_diagnose/src/model_comparison.ipynb` exports `model_comparison.csv`, including terminal annual rank correlations, rank-curve RMSE over years 11–20, career and generated-years totals and Gini, final inactivity, and generated-years KS distance. AR(6,6)'s lag-3 and lag-5 comparisons over this late window use fully generated pairs; its age-0 comparisons remain prefix-conditioned.
 
 The pre-update restored run selects rho = .6664 (half-life 1.71 years). SE-Hurdle-S gives mean career total 151.49 vs 153.00 empirically, final zero fraction .1434 vs .1412, and year-20 lag-5 rank correlation .5530 vs .5827. These are current-cohort results; earlier reported numeric scores should not be substituted for them.
 
@@ -102,7 +102,8 @@ The trajectory diagnostics run in `h_trajectory`. Its `input` is a relative link
 |---|---|
 | h_trajectory/src/01_agreement.ipynb | `curve_agreement.csv`, per-year errors, `rank_agreement.csv`, reentry comparisons, `discussion_options.csv` and metric definitions |
 | h_trajectory/src/02_path_features.ipynb | `path_summary.csv`, `path_agreement.csv`, compact path ECDFs, `path_discussion_options.csv` and descriptor definitions |
-| h_trajectory/src/03_figures.ipynb | Annual mean/median/variance curves in raw and offset-log scales, full-model and GRW-omitted views, increment curves and six path-feature distribution panels; PDF/PNG exports and figure notes |
+| h_trajectory/src/03_figures.ipynb | Annual and increment moment curves, path-feature CDFs and figure notes |
+| h_trajectory/src/04_annual_wasserstein.ipynb | Exact annual Wasserstein-1 distances, mean and OLS slope by model, primary and secondary figures |
 
 `curve_agreement.csv` reports bias, MAE, RMSE, maximum absolute error and NRMSE for each annual or increment statistic. NRMSE divides RMSE by the root mean square of the empirical curve over the same years, not by a near-zero yearly mean or median. An identically zero empirical curve has undefined NRMSE. Percentages in `discussion_options.csv` are 100 times this NRMSE, not percentage bias. Variances use ddof=0 as upstream.
 
@@ -152,6 +153,14 @@ Explicit total prefixes are `DBLP`, `ARWFour`, `GRW`, `AROne`, `HurdleAROne`, `A
 Each model has `RankInitialRMSE`, `RankLagThreeRMSE`, and `RankLagFiveRMSE` commands for rank-curve errors over endpoint years 11–20. For example, `\SEHurdleRankLagFiveRMSE` gives the lag-five error to four decimals. Both total windows also export `MedianTotal`, `SDTotal`, `VarianceTotal`, `NTotal`, and `FitKSD` for each source. For example, use `\DBLPFourYearMedianTotal` for the empirical median. Raw moments include zero totals. `FitKSD` compares each source's positive totals with its own fitted lognormal.
 
 The input/output links are tracked relative symlinks, so `make report` works on a fresh checkout using the committed aggregate tables. The raw CSV and simulated trajectories are needed only when rerunning earlier modeling tasks.
+
+## Annual Wasserstein-1
+
+`h_trajectory/output/annual_wasserstein.csv` gives one exact Wasserstein-1 distance per model and career year, using the complete DBLP cohort and all simulated annual values, including zeros. The distance is the mean absolute gap between matched quantiles, in papers. The CSV records both sample sizes and whether each model year is generated or initialized.
+
+`annual_wasserstein_summary.csv` reports the equally weighted mean over career years 0–20 and the slope of an ordinary least-squares regression of raw W1 on career year, in papers per career year. Positive slopes mean the distributional gap tends to grow. Both summaries include initialized years, including AR(6,6)'s observed prefix in years 0–5. These scores compare annual distributions and do not pair individual trajectories. `annual_wasserstein.pdf` and its PNG use a symlog axis to show the smaller gaps alongside GRW. The secondary version marks AR(6,6)'s initialized years.
+
+Each model has `AnnualWassersteinMean` and `AnnualWassersteinSlope` macros, for example `\SEHurdleAnnualWassersteinMean` and `\SEHurdleAnnualWassersteinSlope`. Both refresh with `make report`.
 
 ## Trajectory macros
 
