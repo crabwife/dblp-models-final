@@ -1,0 +1,7 @@
+descriptor,definition,caveat
+active_fraction,fraction of years with positive output,time-order invariant; contextual activity summary
+longest_observed_zero_run,longest consecutive run of zero-output years inside the window,"runs at window boundaries are truncated, not complete spell lengths"
+max_three_year_share,largest sum over three consecutive years / total output in the window,"undefined for all-zero paths; descriptive concentration, not an excess-over-shuffling test"
+normalized_total_variation,sum of absolute adjacent-year changes / total output in the window,defined as zero for all-zero paths; measures fluctuation relative to output
+peak_age,"career age of maximum output within the window, earliest year on ties",undefined for all-zero paths; first-maximum convention affects flat careers
+log1p_trend_slope,OLS slope of log(1 + annual output) against career age within each path,descriptive direction of within-career change; not a causal effect
