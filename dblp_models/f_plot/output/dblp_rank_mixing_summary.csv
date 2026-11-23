@@ -1,0 +1,4 @@
+reference,start_age,end_age,n,terminal_rho,measure,cohort
+age_0,0,20,510,0.1872942000921679,annual,DBLP complete careers
+lag_3,3,20,510,0.6531559207960463,annual,DBLP complete careers
+lag_5,5,20,510,0.5826959189631626,annual,DBLP complete careers
