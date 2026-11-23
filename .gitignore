@@ -21,3 +21,26 @@ venv/
 *.npy
 *.npz
 **/d_simulate/output/ar6_6/prefix_sources.csv
+
+# LaTeX temporary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.bbl
+*.blg
+
+# LaTeX compilation
+manuscript/build/
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# macOS
+.DS_Store
