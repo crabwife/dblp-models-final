@@ -14,7 +14,8 @@ Install `dblp_models/requirements.txt`, place the original CSV at `dblp_models/a
 | d_simulate | Matching seed-63 simulations |
 | e_diagnose | `diagnose.ipynb`, `historic.ipynb`, then `model_comparison.ipynb`: diagnostic tables |
 | f_plot | Numbered historic and manuscript figure notebooks followed by `plot.ipynb` |
-| g_trajectory | Annual/increment curve errors, rank/reentry agreement, within-career path-feature distributions, discussion options and figures |
+| g_report | Selected diagnostic CSVs to generated LaTeX macros and a provenance manifest |
+| h_trajectory | Annual/increment curve errors, rank/reentry agreement, within-career path-feature distributions, discussion options and figures |
 
 Every task has input/output/src. Input links point to the preceding task output; dependency links carry the panel and parameter tables forward through that chain. Source columns include `dblp`, `phd_year`, `year`, `CareerAge`, `pubs_adj`. The legacy cohort uses phd_year ≥1980, CareerAge 1–21, the observed age-5 productivity filter, and terminal source-row removal. `age = CareerAge - 1`. The supplied CSV gives 2,086 scholars and 510 complete careers. Missing follow-up is never treated as zero.
 
@@ -95,13 +96,13 @@ Increment stages refer to transition starts: 0, 1–4, 5–7, 8–19, plus poole
 
 ## Trajectory agreement
 
-The pipeline now ends with `g_trajectory`. Its `input` is a relative link to `f_plot/output`; `f_plot/output/diagnostics -> ../input` carries the existing diagnostic tables and simulation link forward through the task chain. `run.ipynb` recreates both links on fresh checkouts. The original annual mean, median, variance, SD and quantile curves already exist in `e_diagnose/output/count_moments.csv`; annual increment moments, rank curves and reentry risks are also available upstream.
+The pipeline now ends with `h_trajectory`. Its `input` is a relative link to `g_report/output`; `g_report/output/diagnostics -> ../input/diagnostics` carries the existing diagnostic tables and simulation link forward through `g_report/input -> ../f_plot/output`. `run.ipynb` recreates these links on fresh checkouts. The former `g_trajectory` directory is now `h_trajectory`, preserving the letter order after adding `g_report`. The original annual mean, median, variance, SD and quantile curves already exist in `e_diagnose/output/count_moments.csv`; annual increment moments, rank curves and reentry risks are also available upstream.
 
 | Notebook | Outputs and purpose |
 |---|---|
-| g_trajectory/src/01_agreement.ipynb | `curve_agreement.csv`, per-year errors, `rank_agreement.csv`, reentry comparisons, `discussion_options.csv` and metric definitions |
-| g_trajectory/src/02_path_features.ipynb | `path_summary.csv`, `path_agreement.csv`, compact path ECDFs, `path_discussion_options.csv` and descriptor definitions |
-| g_trajectory/src/03_figures.ipynb | Annual mean/median/variance curves in raw and offset-log scales, full-model and GRW-omitted views, increment curves and six path-feature distribution panels; PDF/PNG exports and figure notes |
+| h_trajectory/src/01_agreement.ipynb | `curve_agreement.csv`, per-year errors, `rank_agreement.csv`, reentry comparisons, `discussion_options.csv` and metric definitions |
+| h_trajectory/src/02_path_features.ipynb | `path_summary.csv`, `path_agreement.csv`, compact path ECDFs, `path_discussion_options.csv` and descriptor definitions |
+| h_trajectory/src/03_figures.ipynb | Annual mean/median/variance curves in raw and offset-log scales, full-model and GRW-omitted views, increment curves and six path-feature distribution panels; PDF/PNG exports and figure notes |
 
 `curve_agreement.csv` reports bias, MAE, RMSE, maximum absolute error and NRMSE for each annual or increment statistic. NRMSE divides RMSE by the root mean square of the empirical curve over the same years, not by a near-zero yearly mean or median. An identically zero empirical curve has undefined NRMSE. Percentages in `discussion_options.csv` are 100 times this NRMSE, not percentage bias. Variances use ddof=0 as upstream.
 
@@ -111,7 +112,44 @@ Path comparisons use full years 0--20 and common generated years 6--20, with AR(
 
 All empirical curves use the fixed complete-career cohort. These are in-sample descriptive checks without uncertainty estimates; SE uses complete careers for fitting while other models use available observations. Population-curve agreement and path-feature agreement are reported separately, with no single overall winner score.
 
-**Validation and results status:** `01_agreement.ipynb` was executed against diagnostic tables from commit `0f35fa7e66b3a0ccc8f39ebf9db4f637de02a001`. Its aggregate agreement tables, discussion options and definitions are committed in `g_trajectory/output`. Known-path calculations, the distinction between unchanged annual distributions and changed temporal structure, integration, and rendering were checked using seed-63 synthetic fixtures. Synthetic fixtures and their path results/figures are not committed. Run the full pipeline with the local source data to generate the real path-feature outputs and all new figures.
+**Validation and results status:** `01_agreement.ipynb` was executed against diagnostic tables from commit `0f35fa7e66b3a0ccc8f39ebf9db4f637de02a001`. Its aggregate agreement tables, discussion options and definitions are committed in `h_trajectory/output`. Known-path calculations, the distinction between unchanged annual distributions and changed temporal structure, integration, and rendering were checked using seed-63 synthetic fixtures. Synthetic fixtures and their path results/figures are not committed. Run the full pipeline with the local source data to generate the real path-feature outputs and all new figures.
+
+## Generated manuscript numbers
+
+`dblp_models/g_report` is the reporting task after `f_plot`. Its input is linked to `f_plot/output`; the existing `diagnostics` link supplies authoritative CSVs from `e_diagnose/output`. `report.ipynb` reads `lognormality_summary.csv` and `model_comparison.csv` and writes `g_report/output/results.tex`. It exports named LaTeX commands, not a second set of statistics or figures.
+
+From the repository root:
+
+```sh
+make report                       # refresh macros from current diagnostic CSVs
+make paper                        # refresh macros, then compile manuscript/build/main.pdf
+make paper PYTHON=/path/to/python  # use a particular project environment
+```
+
+`make paper` requires `latexmk` and a working PDFLaTeX installation. Python uses the project's existing dependencies. The Makefile executes the reporting notebook's code cells in sequence and propagates errors; a failed export stops the paper build. It refreshes current CSV results without refitting models. A full run of `dblp_models/run.ipynb` also executes `g_report` between `f_plot` and `h_trajectory`.
+
+The manuscript loads the generated file in its preamble:
+
+```tex
+\input{../dblp_models/g_report/output/results.tex}
+```
+
+The input path assumes compilation from `manuscript/`, as used by `make paper`. LaTeX build-on-save uses the last exported macros; refreshing the CSV-derived numbers is the job of `make report`, `make paper`, or the full notebook pipeline.
+
+| Macro | Meaning |
+|---|---|
+| `\GRWQQRtwo` or `\GRWLognormalRtwo` | Primary GRW final-four-year QQ R-squared |
+| `\DBLPQQRtwo` | Empirical final-four-year QQ R-squared |
+| `\GRWCareerQQRtwo` | Whole-career GRW QQ R-squared, supplemental |
+| `\DBLPNComplete` | Number of complete empirical careers |
+| `\DBLPFourYearStart`, `\DBLPFourYearEnd` | Inclusive primary window bounds |
+| `\DBLPRankInitialFinal`, `\DBLPRankLagThreeFinal`, `\DBLPRankLagFiveFinal` | Terminal annual rank correlations |
+
+For example, `$R^2=\GRWQQRtwo$`, `\DBLPNComplete{} complete careers`, and `\DBLPFourYearZeroPercent\%`. Commands provide numbers without math delimiters, units or a percent sign. QQ, means, Gini and rank values use three decimals; percentages use one; counts are integers. Adjust `DECIMALS`, `TOTAL_METRICS`, `RANK_METRICS` or `PREFIXES` in the report notebook to change the exported selection and precision.
+
+Explicit total prefixes are `DBLP`, `ARWFour`, `GRW`, `AROne`, `HurdleAROne`, `ARSix`, and `SEHurdle`, followed by `FourYear` or `Career` and the metric (`QQRtwo`, `MeanTotal`, `Gini`, `NPositive`, `NZero`, `ZeroPercent`). Short `QQRtwo` aliases always select the primary four-year window. `macro_manifest.csv` records each name, raw and formatted value, selection, precision, scale and alias; `report_sources.csv` records input links, resolved source files and SHA-256 hashes. Both files and `results.tex` are tracked. Change the CSV-producing notebooks or the exporter, rather than editing generated files.
+
+The input/output links are tracked relative symlinks, so `make report` works on a fresh checkout using the committed aggregate tables. The raw CSV and simulated trajectories are needed only when rerunning earlier modeling tasks.
 
 ## Provenance
 
