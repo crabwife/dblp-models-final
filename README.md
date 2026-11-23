@@ -149,6 +149,8 @@ For example, `$R^2=\GRWQQRtwo$`, `\DBLPNComplete{} complete careers`, and `\DBLP
 
 Explicit total prefixes are `DBLP`, `ARWFour`, `GRW`, `AROne`, `HurdleAROne`, `ARSix`, and `SEHurdle`, followed by `FourYear` or `Career` and the metric (`QQRtwo`, `MeanTotal`, `Gini`, `NPositive`, `NZero`, `ZeroPercent`). Short `QQRtwo` aliases always select the primary four-year window. `macro_manifest.csv` records each name, raw and formatted value, selection, precision, scale and alias; `report_sources.csv` records input links, resolved source files and SHA-256 hashes. Both files and `results.tex` are tracked. Change the CSV-producing notebooks or the exporter, rather than editing generated files.
 
+Each model has `RankInitialRMSE`, `RankLagThreeRMSE`, and `RankLagFiveRMSE` commands for rank-curve errors over endpoint years 11–20. For example, `\SEHurdleRankLagFiveRMSE` gives the lag-five error to four decimals. Both total windows also export `MedianTotal`, `SDTotal`, `VarianceTotal`, `NTotal`, and `FitKSD` for each source. For example, use `\DBLPFourYearMedianTotal` for the empirical median. Raw moments include zero totals. `FitKSD` compares each source's positive totals with its own fitted lognormal.
+
 The input/output links are tracked relative symlinks, so `make report` works on a fresh checkout using the committed aggregate tables. The raw CSV and simulated trajectories are needed only when rerunning earlier modeling tasks.
 
 ## Provenance
