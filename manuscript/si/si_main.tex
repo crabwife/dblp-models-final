@@ -1,0 +1,98 @@
+\documentclass[9pt,twoside,lineno]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+\usepackage{graphicx}
+\usepackage{amsmath, amsfonts, amssymb, bbm}
+\templatetype{pnassupportinginfo}
+
+\title{Unequal scientific productivity emerges from stochastic temporal processe}
+\author{Samantha Magid, Aanjaneya Kumar, Daniel B. Larremore, Aaron Clauset, and Sam Zhang}
+\correspondingauthor{Sam Zhang.\\E-mail: sam.zhang@uvm.edu}
+
+\begin{document}
+
+%% Comment out or remove this line before generating final copy for submission; this will also remove the warning re: "Consecutive odd pages found".
+\instructionspage  
+
+\maketitle
+
+%% Adds the main heading for the SI text. Comment out this line if you do not have any supporting information text.
+\SItext
+
+
+\subsection*{Subhead}
+Type or paste text here. This should be additional explanatory text such as an extended technical description of results, full details of mathematical models, etc.   
+
+\section*{Heading}
+\subsection*{Subhead}
+Type or paste text here. You may break this section up into subheads as needed (e.g., one section on ``Materials'' and one on ``Methods'').
+
+\section*{Stochastic Models}
+\subsection*{Lognormal GRW}
+Here, $P_t$ denotes annual productivity at career year $t$, and $\epsilon=0.49$ keeps the logarithmic transformation finite at zero. For each transition $t\to t+1$, we estimated $\hat{\mu}_t$ and $\hat{\sigma}_t^2$ by fitting a normal distribution by maximum likelihood to the observed increments $\log(P_{t+1}+\epsilon)-\log(P_t+\epsilon)$. Initial productivity was sampled from the empirical year-zero distribution.
+
+\begin{equation}
+P_{t+1}=P_t e^{\eta_t},\qquad
+\eta_t\overset{\mathrm{ind}}{\sim}
+\mathcal{N}(\hat\mu_t,\hat\sigma_t^2).
+\label{eq:grw}
+\end{equation}
+
+\subsection*{First-order autoregressive}
+Writing $Y_t=\log(P_t+\epsilon)$, we modeled
+\begin{equation}
+Y_{t+1}=a_k+b_kY_t+Z_t,\qquad
+Z_t\overset{\mathrm{ind.}}{\sim}\mathcal{N}(0,\hat\sigma^2_k).
+\label{eq:ar1}
+\end{equation}
+where $Z_t$ are independent standard normal variables and $k=k(t)$ indexes career stages comprising transition-start years 0, 1--4, 5--7, and 8--19.Coefficients were estimated separately within each stage by least squares, with residual variances estimated using the mean squared residual. Initial productivity was drawn from an exponential distribution whose mean matched observed year-zero productivity.
+
+\subsection*{Hurdle autoregressive}
+\begin{equation}
+\Pr(P_{t+1}=0\mid P_t>0)
+=
+\operatorname{logit}^{-1}
+\{c_k+d\log(P_t+\epsilon)\},
+\end{equation}
+with stage-specific intercepts and a shared coefficient $d\leq0$. For inactive researchers, reentry occurred with a stage-specific probability estimated from observed zero-to-positive transitions. Conditional on remaining active, productivity followed
+\begin{equation}
+\log P_{t+1}=a_k+b_k\log P_t+Z_t.
+\end{equation}
+Positive output upon reentry was drawn from an exponential distribution fitted to observed reentry output. Initial activity matched the observed year-zero activity fraction, with positive initial output drawn from a fitted exponential distribution.
+\subsection*{Self-exciting hurdle}
+\begin{equation}
+H_t=
+\frac{\sum_{j=0}^{t-1}\rho^{t-1-j}\log(1+P_j)}
+     {\sum_{j=0}^{t-1}\rho^{t-1-j}},
+\qquad H_0=0.
+\end{equation}
+This history excludes current productivity, which enters separately. Then, defining $w = \mathbbm{1}\{q_{t-1}>0\}$, activity was computed as
+
+\begin{equation}
+\operatorname{logit}\Pr(q_t>0) = \alpha_s+\beta_s\log(1+q_{t-1}) +\gamma_sw+\delta_s H_t.
+\label{eq:se_hurdle_s_ext}
+\end{equation}
+Conditional on $q_t > 0$,  output was computed as
+\begin{equation}
+    \log q_t = a_s+b_s\log(1+q_{t-1})+c_s(1- w)+d_sH_t+\eta_t.
+    \label{eq:se_hurdle_s_pos_int}
+\end{equation}
+Coefficients were stage-specific, an architecture inherited from SPAARW, with history effects $d_k,h_k$ constrained to be nonnegative. Numerical evaluation bounded the simulated log-intensity between $-30$ and $30$.
+Initial productivity was sampled from observed year-zero values.
+\subsection*{Materials}
+Add a materials subsection if you need to.
+
+\subsection*{Methods}
+Add a methods subsection if you need to.
+
+
+%%% Add this line AFTER all your figures and tables
+\FloatBarrier
+
+
+%\movie{A third movie, just for kicks.}
+
+%\dataset{dataset_one.txt}{Type or paste legend here.}
+
+%\bibliography{references}
+
+\end{document}

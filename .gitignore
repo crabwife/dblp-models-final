@@ -1,3 +1,4 @@
+
 # local noise
 .DS_Store
 ._*
@@ -22,7 +23,7 @@ venv/
 *.npz
 **/d_simulate/output/ar6_6/prefix_sources.csv
 
-# LaTeX temporary files
+# LaTeX auxiliary files
 *.aux
 *.fdb_latexmk
 *.fls
@@ -33,14 +34,11 @@ venv/
 *.bbl
 *.blg
 
-# LaTeX compilation
+# LaTeX build directories
 manuscript/build/
-*.aux
-*.fdb_latexmk
-*.fls
-*.log
-*.out
-*.synctex.gz
+manuscript/paper/build/
+manuscript/si/build/
 
-# macOS
-.DS_Store
+# migration backups
+manuscript/paper/references.overleaf.bib
+manuscript/si/pnas-new.original.bst

@@ -1,0 +1,181 @@
+\documentclass[9pt,twocolumn,twoside]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+
+
+\usepackage{graphicx}
+\usepackage{amsmath, amsfonts, amssymb, bbm}
+\articletype{CLASSIFICATION}%%%% Article topic/classification
+
+\templatetype{pnasresearcharticle} % Choose template
+% {pnasresearcharticle} = Template for a two-column research article
+% {pnasmathematics} %= Template for a one-column mathematics article
+% {pnasinvited} %= Template for a PNAS invited submission
+
+
+\begin{document}
+
+
+\title{Unequal scientific productivity emerges from stochastic temporal processes}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[a,1]{Samantha Magid}
+\author[c]{Aanjaneya Kumar}
+\author[d,c]{Daniel B. Larremore}
+\author[d,c]{Aaron Clauset}
+% Aanj
+% Dan
+% Aaron
+\author[a,b,c,d,1,2]{Sam Zhang}
+
+\affil[a]{Vermont Complex Systems Institute, University of Vermont, Burlington, VT 05405, USA.}
+\affil[b]{Department of Mathematics and Statistics, University of Vermont, Burlington, VT 05405, USA.}
+\affil[c]{Santa Fe Institute, Santa Fe, NM 87501, USA.}
+\affil[d]{Department of Computer Science, University of Colorado Boulder, Boulder, CO 80309, USA}
+% Please give the surname of the lead author for the running footer
+\leadauthor{Magid}
+
+% Please include corresponding author, author contribution and author declaration information
+\authorcontributions{This is a placeholder for a description of the nature of SM and SZ contributions.}
+\authordeclaration{The authors declare no competing interest.}
+\equalauthors{\textsuperscript{1}Samantha Magid and Sam Zhang contributed equally to this work.}
+\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: sam.zhang@uvm.edu.}
+
+
+
+% At least three keywords are required at submission. Please provide three to five keywords, separated by the pipe symbol.
+\keywords{scientific productivity $|$ science of science $|$ stochastic processes $|$ temporal dynamics $|$ inequality}
+
+\begin{abstract}
+In 1957, Nobel Prize-winning physicist William Shockley suggested that the large individual differences in cumulative scientific productivity, which is approximately lognormally distributed, could be explained as the result of differences in fixed individual traits of scientific ability. However, the mathematical and methodological reasoning he provided fall short of supporting his suggestion. We identify and respond to these shortcomings. We iteratively develop several temporal models and empirical temporal dynamics against which to appraise them. We found that approximate cumulative lognormality was reproduced by every model we tested, regardless of how consistent the model was with other empirical constraints. Ultimately, we identify a self-exciting hurdle model which is consistent with both cumulative lognormality and our empirical temporal constraints. We show that stochastic temporal processes can generate unequal scientific productivity without invoking Shockley’s assumption of fixed differences in individual scientific ability.
+\end{abstract}
+
+\dates{This manuscript was compiled on \today}
+\doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
+
+
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+
+\Firstpage
+
+The study of scientific productivity heavily focuses on explaining the large differences publication counts between the most and least productive scientists. This inquiry began over a century ago with Lotka's Law of scientific productivity distribution \cite{origins_of_productivity_frequency_law_lotka1926}. In the intervening century, the metascientific study of productivity has attracted scientists from a wide array of fields, all aiming to turn their focus inwards. 
+
+% elaborate on zipf-- always seeking to explain diffs/stratification
+
+Notably, in 1957, Nobel Prize-winning physicist William Shockley observed that some scientists are dramatically more productive than others, and posited an influential explanation for why that is \cite{product_of_factors_explains_lognormality_shockley1957}. Specifically, the rate of publications and patents produced by researchers in Shockley's dataset followed an approximately lognormal distribution, a heavy-tailed distribution where a minority of scientists were significantly more productive than the rest. Shockley sought to explain this through stable differences in individual cognitive and managerial talent.
+\subsection*{Shockley's idea}
+\label{subsec:intro_shockley}
+He gave the following framework to explain his observation. For sufficiently large $n$, assuming finite variance and negligible contributions from extreme fluctuations to the total variance, the sum of independently varying factors can be approximately normally distributed. Because a sum of logarithms is the logarithm of a product, Shockley concluded that the lognormally distributed publication counts $P$ were the product of $k$ independently varying aspects of scientific ability $F$:
+\begin{equation} % no need for 8
+\log P = \sum_{i=1}^{k}\log F_i
+\;\dot{\sim}\; \mathcal{N}(\mu,\sigma^2).
+\label{eq:shockley_model}
+\end{equation}
+Shockley's contribution represented an influential proposal for an explanatory model of scientific productivity \cite{shockley_in_modern_science_of_science_wang2021}. Despite its age and the author's subsequent vocal advocacy of eugenics, it has largely escaped scrutiny, and is frequently cited in modern scientific productivity research \cite{called_shockley_elegant, impact_hot_streaks_and_disruptive_work_chen2025, franceschetSkewnessComputerScience2010, petersenPersistenceUncertaintyAcademic2012, sajindraTrackingHighImpactResearchers2026, petersenMethodsMeasuringCitations2010}. However, his model has several major shortcomings
+\Endparasplit
+
+\subsection*{Atemporality}
+\label{subsec:intro_atemp}
+This model is motivated by an ECDF regularity. However, it lacks a temporal component, despite the fact that the accumulation of publications inherently occurs over time. It therefore cannot explain any known temporal dynamics of scientific productivity. More fundamentally, explaining the distribution of accumulated output requires distinguishing the process of accumulation from the distribution it produces.
+\subsection*{Non-identification}
+\label{subsec:intro_nonID}
+Shockley infers a multiplicative structure from his observation that log productivity is approximately normally distributed. However, normality after taking logarithms does not establish that the underlying contributions combined multiplicatively: a lognormal distribution can also arise as a \emph{sum} of independent nonnegative random variables \cite{thorinInfiniteDivisibilityLognormal1977}. Further, while cumulative lognormality can arise through multiplying components, that alone provides no basis for preferring his interpretation of those components as facets of procedural `ability' above anything else. 
+
+\subsection*{Ideology of intrinsic human differences}
+\label{subsec:intro_eugenics}
+Shockley, who would go on to gain notoriety for his advocacy of eugenicist beliefs, believed in the central importance of intelligence and other stable individual traits. He believed that scientific ability is generated by intelligence, and that intelligence is determined by immutable race and genetics, which intervention cannot meaningfully remediate \cite{shockley_lectures_on_eugenics_and_research_taboos1967, shockley_public_hereditarian_and_eugenic_views1965, shockley_later_self_explanation_of_hereditarian_views1980}. His proposed explanation is in line ... 
+\subsection*{Empirical constraints}
+\label{subsec:intro_empirical_constraints}
+
+Given the non-identifying nature of cumulative lognormality as an objective, and the need for temporal orientation, we developed an array of new empirical constraints in addition to the lognormal $R^2$ of simulated output. To understand temporal changes in relative productivity, we used fixed-point/fixed-distance Spearman rank correlation. To better understand the inequality of prodigiousness, we computed the trends in the Gini coefficient with respect to time. 
+
+\section*{Temporal models}
+\label{sec:model}
+To address these shortcomings, we designed and evaluated several temporal models of scientific productivity using publication histories from the dblp computer science bibliography. %structure
+
+
+\subsection*{Geometric Random Walk}
+\label{subsec:model_GRW}
+In direct response to the issue of non-identification, we began with a geometric random walk (GRW) with independent lognormal multipliers:
+
+The GRW generated approximately lognormal career totals (lognormal QQ $R^2=0.957$), yet substantially misrepresented other empirical properties. Mean career output was approximately 57,000 publications, compared with 153 empirically, and the Gini coefficient was 0.985 rather than 0.360. The model also overstated recent rank persistence: year-20 lag-five rank correlation was 0.742, compared with 0.583 empirically. Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
+
+\subsection*{First-order autoregressive}
+\label{subsec_model_AR1}
+We next allowed the dependence on current productivity to be estimated rather than fixed using a simple autoregressive model. Career totals remained approximately lognormal (QQ $R^2=0.999$), and mean career output was 155.6, compared with 153.0 empirically. However, the model underestimated inequality (Gini 0.288 versus 0.360) and the year-20 fraction of inactive researchers (0.025 versus 0.141). Rank persistence was also too weak: the year-20 lag-five correlation was 0.100, compared with 0.583 empirically.
+
+\subsection*{Hurdle autoregressive}
+\label{subsec:model_hurdleAR}
+
+We then modeled publication activity separately from output, splitting our model into an extensive and conditional intensive margin. 
+The model produced approximately lognormal career totals (QQ $R^2=0.987$) and a year-20 inactivity fraction of 0.157, compared with 0.141 empirically. Mean career output was 135.4 and the Gini coefficient was 0.255, both below the empirical values of 153.0 and 0.360. Recent rank persistence remained weak: the year-20 lag-five correlation was 0.136, compared with 0.583 empirically.
+
+\subsection*{Self-exciting hurdle}
+Finally, we allowed both activity and output to depend on earlier productivity through an exponentially weighted history.
+Five-fold cross-validation over researchers selected $\hat{\rho}=0.6664$, corresponding to a history-weight half-life of 1.71 years. 
+Mean career output was 151.5, compared with 153.0 empirically, and the Gini coefficient was 0.341 versus 0.360. The year-20 inactivity fraction was 0.143 versus 0.141. Year-20 lag-three and lag-five rank correlations were 0.611 and 0.553, respectively, compared with empirical values of 0.653 and 0.583. Career totals were approximately lognormal (QQ $R^2=0.967$).
+
+\begin{figure*}[t] %lastfour
+    \centering
+    \includegraphics[width=\textwidth]{pnas_dblp_model_comparison.pdf}
+    \caption{\textbf{Distributional shape and temporal agreement of DBLP productivity models.} Empirical comparisons use 510 complete publication histories over career years 0--20; each model generates 10,000 histories. (A) Normal QQ curves of positive career totals after taking logarithms and standardizing each source separately to zero mean and unit sample standard deviation. The grey diagonal is the normal reference. Standardization compares shape while removing differences in location and scale; zero totals are excluded only from this panel. (B) Exact empirical cumulative distribution functions of career totals, including zero totals and the full tails. All sources share an output axis that is linear from zero to one and logarithmic above one. (C) Spearman correlation of annual productivity ranks five years apart, with average ranks for zero ties. The same complete empirical cohort is used at every year. Models share colors and line styles across panels.}
+    \label{fig:model-comparison}
+\end{figure*}
+
+\section*{Discussion}
+
+The use of a geometric random walk with lognormal shocks was justified by the need to counter William Shockley's specification of a model of multiplying independent factors. In this case, the geometric random walk, taken cumulatively at $t=8$, is algebraically identical to his exact 8-factor specification. In fact, in a s
+
+
+
+Our results show that approximate lognormality places only limited constraints on explanations of scientific productivity. Models with substantially different temporal structures generated approximately lognormal career totals while differing markedly in output levels, inequality, inactivity, and rank persistence. The GRW illustrates this distinction: a temporal multiplicative process reproduced the broad distributional form invoked by Shockley while failing other empirical checks. Lognormality therefore cannot, by itself, identify stable individual traits as the underlying mechanism. This finding does not establish that individual differences are irrelevant; it limits what can be inferred about them from cumulative publication distributions.
+
+Our complementary analyses of the AARC panel, comprising 92,527 faculty across 113 fields, identify additional constraints on explanatory models. Publication activity was more temporally clustered than under shuffled histories, relative productivity ranks retained substantial memory, and the probability of returning to publication declined with the duration of inactivity. Evidence against a first-order Markov description further indicates that current annual output does not contain all available predictive information about subsequent productivity. Together, these findings suggest that productivity reflects persistent states or accumulated history that annual publication counts only partially reveal. Their prevalence and variation across fields can help distinguish general features of research production from effects associated with particular disciplinary practices.
+
+The improved agreement of the self-exciting hurdle model is consistent with this interpretation. Incorporating earlier productivity into both publication activity and positive output brought simulated rank persistence, inactivity, and inequality closer to their empirical values. However, predictive dependence on publication history does not establish that publications themselves cause subsequent productivity. Earlier output may instead reflect unobserved project inventories, collaborations, resources, institutional conditions, or persistent individual differences. The history term summarizes these possibilities without distinguishing among them.
+
+An explanatory model therefore requires mechanisms beyond the temporal regressions we considered here. These models describe how observed output depends statistically on earlier output, but they do not represent how research projects are initiated, developed, abandoned, and completed. A mechanistic model could instead allocate a finite effort budget among unfinished projects, with publications emerging upon completion. Project accumulation, heterogeneous completion times, interruptions, and collaboration could then generate temporal clustering, inactivity, and persistent productivity differences. Such mechanisms would permit tests of whether these regularities arise without fixed differences in researcher ability, and how individual differences interact with stochastic research processes.
+
+Future work should evaluate these mechanisms jointly against CDFs and temporal diagnostics, including rank memory, inactivity-duration-dependent reentry, and publication clustering. Field-specific comparisons could test whether shared mechanisms with different timescales account for disciplinary variation. Stronger evaluation also requires common fitting cohorts, held-out researchers and career periods, uncertainty estimates, and sensitivity to initialization, observation windows, and the treatment of zero output. Publication inactivity must also be distinguished from research inactivity, since publication records cannot completely observe the underlying work.
+
+
+
+% discussion and concluding paragraph go here
+
+% bibliography uses references.bib
+\Endparasplit
+
+\subsection*{Supporting Information Appendix (SI)}
+
+Authors should submit SI as a single separate SI Appendix PDF file, combining all text, figures, tables, movie legends, and SI references. SI will be published as provided by the authors; it will not be edited or composed. Additional details can be found in the \href{https://www.pnas.org/author-center/submitting-your-manuscript#supporting-information}{PNAS Author Center}. The PNAS Overleaf SI template can be found \href{https://www.overleaf.com/latex/templates/pnas-template-for-supplementary-information/wqfsfqwyjtsd}{here}. Refer to the SI Appendix in the manuscript at an appropriate point in the text. Number supporting figures and tables starting with S1, S2, etc.
+
+Authors who place detailed materials and methods in an SI Appendix must provide sufficient detail in the main text methods to enable a reader to follow the logic of the procedures and results and also must reference the SI methods. If a paper is fundamentally a study of a new method or technique, then the methods must be described completely in the main text.
+
+Supporting information (SI) for PNAS Brief Reports is limited to extended methods, essential supporting datasets, software, and video/audio files; supporting text, tables or figures are not permitted.
+
+\subsubsection*{SI Datasets}
+
+Supply .xlsx, .csv, .txt, .rtf, GZ or .pdf files. This file type will be published in raw format and will not be edited or composed.
+
+\matmethods{Please describe your materials and methods here. This can be more than one paragraph, and may contain subsections and equations as required. If your research involved human or animal participants, please identify the institutional review board and/or licensing committee that approved the experiments. Please also include a brief description of your informed consent procedure if your experiments involved human participants.}
+
+
+\showmatmethods{} % Display the Materials and Methods section
+
+\dataavail{To allow others to replicate and build on work published in PNAS, authors must make materials, data, and associated protocols, including code and scripts, available to readers in a public repository upon publication. Restrictions on full or partial access to these materials and requests for legal, ethical, and logistical (e.g., size) exceptions must be noted at submission. If requested, these materials must be made available to editors and reviewers during submission for the purpose of evaluating the manuscript. A statement detailing sharing plans will be included in the published article as provided within the submission form. Research datasets, whether original or previously published, must be cited in the references as a condition for publication. Please refer to our full \href{https://www.pnas.org/author-center/editorial-and-journal-policies\#materials-and-data-availability}{policy}.}
+
+\acknow{The authors thank William H.W. Thompson, Dr. Laurent Hébert-Dufresne, Dr. Calla Glavin Beauregard, and Alejandro Javier Ruiz Iglesias for their invaluable insights and suggestions in support of this work.}
+
+\showacknow{} % Display the acknowledgments section
+
+
+
+
+\bibsplit[3]
+%Use \bibsplit to split the references from the body of the text. Value "[3]" represents the number of reference in the left column (Note: Please avoid single column figures & tables on this page.)
+
+% Bibliography
+\bibliography{references}
+
+\end{document}
