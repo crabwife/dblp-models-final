@@ -96,7 +96,7 @@ Increment stages refer to transition starts: 0, 1–4, 5–7, 8–19, plus poole
 
 ## Trajectory agreement
 
-The pipeline now ends with `h_trajectory`. Its `input` is a relative link to `g_report/output`; `g_report/output/diagnostics -> ../input/diagnostics` carries the existing diagnostic tables and simulation link forward through `g_report/input -> ../f_plot/output`. `run.ipynb` recreates these links on fresh checkouts. The former `g_trajectory` directory is now `h_trajectory`, preserving the letter order after adding `g_report`. The original annual mean, median, variance, SD and quantile curves already exist in `e_diagnose/output/count_moments.csv`; annual increment moments, rank curves and reentry risks are also available upstream.
+The trajectory diagnostics run in `h_trajectory`. Its `input` is a relative link to `g_report/output`; `g_report/output/diagnostics -> ../input/diagnostics` carries the existing diagnostic tables and simulation link forward through `g_report/input -> ../f_plot/output`. `run.ipynb` recreates these links on fresh checkouts. The former `g_trajectory` directory is now `h_trajectory`, preserving the letter order after adding `g_report`. The original annual mean, median, variance, SD and quantile curves already exist in `e_diagnose/output/count_moments.csv`; annual increment moments, rank curves and reentry risks are also available upstream.
 
 | Notebook | Outputs and purpose |
 |---|---|
@@ -152,6 +152,16 @@ Explicit total prefixes are `DBLP`, `ARWFour`, `GRW`, `AROne`, `HurdleAROne`, `A
 Each model has `RankInitialRMSE`, `RankLagThreeRMSE`, and `RankLagFiveRMSE` commands for rank-curve errors over endpoint years 11–20. For example, `\SEHurdleRankLagFiveRMSE` gives the lag-five error to four decimals. Both total windows also export `MedianTotal`, `SDTotal`, `VarianceTotal`, `NTotal`, and `FitKSD` for each source. For example, use `\DBLPFourYearMedianTotal` for the empirical median. Raw moments include zero totals. `FitKSD` compares each source's positive totals with its own fitted lognormal.
 
 The input/output links are tracked relative symlinks, so `make report` works on a fresh checkout using the committed aggregate tables. The raw CSV and simulated trajectories are needed only when rerunning earlier modeling tasks.
+
+## Trajectory macros
+
+`i_report` runs after `h_trajectory` and writes `trajectory_results.tex`, which the manuscript loads alongside the existing `g_report` macros. From the repo root, `make report` refreshes both exports from the current CSVs.
+
+- `\SEHurdleAnnualMeanNRMSEPercent`, `\SEHurdleAnnualMedianNRMSEPercent`, and `\SEHurdleAnnualVarianceNRMSEPercent` compare the raw annual curves over years 6–20. Write `\%` after the macro for a percent sign.
+- `\SEHurdleRestartHazardRMSEPoints` is the risk-weighted restart-hazard RMSE in percentage points. ARW4 has no supported restart durations, so it has no restart RMSE macro.
+- `\SEHurdleLongestInactiveSpellKSD` is the two-sample KS distance between distributions of the longest zero-output run within years 6–20.
+
+The same suffixes work with the other model prefixes. The source rows and scaling are recorded in `i_report/output/macro_manifest.csv`. Rank-curve RMSE commands still come from `g_report`.
 
 ## Provenance
 
