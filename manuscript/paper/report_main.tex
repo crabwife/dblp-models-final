@@ -104,7 +104,7 @@ We assessed model performance by comparing simulated and observed publication ou
 We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. 
 
 \subsection*{Geometric Random Walk}\label{subsec:model_GRW}
-We began with a geometric random walk (GRW) with IID lognormal multipliers, drawn from a normal distribution fitted to publication records pooled across all 20 years. 
+We began with a geometric random walk (GRW) with IID lognormal multipliers. We fitted a single normal distribution to observed adjacent-year changes in log-offset productivity, pooled over the 20 career-year transitions, and exponentiated independent draws from that distribution.
 
 The GRW generated approximately lognormal career totals (lognormal QQ $R^2=\GRWCareerQQRtwo$), yet substantially misrepresented other empirical properties. Mean career output was \GRWCareerMeanTotal publications, compared with \DBLPCareerMeanTotal empirically, with a median of \GRWCareerMedianTotal against \DBLPCareerMedianTotal and a standard deviation of \GRWCareerSDTotal against \DBLPCareerSDTotal.
 

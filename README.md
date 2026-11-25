@@ -10,7 +10,7 @@ Install `dblp_models/requirements.txt`, place the original CSV at `dblp_models/a
 |---|---|
 | a_import | Import attached CSV; source contract and checksum |
 | b_prepare | Legacy DBLP cohort, panel and adjacent-year transitions |
-| c_fit | ARW4, year-specific Lognormal GRW, AR(1)-S, productivity-dependent Hurdle-AR(1)-S, AR(6,6), SE-Hurdle-S |
+| c_fit | ARW4, pooled Lognormal GRW, AR(1)-S, productivity-dependent Hurdle-AR(1)-S, AR(6,6), SE-Hurdle-S |
 | d_simulate | Matching seed-63 simulations |
 | e_diagnose | `diagnose.ipynb`, `historic.ipynb`, then `model_comparison.ipynb`: diagnostic tables |
 | f_plot | Numbered historic and manuscript figure notebooks followed by `plot.ipynb` |
@@ -21,19 +21,17 @@ Every task has input/output/src. Input links point to the preceding task output;
 
 ## Lognormal GRW
 
-The GRW is a temporal counterexample to inferring fixed individual traits from lognormality. For each transition-start age t = 0,...,19, fit a Normal distribution to observed adjacent-year offset-log increments d = ln(q_next + 0.49) - ln(q + 0.49). The estimates are the sample mean and the sample standard deviation with ddof=0, i.e. the Normal MLEs. Export one row per transition-start age in `c_fit/output/lognormal_grw/parameters.csv`, with columns age, mu, sigma and n. No observations are pooled across ages and missing follow-up is not imputed.
+The GRW is a temporal counterexample to inferring fixed individual traits from lognormality. Fit one Normal distribution to the observed adjacent-year offset-log increments d = ln(q_next + 0.49) - ln(q + 0.49), pooling transitions from career years 0→1 through 19→20. Each observed transition contributes once. The Normal maximum-likelihood estimates are the sample mean and standard deviation with ddof=0. The fit exports one row with mu, sigma and n in `c_fit/output/lognormal_grw/parameters.csv`.
 
-Simulation draws a fresh independent shock for each researcher and transition, using the fitted mu and sigma for that transition-start age. All researchers share the same age-specific shock distribution. Empirical year-0 resampling, seed 63, 10,000 careers, offset 0.49 and the zero boundary are retained:
+Simulation draws independent shocks from the same fitted Normal distribution for every researcher and transition. Empirical year-0 resampling, seed 63, 10,000 careers, offset 0.49 and the zero boundary are retained:
 
 $
 q_{t+1}=\max\{0,(q_t+\epsilon)\exp(\eta_t)-\epsilon\},
-\qquad \eta_t\overset{\mathrm{ind}}{\sim}\mathcal N(\hat\mu_t,\hat\sigma_t^2),
+\qquad \eta_t\overset{\mathrm{iid}}{\sim}\mathcal N(\hat\mu,\hat\sigma^2),
 \qquad \epsilon=0.49.
 $
 
-In the idealized process without the offset or boundary, conditional on fixed positive initial productivity, the log of annual productivity is a sum of independent Normal temporal shocks and is exactly Normal even when their parameters vary by year. Empirical initialization, the offset and the zero boundary modify this exact statement; cumulative output is a sum of annual values and has no exact lognormal guarantee. Windowed QQ and the other diagnostics assess the simulated distributions and temporal regularities. Poor temporal agreement is an empirical result to evaluate, not a fitting constraint.
-
-**Results status:** year-specific GRW fits, simulations and diagnostics were regenerated in commit `3c080c3ea0b014c0afb6a03aa2f751a545072758`. The primary final-four-year figures, whole-career supplement, and empirical-only DBLP rank-mixing figure have now been executed against the original source CSV and seed-63 simulations using the existing fitted parameter tables.
+In the idealized process without the offset or boundary, conditional on fixed positive initial productivity, the log of annual productivity is a sum of independent Normal temporal shocks and is exactly Normal. Empirical initialization, the offset and the zero boundary modify this exact statement; cumulative output is a sum of annual values and has no exact lognormal guarantee. Windowed QQ and the other diagnostics assess the simulated distributions and temporal regularities. Poor temporal agreement is an empirical result to evaluate, not a fitting constraint.
 
 ## Historic diagnostics
 
@@ -56,7 +54,7 @@ The primary comparisons show DBLP, GRW, AR(1), AR(1)-H, and SE-H. Where figures 
 
 `f_plot/src/06_pnas_figures.ipynb` and `07_dblp_rank_mixing.ipynb` are picked up automatically by `run.ipynb` after the earlier numbered figure notebooks. They use the existing `f_plot/input -> e_diagnose/output` link. Full observations for exact ECDFs follow `input/simulation -> d_simulate/output` and `input/simulation/fit/data -> b_prepare/output`; source and trajectory arrays stay local.
 
-The manuscript view includes the complete-career DBLP empirical cohort, year-specific GRW, AR(1), productivity-dependent hurdle AR(1), and self-exciting hurdle model. It exports `pnas_dblp_model_comparison.pdf` and `.png`, individual `pnas_dblp_qq`, `pnas_dblp_ecdf`, and `pnas_dblp_lag5` panels in both formats, and `pnas_dblp_model_comparison_caption.tex` in `f_plot/output/`. Colors, line styles and markers match across panels, with a shared legend and seaborn's colorblind palette.
+The manuscript view includes the complete-career DBLP empirical cohort, pooled GRW, AR(1), productivity-dependent hurdle AR(1), and self-exciting hurdle model. It exports `pnas_dblp_model_comparison.pdf` and `.png`, individual `pnas_dblp_qq`, `pnas_dblp_ecdf`, and `pnas_dblp_lag5` panels in both formats, and `pnas_dblp_model_comparison_caption.tex` in `f_plot/output/`. Colors, line styles and markers match across panels, with a shared legend and seaborn's colorblind palette.
 
 The primary distribution diagnostic is each scholar's sum over the final four career years, 17–20 with the current configuration. This matches Shockley's four-year aggregation; it does not pool four annual cross-sections. The QQ panel uses source-wise standardized positive log2 four-year totals and up to 401 ordered points, including the extremes. Normalization removes location and scale. The ECDF panel uses every four-year total with a shared symlog axis (linear through 1, logarithmic above 1), retaining zero totals and full tails. The memory panel uses annual Spearman lag-five ranks with average ranks for ties.
 

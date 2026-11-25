@@ -28,12 +28,12 @@ Type or paste text here. You may break this section up into subheads as needed (
 
 \section*{Stochastic Models}
 \subsection*{Lognormal GRW}
-Here, $P_t$ denotes annual productivity at career year $t$, and $\epsilon=0.49$ keeps the logarithmic transformation finite at zero. For each transition $t\to t+1$, we estimated $\hat{\mu}_t$ and $\hat{\sigma}_t^2$ by fitting a normal distribution by maximum likelihood to the observed increments $\log(P_{t+1}+\epsilon)-\log(P_t+\epsilon)$. Initial productivity was sampled from the empirical year-zero distribution.
+Here, $P_t$ denotes annual productivity at career year $t$, and $\epsilon=0.49$ keeps the logarithmic transformation finite at zero. We estimated a single $\hat\mu$ and $\hat\sigma^2$ by fitting a normal distribution by maximum likelihood to the observed increments $\log(P_{t+1}+\epsilon)-\log(P_t+\epsilon)$, pooling all 20 adjacent career-year transitions. Initial productivity was sampled from the empirical year-zero distribution.
 
 \begin{equation}
-P_{t+1}=P_t e^{\eta_t},\qquad
-\eta_t\overset{\mathrm{ind}}{\sim}
-\mathcal{N}(\hat\mu_t,\hat\sigma_t^2).
+P_{t+1}=\max\{0,(P_t+\epsilon)e^{\eta_t}-\epsilon\},\qquad
+\eta_t\overset{\mathrm{iid}}{\sim}
+\mathcal{N}(\hat\mu,\hat\sigma^2).
 \label{eq:grw}
 \end{equation}
 

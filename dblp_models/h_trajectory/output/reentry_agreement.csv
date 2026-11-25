@@ -1,6 +1,6 @@
 source,min_empirical_risk,n_durations,n_matched,risk_weighted_rmse,simulated_duration_coverage,contains_prefix_transitions,pooling
 arw4,20,5,0,,0.0,False,all generated transitions
-lognormal_grw,20,5,5,0.1487332128008281,1.0,False,all generated transitions
+lognormal_grw,20,5,5,0.15134667551890396,1.0,False,all generated transitions
 ar1_s,20,5,5,0.2135542640177617,1.0,False,all generated transitions
 hurdle_ar1_s_p,20,5,5,0.07508692069495522,1.0,False,all generated transitions
 ar6_6,20,5,5,0.07584418611936714,1.0,False,all generated transitions
