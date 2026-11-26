@@ -7,7 +7,6 @@
 \usepackage{xspace}
 \usepackage{amsmath, amsfonts, amssymb, bbm}
 \input{../../dblp_models/g_report/output/results.tex}
-\input{../../dblp_models/i_report/output/trajectory_results.tex}
 \articletype{CLASSIFICATION}%%%% Article topic/classification
 
 \templatetype{pnasresearcharticle} % Choose template
@@ -85,7 +84,7 @@ To design temporal models, we first undertook exploratory data analysis of longi
 
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=\textwidth]{../../dblp_models/f_plot/output/pnas_dblp_temporal_wide.pdf}
+    \includegraphics[width=\textwidth]{../../dblp_models/f_plot/output/pnas/pnas_dblp_temporal_wide.pdf}
     \caption{\textbf{Temporal patterns of publication in DBLP.}
     (A) Spearman correlations with year 0 ranks decline, while correlations at three- and five-year lags generally increase.
     (B) Among researchers who published in a given year, the probability of zero output the following year declines across current output deciles.
@@ -176,25 +175,21 @@ We developed and tested several models of scientific productivity. Each model wa
 \subsection*{Geometric Random Walk}\label{subsec:model_GRW}
 We began with a geometric random walk (GRW) with IID lognormal multipliers. We fitted a single normal distribution to observed adjacent-year changes in log-offset productivity, pooled over the 20 career-year transitions, and exponentiated independent draws from that distribution.
 
-\textit{Should we report last-four stats only?}
+\subsection*{Geometric Random Walk}\label{subsec:model_GRW}
+We began with a geometric random walk (GRW) with IID lognormal multipliers. We fitted a single normal distribution to observed adjacent-year changes in log-offset productivity, pooled over the 20 career-year transitions, and exponentiated independent draws from that distribution.
 
-The GRW generated approximately lognormal career totals, yet substantially misrepresented other empirical properties. Mean career output was \GRWFourYearMeanTotal publications, compared with \DBLPFourYearMeanTotal empirically, with a median of \GRWFourYearMedianTotal against \DBLPFourYearMedianTotal and a standard deviation of \GRWFourYearSDTotal against \DBLPFourYearSDTotal. Further, it yielded a Gini of \GRWFourYearGini against \DBLPFourYearGini, and overestimated fixed-distance rank correlation while underestimating fixed-point rank correlation.
+The GRW generated approximately lognormal career totals, yet substantially misrepresented other empirical properties; four-year mean and standard deviation are catastrophically overestimated, while the four-year median is only overestimated by roughly double, indicative of an extremely overdispersed model; its simulated Gini was also roughly double the empirical value, and it overestimated fixed-distance rank correlation while underestimating fixed-point rank correlation.
 
 Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
-
-% that the median is only overestimated by 200\%, while the mean and standard deviation are overestimated by 50,000\% and 1,670,000\%, is the signature of an extremely overdispersed model. In fact, this direction of error is expected under multiplicative growth, because positive shocks can compound into extreme totals that have little effect on the median. 
-% and the Gini coefficient was \csname si_GRWCareerGini\endcsname rather than \csname si_DBLPCareerGini\endcsname.
-% (The model also overstated recent rank persistence ($\rho_\text{S}(R_t,R_{t-3})$ of \csname si_GRWRankLagThreeFinal\endcsname vs.\ \csname si_DBLPRankLagThreeFinal\endcsname), while it understated long-term rank persistence ($\rho_\text{S}(R_t, R_0)$ of \GRWRankInitialFinal vs.\ \DBLPRankInitialFinal). \textbf{POSSIBLY UNNECESSARY})
-
 
 \subsection*{First-order autoregressive}\label{subsec_model_AR1}
 GRW served as an informative counterexample to William Shockley's explanation of multiplicative accumulation, justified by cumulative lognormality, as generative of scientific productivity. Its extreme numerical performance arose due to total persistence of shocks over time. In this sense, it is a special case of a first-order autoregressive process of the general form $X_{t+1} = \alpha + \beta X_t + \epsilon_{t+1}$ where $\beta = 1$. Therefore, in response to its failure mode, we next designed a simple $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ are freely estimated.
 
-This model saw significant improvement over the GRW. It retained approximate cumulative lognormality, while its mean and SD
+AR(1) saw significant improvement over the GRW. It retained approximate cumulative lognormality, while its mean, median, and SD are far closer to the empirical statistics. However, while partial shock persistence allows for plausible count statistics, and reduces the $\bar{W}_1$ to less than 2 papers, it severely underpredicts both fixed-point and fixed-distance rank persistence; 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\columnwidth]{../../dblp_models/f_plot/output/pnas_dblp_ar1_stage_parameters.pdf}
+    \includegraphics[width=\columnwidth]{../../dblp_models/f_plot/output/pnas/pnas_dblp_ar1_stage_parameters.pdf}
     \caption{Fitted $\operatorname{AR}(1)$ parameters by career stage.}\label{fig:ar1-stage-parameters}
 \end{figure}
 
