@@ -42,3 +42,10 @@ manuscript/si/build/
 # migration backups
 manuscript/paper/references.overleaf.bib
 manuscript/si/pnas-new.original.bst
+
+# exploratory figures and local pipeline records
+/dblp_models/f_plot/output/exploratory/
+/dblp_models/pipeline_run.csv
+/dblp_models/environment_versions.csv
+/dblp-input-backup.*/
+*.tex.bak
