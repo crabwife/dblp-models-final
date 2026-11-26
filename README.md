@@ -48,6 +48,7 @@ In the idealized process without the offset or boundary, conditional on fixed po
 | f_plot/src/05_memory_dropout.ipynb | Productivity-dependent dropout using shared empirical bins; conditional history profiles near current productivity 0, 5 and 10 |
 | f_plot/src/06_pnas_figures.ipynb | Three-panel DBLP manuscript comparison: final-four-year QQ and exact ECDF, annual lag-five rank memory; individual panels, captions, numeric summaries and whole-career supplement |
 | f_plot/src/07_dblp_rank_mixing.ipynb | Empirical DBLP rank persistence, dropout and reentry in two manuscript layouts; standalone rank plot, curve table, terminal summary and caption |
+| f_plot/src/08_ar1_stage_parameters.ipynb | Single-column stagewise AR(1) parameter figure: intercept, carryover, shock SD, and implied log-offset mean |
 | f_plot/src/plot.ipynb | Core diagnostics and the requested three-panel Spearman rank-mixing curves, annual and cumulative separately |
 
 The primary comparisons show DBLP, GRW, AR(1), AR(1)-H, and SE-H. Where figures also compare ARW4 or AR(6,6), the expanded panels and model-specific figures are saved under the task's `output/secondary/`. Figures showing only DBLP are kept with the primary outputs. GRW-excluded moment panels are additional views. Data tables still cover all models. Figures are exported as PDF and PNG.
