@@ -185,23 +185,23 @@ Thus, reproducing approximate lognormality did not yield an adequate model of pr
 \subsection*{First-order autoregressive}\label{subsec_model_AR1}
 GRW served as an informative counterexample to William Shockley's explanation of multiplicative accumulation, justified by cumulative lognormality, as generative of scientific productivity. Its extreme numerical performance arose due to total persistence of shocks over time. In this sense, it is a special case of a first-order autoregressive process of the general form $X_{t+1} = \alpha + \beta X_t + \epsilon_{t+1}$ where $\beta = 1$. Therefore, in response to its failure mode, we next designed a simple $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ are freely estimated.
 
-AR(1) saw significant improvement over the GRW. It retained approximate cumulative lognormality, while its mean, median, and SD are far closer to the empirical statistics. However, while partial shock persistence allows for plausible count statistics, and reduces the $\bar{W}_1$ to less than 2 papers, it severely underpredicts both fixed-point and fixed-distance rank persistence; 
-
 \begin{figure}[h]
     \centering
     \includegraphics[width=\columnwidth]{../../dblp_models/f_plot/output/pnas/pnas_dblp_ar1_stage_parameters.pdf}
     \caption{Fitted $\operatorname{AR}(1)$ parameters by career stage.}\label{fig:ar1-stage-parameters}
 \end{figure}
 
+Interestingly, in comparing 
+
+
+AR(1) saw significant improvement over the GRW. It retained approximate cumulative lognormality, while its mean, median, and SD are far closer to the empirical statistics. However, while partial shock persistence allows for plausible count statistics, and reduces the $\bar{W}_1$ to less than 2 papers, it severely underpredicts both fixed-point and fixed-distance rank persistence. Additionally, its RMSE in dropout and reentry are worse than that of GRW. 
 
 
 
-% We next allowed the dependence on current productivity to be estimated rather than fixed using a simple autoregressive model. Career totals remained approximately lognormal (QQ $R^2=\csname si_AROneCareerQQRtwo\endcsname$), and mean career output was \csname si_AROneCareerMeanTotal\endcsname, compared with \csname si_DBLPCareerMeanTotal\endcsname empirically. However, the model underestimated inequality (Gini \csname si_AROneCareerGini\endcsname versus \csname si_DBLPCareerGini\endcsname) and the year-20 fraction of inactive researchers (\csname si_AROneCareerZeroPercent\endcsname versus \csname si_DBLPFinalYearZeroPercent\endcsname). Rank persistence was also systemically underestimated.
 
 \subsection*{Hurdle autoregressive}\label{subsec:model_hurdleAR}
 
 % We then modeled publication activity separately from output, splitting our model into an extensive and conditional intensive margin. 
-% The model produced approximately lognormal career totals (QQ $R^2=0.987$) and a year-20 inactivity fraction of 0.157, compared with 0.141 empirically. Mean career output was 135.4 and the Gini coefficient was 0.255, both below the empirical values of 153.0 and 0.360. Recent rank persistence remained weak: the year-20 lag-five correlation was 0.136, compared with 0.583 empirically.
 
 \subsection*{Self-exciting hurdle}\label{subsec:model_SE}
 % Finally, we allowed both activity and output to depend on earlier productivity through an exponentially weighted history.
