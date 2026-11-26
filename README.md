@@ -16,6 +16,11 @@ Install `dblp_models/requirements.txt`, put `adjusted_productivity.csv` in
 `dblp_models/a_import/input/`, and run all cells in `dblp_models/run.ipynb`
 from the `dblp_models/` working directory.
 
+Supplemental fits and simulations include GRW-S (stage-specific increments)
+and AR(1)-Y (year-specific coefficients). These variants are outside the model
+comparison tables. The PNAS figure notebook writes separate AR(1) parameter
+figures for the stagewise and annual fits.
+
 From the repo root, `make report` refreshes the macros and comparison CSV
 from the checked-in diagnostics. `make paper` and `make si` build the LaTeX
 sources under `manuscript/`. Use figure paths under `f_plot/output/pnas/` and
