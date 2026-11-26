@@ -61,10 +61,7 @@ In 1957, Nobel Prize-winning physicist William Shockley suggested that the large
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
 \Firstpage
-The study of scientific productivity heavily focuses on explaining the large differences publication counts between the most and least productive scientists. This inquiry began over a century ago with Lotka's Law of scientific productivity distribution~\cite{origins_of_productivity_frequency_law_lotka1926}. In the intervening century, the metascientific study of productivity has attracted scientists from a wide array of fields, all aiming to turn their focus inwards. 
-
-\noindent
-Notably, in 1957, Nobel Prize-winning physicist William Shockley observed that some scientists are dramatically more productive than others, and posited an influential explanation for why that is~\cite{product_of_factors_explains_lognormality_shockley1957}. Specifically, the rate of publications and patents produced by researchers in Shockley's dataset followed an approximately lognormal distribution, a heavy-tailed distribution where a minority of scientists were significantly more productive than the rest. Shockley sought to explain this through stable differences in individual cognitive and managerial talent.
+The study of scientific productivity heavily focuses on explaining the large differences publication counts between the most and least productive scientists. This inquiry began over a century ago with Lotka's Law of scientific productivity distribution~\cite{origins_of_productivity_frequency_law_lotka1926}. In the intervening century, the metascientific study of productivity has attracted scientists from a wide array of fields, all aiming to turn their focus inwards. Notably, in 1957, Nobel Prize-winning physicist William Shockley observed that some scientists are dramatically more productive than others, and posited an influential explanation for why that is~\cite{product_of_factors_explains_lognormality_shockley1957}. Specifically, the rate of publications and patents produced by researchers in Shockley's dataset followed an approximately lognormal distribution, a heavy-tailed distribution where a minority of scientists were significantly more productive than the rest. Shockley sought to explain this through stable differences in individual cognitive and managerial talent.
 \subsection*{Shockley's idea}\label{subsec:intro_shockley}
 He gave the following framework to explain his observation. For sufficiently large $n$, assuming finite variance and negligible contributions from extreme fluctuations to the total variance, the sum of independently varying factors can be approximately normally distributed. Because a sum of logarithms is the logarithm of a product, Shockley concluded that the lognormally distributed publication counts $P$ were the product of $k$ independently varying aspects of scientific ability $F$:
 \begin{equation}
@@ -101,20 +98,26 @@ We assessed model performance by comparing simulated and observed publication ou
 
 \section*{Temporal models}\label{sec:model}
 
-We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. 
+We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics, as well as from mathematical intuition about the nature of scientific productivity over time. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. 
 
 \subsection*{Geometric Random Walk}\label{subsec:model_GRW}
 We began with a geometric random walk (GRW) with IID lognormal multipliers. We fitted a single normal distribution to observed adjacent-year changes in log-offset productivity, pooled over the 20 career-year transitions, and exponentiated independent draws from that distribution.
 
-The GRW generated approximately lognormal career totals (lognormal QQ $R^2=\GRWCareerQQRtwo$), yet substantially misrepresented other empirical properties. Mean career output was \GRWCareerMeanTotal publications, compared with \DBLPCareerMeanTotal empirically, with a median of \GRWCareerMedianTotal against \DBLPCareerMedianTotal and a standard deviation of \GRWCareerSDTotal against \DBLPCareerSDTotal.
+The GRW generated approximately lognormal career totals (lognormal QQ $R^2=\GRWCareerQQRtwo$), yet substantially misrepresented other empirical properties. Mean career output was \GRWCareerMeanTotal publications, compared with \DBLPCareerMeanTotal empirically, with a median of \GRWCareerMedianTotal against \DBLPCareerMedianTotal and a standard deviation of \GRWCareerSDTotal against \DBLPCareerSDTotal. 
 
-and the Gini coefficient was \GRWCareerGini rather than \DBLPCareerGini. 
-
-
+Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
 
 
 
-(The model also overstated recent rank persistence ($\rho_\text{S}(R_t,R_{t-3})$ of \GRWRankLagThreeFinal vs.\ \DBLPRankLagThreeFinal), while it understated long-term rank persistence ($\rho_\text{S}(R_t, R_0)$ of \GRWRankInitialFinal vs.\ \DBLPRankInitialFinal). \textbf{POSSIBLY UNNECESSARY})
+
+% that the median is only overestimated by 200\%, while the mean and standard deviation are overestimated by 50,000\% and 1,670,000\%, is the signature of an extremely overdispersed model. In fact, this direction of error is expected under multiplicative growth, because positive shocks can compound into extreme totals that have little effect on the median. 
+% and the Gini coefficient was \GRWCareerGini rather than \DBLPCareerGini. 
+
+
+
+
+
+% (The model also overstated recent rank persistence ($\rho_\text{S}(R_t,R_{t-3})$ of \GRWRankLagThreeFinal vs.\ \DBLPRankLagThreeFinal), while it understated long-term rank persistence ($\rho_\text{S}(R_t, R_0)$ of \GRWRankInitialFinal vs.\ \DBLPRankInitialFinal). \textbf{POSSIBLY UNNECESSARY})
 
 Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
 
