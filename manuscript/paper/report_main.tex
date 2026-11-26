@@ -94,36 +94,43 @@ To design temporal models, we first undertook exploratory data analysis of longi
 
 We identified three temporal patterns in DBLP publication histories (Fig.~\ref{fig:dblp-rank-mixing}). Annual publication ranks became less aligned with career-year 0 ranks as careers progressed, while rank correlations at fixed three- and five-year lags generally strengthened. Among researchers who published in a given year, those with higher output were less likely to record zero output the following year. Among researchers with zero output, the probability of publishing the following year generally fell as the inactive spell lengthened. These patterns give temporal models of productivity three targets beyond the distribution of cumulative output that motivated Shockley's account.
 
-We assessed model performance by comparing simulated and observed publication output. For totals over the full career window and over the final four years, we report the mean, median, standard deviation, Gini coefficient, and lognormal QQ $R^2$. The final four-year window matches the duration of Shockley's observation window. At each career year, we measured the Wasserstein-1 distance between the simulated and observed distributions of annual publication output. We report the mean distance ($\bar{W}_1$) across all career years and separately within the four career stages identified by Zhang et al.~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}.
+We compared simulated and observed productivity using distributional and
+temporal diagnostics. For publication totals in career years 17--20,
+matching the length of Shockley's observation window, we report the
+median, mean, standard deviation, and Gini coefficient, and assess
+lognormality among positive totals using QQ $R^2$. We quantify agreement
+in annual output using the Wasserstein-1 distance between simulated and
+observed distributions at each career year. We average these distances
+($\bar{W}_1$) over years 0--20 and also summarize them within the career
+stages identified by Zhang et al.~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}.
+For each of the two rank-persistence curves (fixed year~0 and fixed
+five-year lag), we report the Spearman correlation at endpoint year~20
+and the OLS slope over endpoint years 17--20. We summarize agreement
+with the dropout and reentry patterns illustrated in
+Fig.~\ref{fig:dblp-rank-mixing}B--C using RMSE in percentage points.
+Dropout errors are weighted by the observed number of active
+researcher-years in each output bin. Reentry errors are weighted by
+the observed number at risk at each duration, using durations with
+at least 20 observed cases at risk.
 
 \begin{table*}[t]
     \centering
     \caption{\textbf{Comparison of observed and simulated productivity.}
-    The QQ $R^2$ assesses lognormality among positive publication totals
-    in career years 17--20. The median, mean, standard deviation, and
-    Gini coefficient include all totals over the same window.
-    Mean annual Wasserstein-1 distance $\bar{W}_1$ compares each model
-    with dblp across career years 0--20. Rank columns report final Spearman
-    correlations and OLS slopes (correlation per year) over endpoint years
-    17--20 for the fixed reference year 0 and the fixed five-year lag.
-    Dropout and reentry RMSEs are in percentage points. Dropout uses pooled
-    transitions and common productivity bins weighted by observed active-year
-    counts. Reentry uses generated transitions and empirical risk weights for
-    inactive durations with at least 20 observations at risk.}
-    \label{tab:model-comparison}
-    \setlength{\tabcolsep}{2.5pt}
+    The shaded row contains empirical dblp values. Slopes are changes in
+    Spearman $\rho$ per career year, and RMSE is in percentage points (pp). Dashes indicate comparisons that use dblp as the reference.
+    See \hyperref[sec:empirical_constraints]{Empirical targets and model diagnostics} for metric definitions.}\label{tab:model-comparison}
+    \setlength{\tabcolsep}{4pt}
     \begin{tabular}{@{}lrrrrrrrrrrrr@{}}
         \toprule
         & \multicolumn{5}{c}{Final four years (17--20)}
-        & Annual & \multicolumn{2}{c}{Fixed point}
-        & \multicolumn{2}{c}{Five-year lag} & \multicolumn{2}{c}{RMSE (pp)} \\
-        \cmidrule(lr){2-6}\cmidrule(lr){7-7}\cmidrule(lr){8-9}
-        \cmidrule(lr){10-11}\cmidrule(l){12-13}
-        Model & Q--Q $R^2$ & Med. & Mean & SD & Gini
-        & $\bar{W}_1$ & $\rho$ & Slope & $\rho$ & Slope & Dropout & Reentry \\
+        & & \multicolumn{4}{c}{Rank persistence} & \multicolumn{2}{c}{RMSE (pp)} \\
+        \cmidrule(lr){2-6}\cmidrule(lr){8-11}
+        \cmidrule(l){12-13}
+        Model & QQ $R^2$ & Med. & Mean & SD & Gini
+        & $\bar{W}_1$ & $\rho_S(R_0, R_{20})$ & Slope & $\rho_S(R_{15}, R_{20})$ & Slope & Dropout & Reentry \\
         \midrule
         \rowcolor{gray!12}
-        \textit{dblp (empirical)}
+        \textit{dblp}
         & \DBLPFourYearQQRtwo & \DBLPFourYearMedianTotal
         & \DBLPFourYearMeanTotal & \DBLPFourYearSDTotal
         & \DBLPFourYearGini & \textemdash
@@ -181,9 +188,9 @@ Thus, reproducing approximate lognormality did not yield an adequate model of pr
 
 
 \subsection*{First-order autoregressive}\label{subsec_model_AR1}
-GRW served as an informative counterexample to William Shockley's explanation of multiplicative accumulation, justified by cumulative lognormality, as generative of scientific productivity. Its extreme numerical performance arose due to total persistence of shocks over time. In this sense, it is a special case of a first-order autoregressive process of the general form $X_{t+1} = \alpha + \beta X_t + \epsilon_{t+1}$ where $\beta = 1$. Therefore, in response to its failure mode, we next designed a simple $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ are freely estimated. In this instance, w
+GRW served as an informative counterexample to William Shockley's explanation of multiplicative accumulation, justified by cumulative lognormality, as generative of scientific productivity. Its extreme numerical performance arose due to total persistence of shocks over time. In this sense, it is a special case of a first-order autoregressive process of the general form $X_{t+1} = \alpha + \beta X_t + \epsilon_{t+1}$ where $\beta = 1$. Therefore, in response to its failure mode, we next designed a simple $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ are freely estimated.
 
-This model was far more empirically consistent than the GRW. Numerically, its predictions are
+This model saw significant improvement over the GRW. It retained approximate cumulative lognormality, while its mean and SD
 
 \begin{figure}[h]
     \centering
