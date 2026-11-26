@@ -3,215 +3,420 @@
 % QQ and FitKSD use positive totals; raw moments and Gini include zeros
 % Rank RMSE uses annual rank curves over endpoint years 11--20
 % Percent values omit the percent sign
-\newcommand{\DBLPNComplete}{510\xspace}
-\newcommand{\DBLPFourYearStart}{17\xspace}
-\newcommand{\DBLPFourYearEnd}{20\xspace}
-\newcommand{\ModelSeed}{63\xspace}
-\newcommand{\DBLPFourYearQQRtwo}{0.975\xspace}
-\newcommand{\DBLPFourYearMeanTotal}{28\xspace}
-\newcommand{\DBLPFourYearGini}{0.467\xspace}
-\newcommand{\DBLPFourYearFitKSD}{0.061\xspace}
-\newcommand{\DBLPFourYearNTotal}{510\xspace}
-\newcommand{\DBLPFourYearNPositive}{500\xspace}
-\newcommand{\DBLPFourYearNZero}{10\xspace}
-\newcommand{\DBLPFourYearZeroPercent}{2.0\xspace}
-\newcommand{\DBLPFourYearMedianTotal}{21\xspace}
-\newcommand{\DBLPFourYearSDTotal}{26.5\xspace}
-\newcommand{\DBLPFourYearVarianceTotal}{704.436\xspace}
-\newcommand{\DBLPCareerQQRtwo}{0.992\xspace}
+\expandafter\newcommand\csname si_DBLPNComplete\endcsname{510\xspace}
+\newcommand{\DBLPNComplete}{\csname si_DBLPNComplete\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearStart\endcsname{17\xspace}
+\newcommand{\DBLPFourYearStart}{\csname si_DBLPFourYearStart\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearEnd\endcsname{20\xspace}
+\newcommand{\DBLPFourYearEnd}{\csname si_DBLPFourYearEnd\endcsname\xspace}
+\expandafter\newcommand\csname si_ModelSeed\endcsname{63\xspace}
+\newcommand{\ModelSeed}{\csname si_ModelSeed\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearQQRtwo\endcsname{0.975\xspace}
+\newcommand{\DBLPFourYearQQRtwo}{\csname si_DBLPFourYearQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearMeanTotal\endcsname{28\xspace}
+\newcommand{\DBLPFourYearMeanTotal}{\csname si_DBLPFourYearMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearGini\endcsname{0.467\xspace}
+\newcommand{\DBLPFourYearGini}{\csname si_DBLPFourYearGini\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearFitKSD\endcsname{0.061\xspace}
+\newcommand{\DBLPFourYearFitKSD}{\csname si_DBLPFourYearFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearNTotal\endcsname{510\xspace}
+\newcommand{\DBLPFourYearNTotal}{\csname si_DBLPFourYearNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearNPositive\endcsname{500\xspace}
+\newcommand{\DBLPFourYearNPositive}{\csname si_DBLPFourYearNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearNZero\endcsname{10\xspace}
+\newcommand{\DBLPFourYearNZero}{\csname si_DBLPFourYearNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearZeroPercent\endcsname{2.0\xspace}
+\newcommand{\DBLPFourYearZeroPercent}{\csname si_DBLPFourYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearMedianTotal\endcsname{21\xspace}
+\newcommand{\DBLPFourYearMedianTotal}{\csname si_DBLPFourYearMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearSDTotal\endcsname{26.5\xspace}
+\newcommand{\DBLPFourYearSDTotal}{\csname si_DBLPFourYearSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFourYearVarianceTotal\endcsname{704.436\xspace}
+\newcommand{\DBLPFourYearVarianceTotal}{\csname si_DBLPFourYearVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPCareerQQRtwo\endcsname{0.992\xspace}
+\newcommand{\DBLPCareerQQRtwo}{\csname si_DBLPCareerQQRtwo\endcsname\xspace}
 \newcommand{\DBLPCareerMeanTotal}{153\xspace}
-\newcommand{\DBLPCareerGini}{0.360\xspace}
-\newcommand{\DBLPCareerFitKSD}{0.026\xspace}
-\newcommand{\DBLPCareerNTotal}{510\xspace}
-\newcommand{\DBLPCareerNPositive}{510\xspace}
-\newcommand{\DBLPCareerNZero}{0\xspace}
-\newcommand{\DBLPCareerZeroPercent}{0.0\xspace}
+\expandafter\newcommand\csname si_DBLPCareerGini\endcsname{0.360\xspace}
+\newcommand{\DBLPCareerGini}{\csname si_DBLPCareerGini\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPCareerFitKSD\endcsname{0.026\xspace}
+\newcommand{\DBLPCareerFitKSD}{\csname si_DBLPCareerFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPCareerNTotal\endcsname{510\xspace}
+\newcommand{\DBLPCareerNTotal}{\csname si_DBLPCareerNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPCareerNPositive\endcsname{510\xspace}
+\newcommand{\DBLPCareerNPositive}{\csname si_DBLPCareerNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPCareerNZero\endcsname{0\xspace}
+\newcommand{\DBLPCareerNZero}{\csname si_DBLPCareerNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPCareerZeroPercent\endcsname{0.0\xspace}
+\newcommand{\DBLPCareerZeroPercent}{\csname si_DBLPCareerZeroPercent\endcsname\xspace}
 \newcommand{\DBLPCareerMedianTotal}{125\xspace}
 \newcommand{\DBLPCareerSDTotal}{106.8\xspace}
-\newcommand{\DBLPCareerVarianceTotal}{11414.144\xspace}
-\newcommand{\DBLPRankInitialFinal}{0.187\xspace}
-\newcommand{\DBLPRankLagThreeFinal}{0.653\xspace}
-\newcommand{\DBLPRankLagFiveFinal}{0.583\xspace}
-\newcommand{\DBLPFinalYearZeroPercent}{14.1\xspace}
-\newcommand{\ARWFourFourYearQQRtwo}{0.991\xspace}
-\newcommand{\ARWFourFourYearMeanTotal}{27\xspace}
-\newcommand{\ARWFourFourYearGini}{0.318\xspace}
-\newcommand{\ARWFourFourYearFitKSD}{0.026\xspace}
-\newcommand{\ARWFourFourYearNTotal}{10,000\xspace}
-\newcommand{\ARWFourFourYearNPositive}{10,000\xspace}
-\newcommand{\ARWFourFourYearNZero}{0\xspace}
-\newcommand{\ARWFourFourYearZeroPercent}{0.0\xspace}
-\newcommand{\ARWFourFourYearMedianTotal}{23\xspace}
-\newcommand{\ARWFourFourYearSDTotal}{16.1\xspace}
-\newcommand{\ARWFourFourYearVarianceTotal}{258.467\xspace}
-\newcommand{\ARWFourCareerQQRtwo}{1.000\xspace}
-\newcommand{\ARWFourCareerMeanTotal}{147\xspace}
-\newcommand{\ARWFourCareerGini}{0.183\xspace}
-\newcommand{\ARWFourCareerFitKSD}{0.006\xspace}
-\newcommand{\ARWFourCareerNTotal}{10,000\xspace}
-\newcommand{\ARWFourCareerNPositive}{10,000\xspace}
-\newcommand{\ARWFourCareerNZero}{0\xspace}
-\newcommand{\ARWFourCareerZeroPercent}{0.0\xspace}
-\newcommand{\ARWFourCareerMedianTotal}{140\xspace}
-\newcommand{\ARWFourCareerSDTotal}{49.3\xspace}
-\newcommand{\ARWFourCareerVarianceTotal}{2427.361\xspace}
-\newcommand{\ARWFourRankInitialRMSE}{0.2261\xspace}
-\newcommand{\ARWFourRankLagThreeRMSE}{0.4146\xspace}
-\newcommand{\ARWFourRankLagFiveRMSE}{0.4536\xspace}
-\newcommand{\ARWFourRankInitialFinal}{0.002\xspace}
-\newcommand{\ARWFourRankLagThreeFinal}{0.203\xspace}
-\newcommand{\ARWFourRankLagFiveFinal}{0.077\xspace}
-\newcommand{\ARWFourFinalYearZeroPercent}{0.0\xspace}
-\newcommand{\GRWFourYearQQRtwo}{0.986\xspace}
-\newcommand{\GRWFourYearMeanTotal}{60,210\xspace}
-\newcommand{\GRWFourYearGini}{0.992\xspace}
-\newcommand{\GRWFourYearFitKSD}{0.043\xspace}
-\newcommand{\GRWFourYearNTotal}{10,000\xspace}
-\newcommand{\GRWFourYearNPositive}{9,868\xspace}
-\newcommand{\GRWFourYearNZero}{132\xspace}
-\newcommand{\GRWFourYearZeroPercent}{1.3\xspace}
-\newcommand{\GRWFourYearMedianTotal}{47\xspace}
-\newcommand{\GRWFourYearSDTotal}{1,515,368.8\xspace}
-\newcommand{\GRWFourYearVarianceTotal}{2296342677873.613\xspace}
+\expandafter\newcommand\csname si_DBLPCareerVarianceTotal\endcsname{11414.144\xspace}
+\newcommand{\DBLPCareerVarianceTotal}{\csname si_DBLPCareerVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPRankInitialFinal\endcsname{0.187\xspace}
+\newcommand{\DBLPRankInitialFinal}{\csname si_DBLPRankInitialFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPRankLagThreeFinal\endcsname{0.653\xspace}
+\newcommand{\DBLPRankLagThreeFinal}{\csname si_DBLPRankLagThreeFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPRankLagFiveFinal\endcsname{0.583\xspace}
+\newcommand{\DBLPRankLagFiveFinal}{\csname si_DBLPRankLagFiveFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPFinalYearZeroPercent\endcsname{14.1\xspace}
+\newcommand{\DBLPFinalYearZeroPercent}{\csname si_DBLPFinalYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearQQRtwo\endcsname{0.991\xspace}
+\newcommand{\ARWFourFourYearQQRtwo}{\csname si_ARWFourFourYearQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearMeanTotal\endcsname{27\xspace}
+\newcommand{\ARWFourFourYearMeanTotal}{\csname si_ARWFourFourYearMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearGini\endcsname{0.318\xspace}
+\newcommand{\ARWFourFourYearGini}{\csname si_ARWFourFourYearGini\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearFitKSD\endcsname{0.026\xspace}
+\newcommand{\ARWFourFourYearFitKSD}{\csname si_ARWFourFourYearFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearNTotal\endcsname{10,000\xspace}
+\newcommand{\ARWFourFourYearNTotal}{\csname si_ARWFourFourYearNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearNPositive\endcsname{10,000\xspace}
+\newcommand{\ARWFourFourYearNPositive}{\csname si_ARWFourFourYearNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearNZero\endcsname{0\xspace}
+\newcommand{\ARWFourFourYearNZero}{\csname si_ARWFourFourYearNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearZeroPercent\endcsname{0.0\xspace}
+\newcommand{\ARWFourFourYearZeroPercent}{\csname si_ARWFourFourYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearMedianTotal\endcsname{23\xspace}
+\newcommand{\ARWFourFourYearMedianTotal}{\csname si_ARWFourFourYearMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearSDTotal\endcsname{16.1\xspace}
+\newcommand{\ARWFourFourYearSDTotal}{\csname si_ARWFourFourYearSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFourYearVarianceTotal\endcsname{258.467\xspace}
+\newcommand{\ARWFourFourYearVarianceTotal}{\csname si_ARWFourFourYearVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerQQRtwo\endcsname{1.000\xspace}
+\newcommand{\ARWFourCareerQQRtwo}{\csname si_ARWFourCareerQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerMeanTotal\endcsname{147\xspace}
+\newcommand{\ARWFourCareerMeanTotal}{\csname si_ARWFourCareerMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerGini\endcsname{0.183\xspace}
+\newcommand{\ARWFourCareerGini}{\csname si_ARWFourCareerGini\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerFitKSD\endcsname{0.006\xspace}
+\newcommand{\ARWFourCareerFitKSD}{\csname si_ARWFourCareerFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerNTotal\endcsname{10,000\xspace}
+\newcommand{\ARWFourCareerNTotal}{\csname si_ARWFourCareerNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerNPositive\endcsname{10,000\xspace}
+\newcommand{\ARWFourCareerNPositive}{\csname si_ARWFourCareerNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerNZero\endcsname{0\xspace}
+\newcommand{\ARWFourCareerNZero}{\csname si_ARWFourCareerNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerZeroPercent\endcsname{0.0\xspace}
+\newcommand{\ARWFourCareerZeroPercent}{\csname si_ARWFourCareerZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerMedianTotal\endcsname{140\xspace}
+\newcommand{\ARWFourCareerMedianTotal}{\csname si_ARWFourCareerMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerSDTotal\endcsname{49.3\xspace}
+\newcommand{\ARWFourCareerSDTotal}{\csname si_ARWFourCareerSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourCareerVarianceTotal\endcsname{2427.361\xspace}
+\newcommand{\ARWFourCareerVarianceTotal}{\csname si_ARWFourCareerVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourRankInitialRMSE\endcsname{0.2261\xspace}
+\newcommand{\ARWFourRankInitialRMSE}{\csname si_ARWFourRankInitialRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourRankLagThreeRMSE\endcsname{0.4146\xspace}
+\newcommand{\ARWFourRankLagThreeRMSE}{\csname si_ARWFourRankLagThreeRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourRankLagFiveRMSE\endcsname{0.4536\xspace}
+\newcommand{\ARWFourRankLagFiveRMSE}{\csname si_ARWFourRankLagFiveRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourRankInitialFinal\endcsname{0.002\xspace}
+\newcommand{\ARWFourRankInitialFinal}{\csname si_ARWFourRankInitialFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourRankLagThreeFinal\endcsname{0.203\xspace}
+\newcommand{\ARWFourRankLagThreeFinal}{\csname si_ARWFourRankLagThreeFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourRankLagFiveFinal\endcsname{0.077\xspace}
+\newcommand{\ARWFourRankLagFiveFinal}{\csname si_ARWFourRankLagFiveFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourFinalYearZeroPercent\endcsname{0.0\xspace}
+\newcommand{\ARWFourFinalYearZeroPercent}{\csname si_ARWFourFinalYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearQQRtwo\endcsname{0.986\xspace}
+\newcommand{\GRWFourYearQQRtwo}{\csname si_GRWFourYearQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearMeanTotal\endcsname{60,210\xspace}
+\newcommand{\GRWFourYearMeanTotal}{\csname si_GRWFourYearMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearGini\endcsname{0.992\xspace}
+\newcommand{\GRWFourYearGini}{\csname si_GRWFourYearGini\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearFitKSD\endcsname{0.043\xspace}
+\newcommand{\GRWFourYearFitKSD}{\csname si_GRWFourYearFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearNTotal\endcsname{10,000\xspace}
+\newcommand{\GRWFourYearNTotal}{\csname si_GRWFourYearNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearNPositive\endcsname{9,868\xspace}
+\newcommand{\GRWFourYearNPositive}{\csname si_GRWFourYearNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearNZero\endcsname{132\xspace}
+\newcommand{\GRWFourYearNZero}{\csname si_GRWFourYearNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearZeroPercent\endcsname{1.3\xspace}
+\newcommand{\GRWFourYearZeroPercent}{\csname si_GRWFourYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearMedianTotal\endcsname{47\xspace}
+\newcommand{\GRWFourYearMedianTotal}{\csname si_GRWFourYearMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearSDTotal\endcsname{1,515,368.8\xspace}
+\newcommand{\GRWFourYearSDTotal}{\csname si_GRWFourYearSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFourYearVarianceTotal\endcsname{2296342677873.614\xspace}
+\newcommand{\GRWFourYearVarianceTotal}{\csname si_GRWFourYearVarianceTotal\endcsname\xspace}
 \newcommand{\GRWCareerQQRtwo}{0.952\xspace}
 \newcommand{\GRWCareerMeanTotal}{76,526\xspace}
-\newcommand{\GRWCareerGini}{0.987\xspace}
-\newcommand{\GRWCareerFitKSD}{0.074\xspace}
-\newcommand{\GRWCareerNTotal}{10,000\xspace}
-\newcommand{\GRWCareerNPositive}{10,000\xspace}
-\newcommand{\GRWCareerNZero}{0\xspace}
-\newcommand{\GRWCareerZeroPercent}{0.0\xspace}
+\expandafter\newcommand\csname si_GRWCareerGini\endcsname{0.987\xspace}
+\newcommand{\GRWCareerGini}{\csname si_GRWCareerGini\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWCareerFitKSD\endcsname{0.074\xspace}
+\newcommand{\GRWCareerFitKSD}{\csname si_GRWCareerFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWCareerNTotal\endcsname{10,000\xspace}
+\newcommand{\GRWCareerNTotal}{\csname si_GRWCareerNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWCareerNPositive\endcsname{10,000\xspace}
+\newcommand{\GRWCareerNPositive}{\csname si_GRWCareerNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWCareerNZero\endcsname{0\xspace}
+\newcommand{\GRWCareerNZero}{\csname si_GRWCareerNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWCareerZeroPercent\endcsname{0.0\xspace}
+\newcommand{\GRWCareerZeroPercent}{\csname si_GRWCareerZeroPercent\endcsname\xspace}
 \newcommand{\GRWCareerMedianTotal}{257\xspace}
 \newcommand{\GRWCareerSDTotal}{1,788,296.0\xspace}
-\newcommand{\GRWCareerVarianceTotal}{3198002727676.384\xspace}
-\newcommand{\GRWRankInitialRMSE}{0.0717\xspace}
-\newcommand{\GRWRankLagThreeRMSE}{0.1909\xspace}
-\newcommand{\GRWRankLagFiveRMSE}{0.1606\xspace}
-\newcommand{\GRWRankInitialFinal}{0.126\xspace}
-\newcommand{\GRWRankLagThreeFinal}{0.827\xspace}
-\newcommand{\GRWRankLagFiveFinal}{0.731\xspace}
-\newcommand{\GRWFinalYearZeroPercent}{9.6\xspace}
-\newcommand{\AROneFourYearQQRtwo}{0.992\xspace}
-\newcommand{\AROneFourYearMeanTotal}{28\xspace}
-\newcommand{\AROneFourYearGini}{0.507\xspace}
-\newcommand{\AROneFourYearFitKSD}{0.023\xspace}
-\newcommand{\AROneFourYearNTotal}{10,000\xspace}
-\newcommand{\AROneFourYearNPositive}{9,999\xspace}
-\newcommand{\AROneFourYearNZero}{1\xspace}
-\newcommand{\AROneFourYearZeroPercent}{0.0\xspace}
-\newcommand{\AROneFourYearMedianTotal}{18\xspace}
-\newcommand{\AROneFourYearSDTotal}{32.7\xspace}
-\newcommand{\AROneFourYearVarianceTotal}{1068.011\xspace}
-\newcommand{\AROneCareerQQRtwo}{0.999\xspace}
-\newcommand{\AROneCareerMeanTotal}{156\xspace}
-\newcommand{\AROneCareerGini}{0.288\xspace}
-\newcommand{\AROneCareerFitKSD}{0.008\xspace}
-\newcommand{\AROneCareerNTotal}{10,000\xspace}
-\newcommand{\AROneCareerNPositive}{10,000\xspace}
-\newcommand{\AROneCareerNZero}{0\xspace}
-\newcommand{\AROneCareerZeroPercent}{0.0\xspace}
-\newcommand{\AROneCareerMedianTotal}{135\xspace}
-\newcommand{\AROneCareerSDTotal}{88.8\xspace}
-\newcommand{\AROneCareerVarianceTotal}{7893.220\xspace}
-\newcommand{\AROneRankInitialRMSE}{0.2368\xspace}
-\newcommand{\AROneRankLagThreeRMSE}{0.3581\xspace}
-\newcommand{\AROneRankLagFiveRMSE}{0.4193\xspace}
-\newcommand{\AROneRankInitialFinal}{0.001\xspace}
-\newcommand{\AROneRankLagThreeFinal}{0.246\xspace}
-\newcommand{\AROneRankLagFiveFinal}{0.100\xspace}
-\newcommand{\AROneFinalYearZeroPercent}{2.5\xspace}
-\newcommand{\HurdleAROneFourYearQQRtwo}{0.932\xspace}
-\newcommand{\HurdleAROneFourYearMeanTotal}{25\xspace}
-\newcommand{\HurdleAROneFourYearGini}{0.448\xspace}
-\newcommand{\HurdleAROneFourYearFitKSD}{0.080\xspace}
-\newcommand{\HurdleAROneFourYearNTotal}{10,000\xspace}
-\newcommand{\HurdleAROneFourYearNPositive}{9,855\xspace}
-\newcommand{\HurdleAROneFourYearNZero}{145\xspace}
-\newcommand{\HurdleAROneFourYearZeroPercent}{1.5\xspace}
-\newcommand{\HurdleAROneFourYearMedianTotal}{19\xspace}
-\newcommand{\HurdleAROneFourYearSDTotal}{23.0\xspace}
-\newcommand{\HurdleAROneFourYearVarianceTotal}{528.512\xspace}
-\newcommand{\HurdleAROneCareerQQRtwo}{0.987\xspace}
-\newcommand{\HurdleAROneCareerMeanTotal}{135\xspace}
-\newcommand{\HurdleAROneCareerGini}{0.255\xspace}
-\newcommand{\HurdleAROneCareerFitKSD}{0.034\xspace}
-\newcommand{\HurdleAROneCareerNTotal}{10,000\xspace}
-\newcommand{\HurdleAROneCareerNPositive}{10,000\xspace}
-\newcommand{\HurdleAROneCareerNZero}{0\xspace}
-\newcommand{\HurdleAROneCareerZeroPercent}{0.0\xspace}
-\newcommand{\HurdleAROneCareerMedianTotal}{125\xspace}
-\newcommand{\HurdleAROneCareerSDTotal}{64.4\xspace}
-\newcommand{\HurdleAROneCareerVarianceTotal}{4141.971\xspace}
-\newcommand{\HurdleAROneRankInitialRMSE}{0.2200\xspace}
-\newcommand{\HurdleAROneRankLagThreeRMSE}{0.3180\xspace}
-\newcommand{\HurdleAROneRankLagFiveRMSE}{0.3918\xspace}
-\newcommand{\HurdleAROneRankInitialFinal}{-0.012\xspace}
-\newcommand{\HurdleAROneRankLagThreeFinal}{0.309\xspace}
-\newcommand{\HurdleAROneRankLagFiveFinal}{0.136\xspace}
-\newcommand{\HurdleAROneFinalYearZeroPercent}{15.7\xspace}
-\newcommand{\ARSixFourYearQQRtwo}{0.936\xspace}
-\newcommand{\ARSixFourYearMeanTotal}{23\xspace}
-\newcommand{\ARSixFourYearGini}{0.442\xspace}
-\newcommand{\ARSixFourYearFitKSD}{0.102\xspace}
-\newcommand{\ARSixFourYearNTotal}{10,000\xspace}
-\newcommand{\ARSixFourYearNPositive}{9,648\xspace}
-\newcommand{\ARSixFourYearNZero}{352\xspace}
-\newcommand{\ARSixFourYearZeroPercent}{3.5\xspace}
-\newcommand{\ARSixFourYearMedianTotal}{20\xspace}
-\newcommand{\ARSixFourYearSDTotal}{20.1\xspace}
-\newcommand{\ARSixFourYearVarianceTotal}{402.400\xspace}
-\newcommand{\ARSixCareerQQRtwo}{0.934\xspace}
-\newcommand{\ARSixCareerMeanTotal}{137\xspace}
-\newcommand{\ARSixCareerGini}{0.330\xspace}
-\newcommand{\ARSixCareerFitKSD}{0.089\xspace}
-\newcommand{\ARSixCareerNTotal}{10,000\xspace}
-\newcommand{\ARSixCareerNPositive}{9,999\xspace}
-\newcommand{\ARSixCareerNZero}{1\xspace}
-\newcommand{\ARSixCareerZeroPercent}{0.0\xspace}
-\newcommand{\ARSixCareerMedianTotal}{125\xspace}
-\newcommand{\ARSixCareerSDTotal}{83.1\xspace}
-\newcommand{\ARSixCareerVarianceTotal}{6905.640\xspace}
-\newcommand{\ARSixRankInitialRMSE}{0.0601\xspace}
-\newcommand{\ARSixRankLagThreeRMSE}{0.0493\xspace}
-\newcommand{\ARSixRankLagFiveRMSE}{0.0341\xspace}
-\newcommand{\ARSixRankInitialFinal}{0.129\xspace}
-\newcommand{\ARSixRankLagThreeFinal}{0.592\xspace}
-\newcommand{\ARSixRankLagFiveFinal}{0.531\xspace}
-\newcommand{\ARSixFinalYearZeroPercent}{16.5\xspace}
-\newcommand{\SEHurdleFourYearQQRtwo}{0.973\xspace}
-\newcommand{\SEHurdleFourYearMeanTotal}{29\xspace}
-\newcommand{\SEHurdleFourYearGini}{0.460\xspace}
-\newcommand{\SEHurdleFourYearFitKSD}{0.059\xspace}
-\newcommand{\SEHurdleFourYearNTotal}{10,000\xspace}
-\newcommand{\SEHurdleFourYearNPositive}{9,741\xspace}
-\newcommand{\SEHurdleFourYearNZero}{259\xspace}
-\newcommand{\SEHurdleFourYearZeroPercent}{2.6\xspace}
-\newcommand{\SEHurdleFourYearMedianTotal}{22\xspace}
-\newcommand{\SEHurdleFourYearSDTotal}{27.9\xspace}
-\newcommand{\SEHurdleFourYearVarianceTotal}{778.036\xspace}
-\newcommand{\SEHurdleCareerQQRtwo}{0.967\xspace}
-\newcommand{\SEHurdleCareerMeanTotal}{151\xspace}
-\newcommand{\SEHurdleCareerGini}{0.341\xspace}
-\newcommand{\SEHurdleCareerFitKSD}{0.063\xspace}
-\newcommand{\SEHurdleCareerNTotal}{10,000\xspace}
-\newcommand{\SEHurdleCareerNPositive}{9,998\xspace}
-\newcommand{\SEHurdleCareerNZero}{2\xspace}
-\newcommand{\SEHurdleCareerZeroPercent}{0.0\xspace}
-\newcommand{\SEHurdleCareerMedianTotal}{134\xspace}
-\newcommand{\SEHurdleCareerSDTotal}{98.4\xspace}
-\newcommand{\SEHurdleCareerVarianceTotal}{9682.290\xspace}
-\newcommand{\SEHurdleRankInitialRMSE}{0.0382\xspace}
-\newcommand{\SEHurdleRankLagThreeRMSE}{0.0434\xspace}
-\newcommand{\SEHurdleRankLagFiveRMSE}{0.0264\xspace}
-\newcommand{\SEHurdleRankInitialFinal}{0.159\xspace}
-\newcommand{\SEHurdleRankLagThreeFinal}{0.611\xspace}
-\newcommand{\SEHurdleRankLagFiveFinal}{0.553\xspace}
-\newcommand{\SEHurdleFinalYearZeroPercent}{14.3\xspace}
-\newcommand{\DBLPQQRtwo}{\DBLPFourYearQQRtwo\xspace}
-\newcommand{\ARWFourQQRtwo}{\ARWFourFourYearQQRtwo\xspace}
-\newcommand{\GRWQQRtwo}{\GRWFourYearQQRtwo\xspace}
-\newcommand{\AROneQQRtwo}{\AROneFourYearQQRtwo\xspace}
-\newcommand{\HurdleAROneQQRtwo}{\HurdleAROneFourYearQQRtwo\xspace}
-\newcommand{\ARSixQQRtwo}{\ARSixFourYearQQRtwo\xspace}
-\newcommand{\SEHurdleQQRtwo}{\SEHurdleFourYearQQRtwo\xspace}
-\newcommand{\GRWLognormalRtwo}{\GRWFourYearQQRtwo\xspace}
+\expandafter\newcommand\csname si_GRWCareerVarianceTotal\endcsname{3198002727676.385\xspace}
+\newcommand{\GRWCareerVarianceTotal}{\csname si_GRWCareerVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWRankInitialRMSE\endcsname{0.0717\xspace}
+\newcommand{\GRWRankInitialRMSE}{\csname si_GRWRankInitialRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWRankLagThreeRMSE\endcsname{0.1909\xspace}
+\newcommand{\GRWRankLagThreeRMSE}{\csname si_GRWRankLagThreeRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWRankLagFiveRMSE\endcsname{0.1606\xspace}
+\newcommand{\GRWRankLagFiveRMSE}{\csname si_GRWRankLagFiveRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWRankInitialFinal\endcsname{0.126\xspace}
+\newcommand{\GRWRankInitialFinal}{\csname si_GRWRankInitialFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWRankLagThreeFinal\endcsname{0.827\xspace}
+\newcommand{\GRWRankLagThreeFinal}{\csname si_GRWRankLagThreeFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWRankLagFiveFinal\endcsname{0.731\xspace}
+\newcommand{\GRWRankLagFiveFinal}{\csname si_GRWRankLagFiveFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWFinalYearZeroPercent\endcsname{9.6\xspace}
+\newcommand{\GRWFinalYearZeroPercent}{\csname si_GRWFinalYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearQQRtwo\endcsname{0.992\xspace}
+\newcommand{\AROneFourYearQQRtwo}{\csname si_AROneFourYearQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearMeanTotal\endcsname{28\xspace}
+\newcommand{\AROneFourYearMeanTotal}{\csname si_AROneFourYearMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearGini\endcsname{0.507\xspace}
+\newcommand{\AROneFourYearGini}{\csname si_AROneFourYearGini\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearFitKSD\endcsname{0.023\xspace}
+\newcommand{\AROneFourYearFitKSD}{\csname si_AROneFourYearFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearNTotal\endcsname{10,000\xspace}
+\newcommand{\AROneFourYearNTotal}{\csname si_AROneFourYearNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearNPositive\endcsname{9,999\xspace}
+\newcommand{\AROneFourYearNPositive}{\csname si_AROneFourYearNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearNZero\endcsname{1\xspace}
+\newcommand{\AROneFourYearNZero}{\csname si_AROneFourYearNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearZeroPercent\endcsname{0.0\xspace}
+\newcommand{\AROneFourYearZeroPercent}{\csname si_AROneFourYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearMedianTotal\endcsname{18\xspace}
+\newcommand{\AROneFourYearMedianTotal}{\csname si_AROneFourYearMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearSDTotal\endcsname{32.7\xspace}
+\newcommand{\AROneFourYearSDTotal}{\csname si_AROneFourYearSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFourYearVarianceTotal\endcsname{1068.011\xspace}
+\newcommand{\AROneFourYearVarianceTotal}{\csname si_AROneFourYearVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerQQRtwo\endcsname{0.999\xspace}
+\newcommand{\AROneCareerQQRtwo}{\csname si_AROneCareerQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerMeanTotal\endcsname{156\xspace}
+\newcommand{\AROneCareerMeanTotal}{\csname si_AROneCareerMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerGini\endcsname{0.288\xspace}
+\newcommand{\AROneCareerGini}{\csname si_AROneCareerGini\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerFitKSD\endcsname{0.008\xspace}
+\newcommand{\AROneCareerFitKSD}{\csname si_AROneCareerFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerNTotal\endcsname{10,000\xspace}
+\newcommand{\AROneCareerNTotal}{\csname si_AROneCareerNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerNPositive\endcsname{10,000\xspace}
+\newcommand{\AROneCareerNPositive}{\csname si_AROneCareerNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerNZero\endcsname{0\xspace}
+\newcommand{\AROneCareerNZero}{\csname si_AROneCareerNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerZeroPercent\endcsname{0.0\xspace}
+\newcommand{\AROneCareerZeroPercent}{\csname si_AROneCareerZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerMedianTotal\endcsname{135\xspace}
+\newcommand{\AROneCareerMedianTotal}{\csname si_AROneCareerMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerSDTotal\endcsname{88.8\xspace}
+\newcommand{\AROneCareerSDTotal}{\csname si_AROneCareerSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneCareerVarianceTotal\endcsname{7893.220\xspace}
+\newcommand{\AROneCareerVarianceTotal}{\csname si_AROneCareerVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneRankInitialRMSE\endcsname{0.2368\xspace}
+\newcommand{\AROneRankInitialRMSE}{\csname si_AROneRankInitialRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneRankLagThreeRMSE\endcsname{0.3581\xspace}
+\newcommand{\AROneRankLagThreeRMSE}{\csname si_AROneRankLagThreeRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneRankLagFiveRMSE\endcsname{0.4193\xspace}
+\newcommand{\AROneRankLagFiveRMSE}{\csname si_AROneRankLagFiveRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneRankInitialFinal\endcsname{0.001\xspace}
+\newcommand{\AROneRankInitialFinal}{\csname si_AROneRankInitialFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneRankLagThreeFinal\endcsname{0.246\xspace}
+\newcommand{\AROneRankLagThreeFinal}{\csname si_AROneRankLagThreeFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneRankLagFiveFinal\endcsname{0.100\xspace}
+\newcommand{\AROneRankLagFiveFinal}{\csname si_AROneRankLagFiveFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneFinalYearZeroPercent\endcsname{2.5\xspace}
+\newcommand{\AROneFinalYearZeroPercent}{\csname si_AROneFinalYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearQQRtwo\endcsname{0.932\xspace}
+\newcommand{\HurdleAROneFourYearQQRtwo}{\csname si_HurdleAROneFourYearQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearMeanTotal\endcsname{25\xspace}
+\newcommand{\HurdleAROneFourYearMeanTotal}{\csname si_HurdleAROneFourYearMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearGini\endcsname{0.448\xspace}
+\newcommand{\HurdleAROneFourYearGini}{\csname si_HurdleAROneFourYearGini\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearFitKSD\endcsname{0.080\xspace}
+\newcommand{\HurdleAROneFourYearFitKSD}{\csname si_HurdleAROneFourYearFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearNTotal\endcsname{10,000\xspace}
+\newcommand{\HurdleAROneFourYearNTotal}{\csname si_HurdleAROneFourYearNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearNPositive\endcsname{9,855\xspace}
+\newcommand{\HurdleAROneFourYearNPositive}{\csname si_HurdleAROneFourYearNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearNZero\endcsname{145\xspace}
+\newcommand{\HurdleAROneFourYearNZero}{\csname si_HurdleAROneFourYearNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearZeroPercent\endcsname{1.5\xspace}
+\newcommand{\HurdleAROneFourYearZeroPercent}{\csname si_HurdleAROneFourYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearMedianTotal\endcsname{19\xspace}
+\newcommand{\HurdleAROneFourYearMedianTotal}{\csname si_HurdleAROneFourYearMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearSDTotal\endcsname{23.0\xspace}
+\newcommand{\HurdleAROneFourYearSDTotal}{\csname si_HurdleAROneFourYearSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFourYearVarianceTotal\endcsname{528.512\xspace}
+\newcommand{\HurdleAROneFourYearVarianceTotal}{\csname si_HurdleAROneFourYearVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerQQRtwo\endcsname{0.987\xspace}
+\newcommand{\HurdleAROneCareerQQRtwo}{\csname si_HurdleAROneCareerQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerMeanTotal\endcsname{135\xspace}
+\newcommand{\HurdleAROneCareerMeanTotal}{\csname si_HurdleAROneCareerMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerGini\endcsname{0.255\xspace}
+\newcommand{\HurdleAROneCareerGini}{\csname si_HurdleAROneCareerGini\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerFitKSD\endcsname{0.034\xspace}
+\newcommand{\HurdleAROneCareerFitKSD}{\csname si_HurdleAROneCareerFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerNTotal\endcsname{10,000\xspace}
+\newcommand{\HurdleAROneCareerNTotal}{\csname si_HurdleAROneCareerNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerNPositive\endcsname{10,000\xspace}
+\newcommand{\HurdleAROneCareerNPositive}{\csname si_HurdleAROneCareerNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerNZero\endcsname{0\xspace}
+\newcommand{\HurdleAROneCareerNZero}{\csname si_HurdleAROneCareerNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerZeroPercent\endcsname{0.0\xspace}
+\newcommand{\HurdleAROneCareerZeroPercent}{\csname si_HurdleAROneCareerZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerMedianTotal\endcsname{125\xspace}
+\newcommand{\HurdleAROneCareerMedianTotal}{\csname si_HurdleAROneCareerMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerSDTotal\endcsname{64.4\xspace}
+\newcommand{\HurdleAROneCareerSDTotal}{\csname si_HurdleAROneCareerSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneCareerVarianceTotal\endcsname{4141.971\xspace}
+\newcommand{\HurdleAROneCareerVarianceTotal}{\csname si_HurdleAROneCareerVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneRankInitialRMSE\endcsname{0.2200\xspace}
+\newcommand{\HurdleAROneRankInitialRMSE}{\csname si_HurdleAROneRankInitialRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneRankLagThreeRMSE\endcsname{0.3180\xspace}
+\newcommand{\HurdleAROneRankLagThreeRMSE}{\csname si_HurdleAROneRankLagThreeRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneRankLagFiveRMSE\endcsname{0.3918\xspace}
+\newcommand{\HurdleAROneRankLagFiveRMSE}{\csname si_HurdleAROneRankLagFiveRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneRankInitialFinal\endcsname{-0.012\xspace}
+\newcommand{\HurdleAROneRankInitialFinal}{\csname si_HurdleAROneRankInitialFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneRankLagThreeFinal\endcsname{0.309\xspace}
+\newcommand{\HurdleAROneRankLagThreeFinal}{\csname si_HurdleAROneRankLagThreeFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneRankLagFiveFinal\endcsname{0.136\xspace}
+\newcommand{\HurdleAROneRankLagFiveFinal}{\csname si_HurdleAROneRankLagFiveFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneFinalYearZeroPercent\endcsname{15.7\xspace}
+\newcommand{\HurdleAROneFinalYearZeroPercent}{\csname si_HurdleAROneFinalYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearQQRtwo\endcsname{0.936\xspace}
+\newcommand{\ARSixFourYearQQRtwo}{\csname si_ARSixFourYearQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearMeanTotal\endcsname{23\xspace}
+\newcommand{\ARSixFourYearMeanTotal}{\csname si_ARSixFourYearMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearGini\endcsname{0.442\xspace}
+\newcommand{\ARSixFourYearGini}{\csname si_ARSixFourYearGini\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearFitKSD\endcsname{0.102\xspace}
+\newcommand{\ARSixFourYearFitKSD}{\csname si_ARSixFourYearFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearNTotal\endcsname{10,000\xspace}
+\newcommand{\ARSixFourYearNTotal}{\csname si_ARSixFourYearNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearNPositive\endcsname{9,648\xspace}
+\newcommand{\ARSixFourYearNPositive}{\csname si_ARSixFourYearNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearNZero\endcsname{352\xspace}
+\newcommand{\ARSixFourYearNZero}{\csname si_ARSixFourYearNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearZeroPercent\endcsname{3.5\xspace}
+\newcommand{\ARSixFourYearZeroPercent}{\csname si_ARSixFourYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearMedianTotal\endcsname{20\xspace}
+\newcommand{\ARSixFourYearMedianTotal}{\csname si_ARSixFourYearMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearSDTotal\endcsname{20.1\xspace}
+\newcommand{\ARSixFourYearSDTotal}{\csname si_ARSixFourYearSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFourYearVarianceTotal\endcsname{402.400\xspace}
+\newcommand{\ARSixFourYearVarianceTotal}{\csname si_ARSixFourYearVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerQQRtwo\endcsname{0.934\xspace}
+\newcommand{\ARSixCareerQQRtwo}{\csname si_ARSixCareerQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerMeanTotal\endcsname{137\xspace}
+\newcommand{\ARSixCareerMeanTotal}{\csname si_ARSixCareerMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerGini\endcsname{0.330\xspace}
+\newcommand{\ARSixCareerGini}{\csname si_ARSixCareerGini\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerFitKSD\endcsname{0.089\xspace}
+\newcommand{\ARSixCareerFitKSD}{\csname si_ARSixCareerFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerNTotal\endcsname{10,000\xspace}
+\newcommand{\ARSixCareerNTotal}{\csname si_ARSixCareerNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerNPositive\endcsname{9,999\xspace}
+\newcommand{\ARSixCareerNPositive}{\csname si_ARSixCareerNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerNZero\endcsname{1\xspace}
+\newcommand{\ARSixCareerNZero}{\csname si_ARSixCareerNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerZeroPercent\endcsname{0.0\xspace}
+\newcommand{\ARSixCareerZeroPercent}{\csname si_ARSixCareerZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerMedianTotal\endcsname{125\xspace}
+\newcommand{\ARSixCareerMedianTotal}{\csname si_ARSixCareerMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerSDTotal\endcsname{83.1\xspace}
+\newcommand{\ARSixCareerSDTotal}{\csname si_ARSixCareerSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixCareerVarianceTotal\endcsname{6905.640\xspace}
+\newcommand{\ARSixCareerVarianceTotal}{\csname si_ARSixCareerVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixRankInitialRMSE\endcsname{0.0601\xspace}
+\newcommand{\ARSixRankInitialRMSE}{\csname si_ARSixRankInitialRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixRankLagThreeRMSE\endcsname{0.0493\xspace}
+\newcommand{\ARSixRankLagThreeRMSE}{\csname si_ARSixRankLagThreeRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixRankLagFiveRMSE\endcsname{0.0341\xspace}
+\newcommand{\ARSixRankLagFiveRMSE}{\csname si_ARSixRankLagFiveRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixRankInitialFinal\endcsname{0.129\xspace}
+\newcommand{\ARSixRankInitialFinal}{\csname si_ARSixRankInitialFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixRankLagThreeFinal\endcsname{0.592\xspace}
+\newcommand{\ARSixRankLagThreeFinal}{\csname si_ARSixRankLagThreeFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixRankLagFiveFinal\endcsname{0.531\xspace}
+\newcommand{\ARSixRankLagFiveFinal}{\csname si_ARSixRankLagFiveFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixFinalYearZeroPercent\endcsname{16.5\xspace}
+\newcommand{\ARSixFinalYearZeroPercent}{\csname si_ARSixFinalYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearQQRtwo\endcsname{0.973\xspace}
+\newcommand{\SEHurdleFourYearQQRtwo}{\csname si_SEHurdleFourYearQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearMeanTotal\endcsname{29\xspace}
+\newcommand{\SEHurdleFourYearMeanTotal}{\csname si_SEHurdleFourYearMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearGini\endcsname{0.460\xspace}
+\newcommand{\SEHurdleFourYearGini}{\csname si_SEHurdleFourYearGini\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearFitKSD\endcsname{0.059\xspace}
+\newcommand{\SEHurdleFourYearFitKSD}{\csname si_SEHurdleFourYearFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearNTotal\endcsname{10,000\xspace}
+\newcommand{\SEHurdleFourYearNTotal}{\csname si_SEHurdleFourYearNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearNPositive\endcsname{9,741\xspace}
+\newcommand{\SEHurdleFourYearNPositive}{\csname si_SEHurdleFourYearNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearNZero\endcsname{259\xspace}
+\newcommand{\SEHurdleFourYearNZero}{\csname si_SEHurdleFourYearNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearZeroPercent\endcsname{2.6\xspace}
+\newcommand{\SEHurdleFourYearZeroPercent}{\csname si_SEHurdleFourYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearMedianTotal\endcsname{22\xspace}
+\newcommand{\SEHurdleFourYearMedianTotal}{\csname si_SEHurdleFourYearMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearSDTotal\endcsname{27.9\xspace}
+\newcommand{\SEHurdleFourYearSDTotal}{\csname si_SEHurdleFourYearSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFourYearVarianceTotal\endcsname{778.036\xspace}
+\newcommand{\SEHurdleFourYearVarianceTotal}{\csname si_SEHurdleFourYearVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerQQRtwo\endcsname{0.967\xspace}
+\newcommand{\SEHurdleCareerQQRtwo}{\csname si_SEHurdleCareerQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerMeanTotal\endcsname{151\xspace}
+\newcommand{\SEHurdleCareerMeanTotal}{\csname si_SEHurdleCareerMeanTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerGini\endcsname{0.341\xspace}
+\newcommand{\SEHurdleCareerGini}{\csname si_SEHurdleCareerGini\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerFitKSD\endcsname{0.063\xspace}
+\newcommand{\SEHurdleCareerFitKSD}{\csname si_SEHurdleCareerFitKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerNTotal\endcsname{10,000\xspace}
+\newcommand{\SEHurdleCareerNTotal}{\csname si_SEHurdleCareerNTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerNPositive\endcsname{9,998\xspace}
+\newcommand{\SEHurdleCareerNPositive}{\csname si_SEHurdleCareerNPositive\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerNZero\endcsname{2\xspace}
+\newcommand{\SEHurdleCareerNZero}{\csname si_SEHurdleCareerNZero\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerZeroPercent\endcsname{0.0\xspace}
+\newcommand{\SEHurdleCareerZeroPercent}{\csname si_SEHurdleCareerZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerMedianTotal\endcsname{134\xspace}
+\newcommand{\SEHurdleCareerMedianTotal}{\csname si_SEHurdleCareerMedianTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerSDTotal\endcsname{98.4\xspace}
+\newcommand{\SEHurdleCareerSDTotal}{\csname si_SEHurdleCareerSDTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleCareerVarianceTotal\endcsname{9682.290\xspace}
+\newcommand{\SEHurdleCareerVarianceTotal}{\csname si_SEHurdleCareerVarianceTotal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleRankInitialRMSE\endcsname{0.0382\xspace}
+\newcommand{\SEHurdleRankInitialRMSE}{\csname si_SEHurdleRankInitialRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleRankLagThreeRMSE\endcsname{0.0434\xspace}
+\newcommand{\SEHurdleRankLagThreeRMSE}{\csname si_SEHurdleRankLagThreeRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleRankLagFiveRMSE\endcsname{0.0264\xspace}
+\newcommand{\SEHurdleRankLagFiveRMSE}{\csname si_SEHurdleRankLagFiveRMSE\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleRankInitialFinal\endcsname{0.159\xspace}
+\newcommand{\SEHurdleRankInitialFinal}{\csname si_SEHurdleRankInitialFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleRankLagThreeFinal\endcsname{0.611\xspace}
+\newcommand{\SEHurdleRankLagThreeFinal}{\csname si_SEHurdleRankLagThreeFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleRankLagFiveFinal\endcsname{0.553\xspace}
+\newcommand{\SEHurdleRankLagFiveFinal}{\csname si_SEHurdleRankLagFiveFinal\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleFinalYearZeroPercent\endcsname{14.3\xspace}
+\newcommand{\SEHurdleFinalYearZeroPercent}{\csname si_SEHurdleFinalYearZeroPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_DBLPQQRtwo\endcsname{\DBLPFourYearQQRtwo\xspace}
+\newcommand{\DBLPQQRtwo}{\csname si_DBLPQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourQQRtwo\endcsname{\ARWFourFourYearQQRtwo\xspace}
+\newcommand{\ARWFourQQRtwo}{\csname si_ARWFourQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWQQRtwo\endcsname{\GRWFourYearQQRtwo\xspace}
+\newcommand{\GRWQQRtwo}{\csname si_GRWQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneQQRtwo\endcsname{\AROneFourYearQQRtwo\xspace}
+\newcommand{\AROneQQRtwo}{\csname si_AROneQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneQQRtwo\endcsname{\HurdleAROneFourYearQQRtwo\xspace}
+\newcommand{\HurdleAROneQQRtwo}{\csname si_HurdleAROneQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixQQRtwo\endcsname{\ARSixFourYearQQRtwo\xspace}
+\newcommand{\ARSixQQRtwo}{\csname si_ARSixQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleQQRtwo\endcsname{\SEHurdleFourYearQQRtwo\xspace}
+\newcommand{\SEHurdleQQRtwo}{\csname si_SEHurdleQQRtwo\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWLognormalRtwo\endcsname{\GRWFourYearQQRtwo\xspace}
+\newcommand{\GRWLognormalRtwo}{\csname si_GRWLognormalRtwo\endcsname\xspace}

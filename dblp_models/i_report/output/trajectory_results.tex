@@ -3,44 +3,133 @@
 % annual Wasserstein mean and raw-scale OLS slope use career years 0--20
 % restart RMSE is risk-weighted and expressed in percentage points
 % Percent commands omit the percent sign
-\newcommand{\ARWFourAnnualWassersteinMean}{0.95\xspace}
-\newcommand{\ARWFourAnnualWassersteinSlope}{0.05\xspace}
-\newcommand{\ARWFourAnnualMeanNRMSEPercent}{7.51\xspace}
-\newcommand{\ARWFourAnnualMedianNRMSEPercent}{8.39\xspace}
-\newcommand{\ARWFourAnnualVarianceNRMSEPercent}{47.74\xspace}
-\newcommand{\ARWFourLongestInactiveSpellKSD}{0.5451\xspace}
-\newcommand{\GRWAnnualWassersteinMean}{3638.20\xspace}
-\newcommand{\GRWAnnualWassersteinSlope}{770.60\xspace}
-\newcommand{\GRWAnnualMeanNRMSEPercent}{112130.91\xspace}
-\newcommand{\GRWAnnualMedianNRMSEPercent}{48.28\xspace}
-\newcommand{\GRWAnnualVarianceNRMSEPercent}{266984162670.49\xspace}
-\newcommand{\GRWRestartHazardRMSEPoints}{15.13\xspace}
-\newcommand{\GRWLongestInactiveSpellKSD}{0.0707\xspace}
-\newcommand{\AROneAnnualWassersteinMean}{1.87\xspace}
-\newcommand{\AROneAnnualWassersteinSlope}{0.02\xspace}
-\newcommand{\AROneAnnualMeanNRMSEPercent}{5.27\xspace}
-\newcommand{\AROneAnnualMedianNRMSEPercent}{30.81\xspace}
-\newcommand{\AROneAnnualVarianceNRMSEPercent}{168.18\xspace}
-\newcommand{\AROneRestartHazardRMSEPoints}{21.36\xspace}
-\newcommand{\AROneLongestInactiveSpellKSD}{0.3238\xspace}
-\newcommand{\HurdleAROneAnnualWassersteinMean}{1.07\xspace}
-\newcommand{\HurdleAROneAnnualWassersteinSlope}{0.01\xspace}
-\newcommand{\HurdleAROneAnnualMeanNRMSEPercent}{13.29\xspace}
-\newcommand{\HurdleAROneAnnualMedianNRMSEPercent}{19.41\xspace}
-\newcommand{\HurdleAROneAnnualVarianceNRMSEPercent}{11.87\xspace}
-\newcommand{\HurdleAROneRestartHazardRMSEPoints}{7.51\xspace}
-\newcommand{\HurdleAROneLongestInactiveSpellKSD}{0.1808\xspace}
-\newcommand{\ARSixAnnualWassersteinMean}{0.94\xspace}
-\newcommand{\ARSixAnnualWassersteinSlope}{0.05\xspace}
-\newcommand{\ARSixAnnualMeanNRMSEPercent}{14.53\xspace}
-\newcommand{\ARSixAnnualMedianNRMSEPercent}{15.71\xspace}
-\newcommand{\ARSixAnnualVarianceNRMSEPercent}{23.37\xspace}
-\newcommand{\ARSixRestartHazardRMSEPoints}{7.58\xspace}
-\newcommand{\ARSixLongestInactiveSpellKSD}{0.0407\xspace}
-\newcommand{\SEHurdleAnnualWassersteinMean}{0.53\xspace}
-\newcommand{\SEHurdleAnnualWassersteinSlope}{0.01\xspace}
-\newcommand{\SEHurdleAnnualMeanNRMSEPercent}{2.95\xspace}
-\newcommand{\SEHurdleAnnualMedianNRMSEPercent}{7.58\xspace}
-\newcommand{\SEHurdleAnnualVarianceNRMSEPercent}{22.76\xspace}
-\newcommand{\SEHurdleRestartHazardRMSEPoints}{2.03\xspace}
-\newcommand{\SEHurdleLongestInactiveSpellKSD}{0.0221\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualWassersteinMean\endcsname{0.95\xspace}
+\newcommand{\ARWFourAnnualWassersteinMean}{\csname si_ARWFourAnnualWassersteinMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualWassersteinSlope\endcsname{0.05\xspace}
+\newcommand{\ARWFourAnnualWassersteinSlope}{\csname si_ARWFourAnnualWassersteinSlope\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualWassersteinStageOneMean\endcsname{0.60\xspace}
+\newcommand{\ARWFourAnnualWassersteinStageOneMean}{\csname si_ARWFourAnnualWassersteinStageOneMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualWassersteinStageTwoMean\endcsname{0.63\xspace}
+\newcommand{\ARWFourAnnualWassersteinStageTwoMean}{\csname si_ARWFourAnnualWassersteinStageTwoMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualWassersteinStageThreeMean\endcsname{0.99\xspace}
+\newcommand{\ARWFourAnnualWassersteinStageThreeMean}{\csname si_ARWFourAnnualWassersteinStageThreeMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualWassersteinStageFourMean\endcsname{1.29\xspace}
+\newcommand{\ARWFourAnnualWassersteinStageFourMean}{\csname si_ARWFourAnnualWassersteinStageFourMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualMeanNRMSEPercent\endcsname{7.51\xspace}
+\newcommand{\ARWFourAnnualMeanNRMSEPercent}{\csname si_ARWFourAnnualMeanNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualMedianNRMSEPercent\endcsname{8.39\xspace}
+\newcommand{\ARWFourAnnualMedianNRMSEPercent}{\csname si_ARWFourAnnualMedianNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourAnnualVarianceNRMSEPercent\endcsname{47.74\xspace}
+\newcommand{\ARWFourAnnualVarianceNRMSEPercent}{\csname si_ARWFourAnnualVarianceNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARWFourLongestInactiveSpellKSD\endcsname{0.5451\xspace}
+\newcommand{\ARWFourLongestInactiveSpellKSD}{\csname si_ARWFourLongestInactiveSpellKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualWassersteinMean\endcsname{3638.20\xspace}
+\newcommand{\GRWAnnualWassersteinMean}{\csname si_GRWAnnualWassersteinMean\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualWassersteinSlope\endcsname{770.60\xspace}
+\newcommand{\GRWAnnualWassersteinSlope}{\csname si_GRWAnnualWassersteinSlope\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualWassersteinStageOneMean\endcsname{10.83\xspace}
+\newcommand{\GRWAnnualWassersteinStageOneMean}{\csname si_GRWAnnualWassersteinStageOneMean\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualWassersteinStageTwoMean\endcsname{77.56\xspace}
+\newcommand{\GRWAnnualWassersteinStageTwoMean}{\csname si_GRWAnnualWassersteinStageTwoMean\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualWassersteinStageThreeMean\endcsname{730.42\xspace}
+\newcommand{\GRWAnnualWassersteinStageThreeMean}{\csname si_GRWAnnualWassersteinStageThreeMean\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualWassersteinStageFourMean\endcsname{10247.54\xspace}
+\newcommand{\GRWAnnualWassersteinStageFourMean}{\csname si_GRWAnnualWassersteinStageFourMean\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualMeanNRMSEPercent\endcsname{112130.91\xspace}
+\newcommand{\GRWAnnualMeanNRMSEPercent}{\csname si_GRWAnnualMeanNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualMedianNRMSEPercent\endcsname{48.28\xspace}
+\newcommand{\GRWAnnualMedianNRMSEPercent}{\csname si_GRWAnnualMedianNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWAnnualVarianceNRMSEPercent\endcsname{266984162670.49\xspace}
+\newcommand{\GRWAnnualVarianceNRMSEPercent}{\csname si_GRWAnnualVarianceNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWRestartHazardRMSEPoints\endcsname{15.13\xspace}
+\newcommand{\GRWRestartHazardRMSEPoints}{\csname si_GRWRestartHazardRMSEPoints\endcsname\xspace}
+\expandafter\newcommand\csname si_GRWLongestInactiveSpellKSD\endcsname{0.0707\xspace}
+\newcommand{\GRWLongestInactiveSpellKSD}{\csname si_GRWLongestInactiveSpellKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualWassersteinMean\endcsname{1.87\xspace}
+\newcommand{\AROneAnnualWassersteinMean}{\csname si_AROneAnnualWassersteinMean\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualWassersteinSlope\endcsname{0.02\xspace}
+\newcommand{\AROneAnnualWassersteinSlope}{\csname si_AROneAnnualWassersteinSlope\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualWassersteinStageOneMean\endcsname{1.51\xspace}
+\newcommand{\AROneAnnualWassersteinStageOneMean}{\csname si_AROneAnnualWassersteinStageOneMean\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualWassersteinStageTwoMean\endcsname{2.03\xspace}
+\newcommand{\AROneAnnualWassersteinStageTwoMean}{\csname si_AROneAnnualWassersteinStageTwoMean\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualWassersteinStageThreeMean\endcsname{2.07\xspace}
+\newcommand{\AROneAnnualWassersteinStageThreeMean}{\csname si_AROneAnnualWassersteinStageThreeMean\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualWassersteinStageFourMean\endcsname{1.89\xspace}
+\newcommand{\AROneAnnualWassersteinStageFourMean}{\csname si_AROneAnnualWassersteinStageFourMean\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualMeanNRMSEPercent\endcsname{5.27\xspace}
+\newcommand{\AROneAnnualMeanNRMSEPercent}{\csname si_AROneAnnualMeanNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualMedianNRMSEPercent\endcsname{30.81\xspace}
+\newcommand{\AROneAnnualMedianNRMSEPercent}{\csname si_AROneAnnualMedianNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneAnnualVarianceNRMSEPercent\endcsname{168.18\xspace}
+\newcommand{\AROneAnnualVarianceNRMSEPercent}{\csname si_AROneAnnualVarianceNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneRestartHazardRMSEPoints\endcsname{21.36\xspace}
+\newcommand{\AROneRestartHazardRMSEPoints}{\csname si_AROneRestartHazardRMSEPoints\endcsname\xspace}
+\expandafter\newcommand\csname si_AROneLongestInactiveSpellKSD\endcsname{0.3238\xspace}
+\newcommand{\AROneLongestInactiveSpellKSD}{\csname si_AROneLongestInactiveSpellKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualWassersteinMean\endcsname{1.07\xspace}
+\newcommand{\HurdleAROneAnnualWassersteinMean}{\csname si_HurdleAROneAnnualWassersteinMean\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualWassersteinSlope\endcsname{0.01\xspace}
+\newcommand{\HurdleAROneAnnualWassersteinSlope}{\csname si_HurdleAROneAnnualWassersteinSlope\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualWassersteinStageOneMean\endcsname{0.97\xspace}
+\newcommand{\HurdleAROneAnnualWassersteinStageOneMean}{\csname si_HurdleAROneAnnualWassersteinStageOneMean\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualWassersteinStageTwoMean\endcsname{0.84\xspace}
+\newcommand{\HurdleAROneAnnualWassersteinStageTwoMean}{\csname si_HurdleAROneAnnualWassersteinStageTwoMean\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualWassersteinStageThreeMean\endcsname{1.20\xspace}
+\newcommand{\HurdleAROneAnnualWassersteinStageThreeMean}{\csname si_HurdleAROneAnnualWassersteinStageThreeMean\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualWassersteinStageFourMean\endcsname{1.13\xspace}
+\newcommand{\HurdleAROneAnnualWassersteinStageFourMean}{\csname si_HurdleAROneAnnualWassersteinStageFourMean\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualMeanNRMSEPercent\endcsname{13.29\xspace}
+\newcommand{\HurdleAROneAnnualMeanNRMSEPercent}{\csname si_HurdleAROneAnnualMeanNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualMedianNRMSEPercent\endcsname{19.41\xspace}
+\newcommand{\HurdleAROneAnnualMedianNRMSEPercent}{\csname si_HurdleAROneAnnualMedianNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneAnnualVarianceNRMSEPercent\endcsname{11.87\xspace}
+\newcommand{\HurdleAROneAnnualVarianceNRMSEPercent}{\csname si_HurdleAROneAnnualVarianceNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneRestartHazardRMSEPoints\endcsname{7.51\xspace}
+\newcommand{\HurdleAROneRestartHazardRMSEPoints}{\csname si_HurdleAROneRestartHazardRMSEPoints\endcsname\xspace}
+\expandafter\newcommand\csname si_HurdleAROneLongestInactiveSpellKSD\endcsname{0.1808\xspace}
+\newcommand{\HurdleAROneLongestInactiveSpellKSD}{\csname si_HurdleAROneLongestInactiveSpellKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualWassersteinMean\endcsname{0.94\xspace}
+\newcommand{\ARSixAnnualWassersteinMean}{\csname si_ARSixAnnualWassersteinMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualWassersteinSlope\endcsname{0.05\xspace}
+\newcommand{\ARSixAnnualWassersteinSlope}{\csname si_ARSixAnnualWassersteinSlope\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualWassersteinStageOneMean\endcsname{0.46\xspace}
+\newcommand{\ARSixAnnualWassersteinStageOneMean}{\csname si_ARSixAnnualWassersteinStageOneMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualWassersteinStageTwoMean\endcsname{0.74\xspace}
+\newcommand{\ARSixAnnualWassersteinStageTwoMean}{\csname si_ARSixAnnualWassersteinStageTwoMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualWassersteinStageThreeMean\endcsname{1.00\xspace}
+\newcommand{\ARSixAnnualWassersteinStageThreeMean}{\csname si_ARSixAnnualWassersteinStageThreeMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualWassersteinStageFourMean\endcsname{1.30\xspace}
+\newcommand{\ARSixAnnualWassersteinStageFourMean}{\csname si_ARSixAnnualWassersteinStageFourMean\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualMeanNRMSEPercent\endcsname{14.53\xspace}
+\newcommand{\ARSixAnnualMeanNRMSEPercent}{\csname si_ARSixAnnualMeanNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualMedianNRMSEPercent\endcsname{15.71\xspace}
+\newcommand{\ARSixAnnualMedianNRMSEPercent}{\csname si_ARSixAnnualMedianNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixAnnualVarianceNRMSEPercent\endcsname{23.37\xspace}
+\newcommand{\ARSixAnnualVarianceNRMSEPercent}{\csname si_ARSixAnnualVarianceNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixRestartHazardRMSEPoints\endcsname{7.58\xspace}
+\newcommand{\ARSixRestartHazardRMSEPoints}{\csname si_ARSixRestartHazardRMSEPoints\endcsname\xspace}
+\expandafter\newcommand\csname si_ARSixLongestInactiveSpellKSD\endcsname{0.0407\xspace}
+\newcommand{\ARSixLongestInactiveSpellKSD}{\csname si_ARSixLongestInactiveSpellKSD\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualWassersteinMean\endcsname{0.53\xspace}
+\newcommand{\SEHurdleAnnualWassersteinMean}{\csname si_SEHurdleAnnualWassersteinMean\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualWassersteinSlope\endcsname{0.01\xspace}
+\newcommand{\SEHurdleAnnualWassersteinSlope}{\csname si_SEHurdleAnnualWassersteinSlope\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualWassersteinStageOneMean\endcsname{0.44\xspace}
+\newcommand{\SEHurdleAnnualWassersteinStageOneMean}{\csname si_SEHurdleAnnualWassersteinStageOneMean\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualWassersteinStageTwoMean\endcsname{0.51\xspace}
+\newcommand{\SEHurdleAnnualWassersteinStageTwoMean}{\csname si_SEHurdleAnnualWassersteinStageTwoMean\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualWassersteinStageThreeMean\endcsname{0.57\xspace}
+\newcommand{\SEHurdleAnnualWassersteinStageThreeMean}{\csname si_SEHurdleAnnualWassersteinStageThreeMean\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualWassersteinStageFourMean\endcsname{0.56\xspace}
+\newcommand{\SEHurdleAnnualWassersteinStageFourMean}{\csname si_SEHurdleAnnualWassersteinStageFourMean\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualMeanNRMSEPercent\endcsname{2.95\xspace}
+\newcommand{\SEHurdleAnnualMeanNRMSEPercent}{\csname si_SEHurdleAnnualMeanNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualMedianNRMSEPercent\endcsname{7.58\xspace}
+\newcommand{\SEHurdleAnnualMedianNRMSEPercent}{\csname si_SEHurdleAnnualMedianNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleAnnualVarianceNRMSEPercent\endcsname{22.76\xspace}
+\newcommand{\SEHurdleAnnualVarianceNRMSEPercent}{\csname si_SEHurdleAnnualVarianceNRMSEPercent\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleRestartHazardRMSEPoints\endcsname{2.03\xspace}
+\newcommand{\SEHurdleRestartHazardRMSEPoints}{\csname si_SEHurdleRestartHazardRMSEPoints\endcsname\xspace}
+\expandafter\newcommand\csname si_SEHurdleLongestInactiveSpellKSD\endcsname{0.0221\xspace}
+\newcommand{\SEHurdleLongestInactiveSpellKSD}{\csname si_SEHurdleLongestInactiveSpellKSD\endcsname\xspace}

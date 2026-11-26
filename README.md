@@ -175,3 +175,20 @@ The same suffixes work with the other model prefixes. The source rows and scalin
 ## Provenance
 
 Historic diagnostics adapted from `crabwife/spaarw_followup` commit `3b3e9e36fcb06380cbd545c413db609d9f7eb3ba`, plot notebooks 02–06. Existing DBLP model definitions derive from that repository and `crabwife/nsf_eda` commit `9c6728e3f77feecb27dce34e9550f3f0599772eb` (k_legacy Lognormal GRW and AR(6,6)). No AARC data or code path is introduced.
+
+
+### Stage summaries and comparison CSV
+
+`make report` averages the annual Wasserstein-1 distances within the four fitted
+career stages from [Scientific productivity as a random walk](https://doi.org/10.1038/s44260-026-00091-1).
+Stages one through four cover career years 0–4, 5–7, 8–13, and 14–20, inclusive.
+Each career year receives equal weight within its stage. The stage summary
+CSV sits alongside the wide `dblp_models/i_report/output/primary_model_comparison.csv`.
+The comparison contains one row per distinct reported statistic, with unrounded
+values in the reported units. Blanks indicate unavailable or inapplicable values.
+
+Both macro manifests list the canonical `tag` alongside the existing `macro`
+name. Direct calls in uncommented manuscript source keep their names as tags.
+Other tags begin with `si_`. Use, for example,
+`\csname si_GRWAnnualWassersteinStageOneMean\endcsname` in LaTeX.
+The original letter-only commands remain available as aliases.
