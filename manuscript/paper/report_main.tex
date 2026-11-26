@@ -1,6 +1,6 @@
 \documentclass[9pt,twocolumn,twoside]{pnas-new}
 % Use the lineno option to display guide line numbers if required.
-
+% chktex-file 1
 
 \usepackage{graphicx}
 \usepackage{xspace}
@@ -49,7 +49,7 @@
 \keywords{Scientific productivity $|$ science of science $|$ stochastic processes $|$ temporal dynamics $|$ inequality}
 
 \begin{abstract}
-In 1957, Nobel Prize-winning physicist William Shockley suggested that the large individual differences in cumulative scientific productivity, which is approximately lognormally distributed, could be explained as the result of differences in fixed individual traits of scientific ability. However, the mathematical and methodological reasoning he provided fall short of supporting his suggestion. We identify and respond to these shortcomings. We iteratively develop several temporal models and empirical temporal dynamics against which to appraise them. We found that approximate cumulative lognormality was reproduced by every model we tested, regardless of how consistent the model was with other empirical constraints. Ultimately, we identify a self-exciting hurdle model which is consistent with both cumulative lognormality and our empirical temporal constraints. We show that stochastic temporal processes can generate unequal scientific productivity without invoking Shockley’s assumption of fixed differences in individual scientific ability.
+In 1957, Nobel Prize-winning physicist William Shockley suggested that the large individual differences in cumulative scientific productivity, which is approximately lognormally distributed, could be explained as the result of differences in fixed individual traits of scientific ability. However, the mathematical and methodological reasoning he provided fall short of supporting his suggestion. We identify and respond to these shortcomings. We iteratively develop several temporal models and empirical temporal dynamics against which to appraise them. We found that approximate cumulative lognormality was reproduced by every model we tested, regardless of how consistent the model was with other empirical constraints. Ultimately, we identify a self-exciting hurdle model which is consistent with both cumulative lognormality and our empirical temporal constraints. We show that stochastic temporal processes can generate unequal scientific productivity without invoking Shockley's assumption of fixed differences in individual scientific ability.
 \end{abstract}
 
 \dates{This manuscript was compiled on \today}
@@ -93,8 +93,7 @@ To design temporal models, we first undertook exploratory data analysis of longi
 
 We identified three temporal patterns in DBLP publication histories (Fig.~\ref{fig:dblp-rank-mixing}). Annual publication ranks became less aligned with career-year 0 ranks as careers progressed, while rank correlations at fixed three- and five-year lags generally strengthened. Among researchers who published in a given year, those with higher output were less likely to record zero output the following year. Among researchers with zero output, the probability of publishing the following year generally fell as the inactive spell lengthened. These patterns give temporal models of productivity three targets beyond the distribution of cumulative output that motivated Shockley's account.
 
-We assessed model performance by comparing simulated and observed publication output. For totals over the full career window and over the final four years, we report the mean, median, standard deviation, Gini coefficient, and lognormal QQ $R^2$. The final four-year window matches the duration of Shockley's observation window. To summarize agreement in annual output, we computed the Wasserstein-1 distance between simulated and observed distributions at each career year and averaged these distances across years ($\bar{W}_1$).
-
+We assessed model performance by comparing simulated and observed publication output. For totals over the full career window and over the final four years, we report the mean, median, standard deviation, Gini coefficient, and lognormal QQ $R^2$. The final four-year window matches the duration of Shockley's observation window. At each career year, we measured the Wasserstein-1 distance between the simulated and observed distributions of annual publication output. We report the mean distance ($\bar{W}_1$) across all career years and separately within the four career stages identified by Zhang et al.~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}.
 
 \section*{Temporal models}\label{sec:model}
 
@@ -102,6 +101,8 @@ We developed and tested several models of scientific productivity. Each model wa
 
 \subsection*{Geometric Random Walk}\label{subsec:model_GRW}
 We began with a geometric random walk (GRW) with IID lognormal multipliers. We fitted a single normal distribution to observed adjacent-year changes in log-offset productivity, pooled over the 20 career-year transitions, and exponentiated independent draws from that distribution.
+
+\textit{Should we report last-four stats only?}
 
 The GRW generated approximately lognormal career totals (lognormal QQ $R^2=\GRWCareerQQRtwo$), yet substantially misrepresented other empirical properties. Mean career output was \GRWCareerMeanTotal publications, compared with \DBLPCareerMeanTotal empirically, with a median of \GRWCareerMedianTotal against \DBLPCareerMedianTotal and a standard deviation of \GRWCareerSDTotal against \DBLPCareerSDTotal. 
 
