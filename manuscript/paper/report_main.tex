@@ -95,34 +95,86 @@ We identified three temporal patterns in DBLP publication histories (Fig.~\ref{f
 
 We assessed model performance by comparing simulated and observed publication output. For totals over the full career window and over the final four years, we report the mean, median, standard deviation, Gini coefficient, and lognormal QQ $R^2$. The final four-year window matches the duration of Shockley's observation window. At each career year, we measured the Wasserstein-1 distance between the simulated and observed distributions of annual publication output. We report the mean distance ($\bar{W}_1$) across all career years and separately within the four career stages identified by Zhang et al.~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}.
 
+\begin{table*}[t]
+    \centering
+    \caption{\textbf{Comparison of observed and simulated productivity.}
+    The QQ $R^2$ assesses lognormality among positive publication totals
+    in career years 17--20. The median, mean, standard deviation, and
+    Gini coefficient include all totals over the same window.
+    Mean annual Wasserstein-1 distance $\bar{W}_1$ compares each model
+    with dblp across career years 0--20. The last two columns report
+    Spearman correlations between annual productivity ranks in the
+    indicated years.}
+    \label{tab:model-comparison}
+    \begin{tabular}{@{}lrrrrrrrr@{}}
+        \toprule
+        & \multicolumn{5}{c}{Final four years (17--20)}
+        & Annual output & \multicolumn{2}{c}{Rank persistence} \\
+        \cmidrule(lr){2-6}\cmidrule(lr){7-7}\cmidrule(l){8-9}
+        Model & Q--Q $R^2$ & Median & Mean & SD & Gini
+        & $\bar{W}_1$ & $\rho(R_0,R_{20})$ & $\rho(R_{15},R_{20})$ \\
+        \midrule
+        \textit{dblp}
+        & \textit{\DBLPFourYearQQRtwo} & \textit{\DBLPFourYearMedianTotal}
+        & \textit{\DBLPFourYearMeanTotal} & \textit{\DBLPFourYearSDTotal}
+        & \textit{\DBLPFourYearGini} & \textit{\textemdash}
+        & \textit{\DBLPRankInitialFinal} & \textit{\DBLPRankLagFiveFinal} \\
+        GRW
+        & \GRWFourYearQQRtwo & \GRWFourYearMedianTotal
+        & \GRWFourYearMeanTotal & \GRWFourYearSDTotal
+        & \GRWFourYearGini & \GRWAnnualWassersteinMean
+        & \GRWRankInitialFinal & \GRWRankLagFiveFinal \\
+        AR(1)
+        & \AROneFourYearQQRtwo & \AROneFourYearMedianTotal
+        & \AROneFourYearMeanTotal & \AROneFourYearSDTotal
+        & \AROneFourYearGini & \AROneAnnualWassersteinMean
+        & \AROneRankInitialFinal & \AROneRankLagFiveFinal \\
+        H-AR(1)
+        & \HurdleAROneFourYearQQRtwo & \HurdleAROneFourYearMedianTotal
+        & \HurdleAROneFourYearMeanTotal & \HurdleAROneFourYearSDTotal
+        & \HurdleAROneFourYearGini & \HurdleAROneAnnualWassersteinMean
+        & \HurdleAROneRankInitialFinal & \HurdleAROneRankLagFiveFinal \\
+        SE-H
+        & \SEHurdleFourYearQQRtwo & \SEHurdleFourYearMedianTotal
+        & \SEHurdleFourYearMeanTotal & \SEHurdleFourYearSDTotal
+        & \SEHurdleFourYearGini & \SEHurdleAnnualWassersteinMean
+        & \SEHurdleRankInitialFinal & \SEHurdleRankLagFiveFinal \\
+        \bottomrule
+    \end{tabular}
+\end{table*}
+
 \section*{Temporal models}\label{sec:model}
 
-We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics, as well as from mathematical intuition about the nature of scientific productivity over time. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. 
+We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics, as well as from mathematical intuition about the nature of scientific productivity over time. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. For brevity, our reporting of results will refer to Table~\ref{tab:model-comparison}.
 
 \subsection*{Geometric Random Walk}\label{subsec:model_GRW}
 We began with a geometric random walk (GRW) with IID lognormal multipliers. We fitted a single normal distribution to observed adjacent-year changes in log-offset productivity, pooled over the 20 career-year transitions, and exponentiated independent draws from that distribution.
 
 \textit{Should we report last-four stats only?}
 
-The GRW generated approximately lognormal career totals (lognormal QQ $R^2=\GRWCareerQQRtwo$), yet substantially misrepresented other empirical properties. Mean career output was \GRWCareerMeanTotal publications, compared with \DBLPCareerMeanTotal empirically, with a median of \GRWCareerMedianTotal against \DBLPCareerMedianTotal and a standard deviation of \GRWCareerSDTotal against \DBLPCareerSDTotal. 
+The GRW generated approximately lognormal career totals, yet substantially misrepresented other empirical properties. Mean career output was \GRWFourYearMeanTotal publications, compared with \DBLPFourYearMeanTotal empirically, with a median of \GRWFourYearMedianTotal against \DBLPFourYearMedianTotal and a standard deviation of \GRWFourYearSDTotal against \DBLPFourYearSDTotal. Further, it yielded a Gini of \GRWFourYearGini against \DBLPFourYearGini, and overestimated fixed-distance rank correlation while underestimating fixed-point rank correlation.
 
 Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
-
-
-
 
 % that the median is only overestimated by 200\%, while the mean and standard deviation are overestimated by 50,000\% and 1,670,000\%, is the signature of an extremely overdispersed model. In fact, this direction of error is expected under multiplicative growth, because positive shocks can compound into extreme totals that have little effect on the median. 
 % and the Gini coefficient was \GRWCareerGini rather than \DBLPCareerGini. 
-
-
-
-
-
 % (The model also overstated recent rank persistence ($\rho_\text{S}(R_t,R_{t-3})$ of \GRWRankLagThreeFinal vs.\ \DBLPRankLagThreeFinal), while it understated long-term rank persistence ($\rho_\text{S}(R_t, R_0)$ of \GRWRankInitialFinal vs.\ \DBLPRankInitialFinal). \textbf{POSSIBLY UNNECESSARY})
 
-Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
 
 \subsection*{First-order autoregressive}\label{subsec_model_AR1}
+GRW served as an informative counterexample to William Shockley's explanation of multiplicative accumulation, justified by cumulative lognormality, as generative of scientific productivity. Its extreme numerical performance arose due to total persistence of shocks over time. In this sense, it is a special case of a first-order autoregressive process of the general form $X_{t+1} = \alpha + \beta X_t + \epsilon_{t+1}$ where $\beta = 1$. Therefore, in response to its failure mode, we next designed a simple $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ are freely estimated. In this instance, w
+
+This model was far more empirically consistent than the GRW. Numerically, its predictions are
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\columnwidth]{../../dblp_models/f_plot/output/pnas_dblp_ar1_stage_parameters.pdf}
+    \caption{Fitted $\operatorname{AR}(1)$ parameters by career stage.}\label{fig:ar1-stage-parameters}
+\end{figure}
+
+
+
+
 % We next allowed the dependence on current productivity to be estimated rather than fixed using a simple autoregressive model. Career totals remained approximately lognormal (QQ $R^2=\AROneCareerQQRtwo$), and mean career output was \AROneCareerMeanTotal, compared with \DBLPCareerMeanTotal empirically. However, the model underestimated inequality (Gini \AROneCareerGini versus \DBLPCareerGini) and the year-20 fraction of inactive researchers (\AROneCareerZeroPercent versus \DBLPFinalYearZeroPercent). Rank persistence was also systemically underestimated. 
 
 \subsection*{Hurdle autoregressive}\label{subsec:model_hurdleAR}
