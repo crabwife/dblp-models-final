@@ -1,2 +1,2 @@
 model,seed,n_sim,n_years,generated_from_age,orientation,minimum,maximum,finite
-lognormal_grw_s,63,10000,21,1,age x scholar,0.0,31457419.671320397,True
+lognormal_grw_s,63,10000,21,1,age x scholar,0.0,31457419.671320286,True

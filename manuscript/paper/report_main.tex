@@ -183,7 +183,7 @@ The GRW generated approximately lognormal career totals, yet substantially misre
 Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
 
 \subsection*{First-order autoregressive}\label{subsec_model_AR1}
-GRW served as an informative counterexample to William Shockley's explanation of multiplicative accumulation, justified by cumulative lognormality, as generative of scientific productivity. Its extreme numerical performance arose due to total persistence of shocks over time. In this sense, it is a special case of a first-order autoregressive process of the general form $X_{t+1} = \alpha + \beta X_t + \epsilon_{t+1}$ where $\beta = 1$. Therefore, in response to its failure mode, we next designed a simple $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ are freely estimated.
+The GRW's failure mode arises from the total persistence of shocks over time. In this view, it corresponds to the unit-persistence case ($\beta=1$) of the first-order autoregressive model $X_{t+1}=\alpha+\beta X_t+\epsilon_{t+1}$. To allow the effects of shocks to decay, and therefore reduce the overestimation of GRW, we fitted an $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ were freely estimated within each career stage.
 
 \begin{figure}[h]
     \centering
@@ -191,15 +191,15 @@ GRW served as an informative counterexample to William Shockley's explanation of
     \caption{Fitted $\operatorname{AR}(1)$ parameters by career stage.}\label{fig:ar1-stage-parameters}
 \end{figure}
 
-Interestingly, in comparing 
+Across career stages, $\beta$ increased while $\alpha$ declined (Fig.~\ref{fig:ar1-stage-parameters}). The decline in $\alpha$ was large enough that the implied long-run mean, $\alpha/(1-\beta)$, fell on the log-offset scale. Shock variability was highest in the earliest stage and remained lower thereafter. Later-career shocks were thus modestly smaller and carried forward more strongly, a pattern consistent with the rise in fixed-lag rank correlations in Fig.~\ref{fig:dblp-rank-mixing}A.
 
-
-AR(1) saw significant improvement over the GRW. It retained approximate cumulative lognormality, while its mean, median, and SD are far closer to the empirical statistics. However, while partial shock persistence allows for plausible count statistics, and reduces the $\bar{W}_1$ to less than 2 papers, it severely underpredicts both fixed-point and fixed-distance rank persistence. Additionally, its RMSE in dropout and reentry are worse than that of GRW. 
-
-
-
+The $\operatorname{AR}(1)$ retained approximate cumulative lognormality and brought the mean, median, and standard deviation of publication totals much closer to their empirical values, reducing $\bar{W}_1$ to less than two papers. Although its fixed-lag rank correlations increased over time, it substantially underpredicted both fixed-point and fixed-lag rank persistence. Its errors in dropout and reentry were also larger than those of the GRW. In both models, zero-output years arose when the continuous productivity process crossed a clipping threshold. This motivated a hurdle autoregression that models transitions into and out of publication activity explicitly, following Baccini et al. (2014)\cite{bacciniCrossingHurdleDeterminants2014}.
 
 \subsection*{Hurdle autoregressive}\label{subsec:model_hurdleAR}
+
+To that end, we next fitted a hurdle autoregressive model (H-AR(1)) that separates whether a researcher publishes in a given year from how much they publish. This lets the probability of dropping to zero depend on current output and gives inactive researchers a separate probability of returning to publication. For researchers who continue publishing, output follows an autoregressive process.
+
+H-AR(1) saw marked improvement in empirical consistent over AR(1) in most metrics. It again produced approximate cumulative lognormality, although less so than any other model. It also yielded a significant reduction in dropout and reentry error.
 
 % We then modeled publication activity separately from output, splitting our model into an extensive and conditional intensive margin. 
 
