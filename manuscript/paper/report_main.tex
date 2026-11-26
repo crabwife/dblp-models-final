@@ -105,43 +105,59 @@ We assessed model performance by comparing simulated and observed publication ou
     Mean annual Wasserstein-1 distance $\bar{W}_1$ compares each model
     with dblp across career years 0--20. Rank columns report final Spearman
     correlations and OLS slopes (correlation per year) over endpoint years
-    17--20 for the fixed reference year 0 and the fixed five-year lag.}
+    17--20 for the fixed reference year 0 and the fixed five-year lag.
+    Dropout and reentry RMSEs are in percentage points. Dropout uses pooled
+    transitions and common productivity bins weighted by observed active-year
+    counts. Reentry uses generated transitions and empirical risk weights for
+    inactive durations with at least 20 observations at risk.}
     \label{tab:model-comparison}
-    \setlength{\tabcolsep}{3pt}
-    \begin{tabular}{@{}lrrrrrrrrrr@{}}
+    \setlength{\tabcolsep}{2.5pt}
+    \begin{tabular}{@{}lrrrrrrrrrrrr@{}}
         \toprule
         & \multicolumn{5}{c}{Final four years (17--20)}
-        & Annual output & \multicolumn{4}{c}{Rank persistence} \\
-        \cmidrule(lr){2-6}\cmidrule(lr){7-7}\cmidrule(l){8-11}
-        Model & Q--Q $R^2$ & Median & Mean & SD & Gini
-        & $\bar{W}_1$ & $\rho(R_0,R_{20})$ & $\rho(R_{15},R_{20})$ & Slope (year 0) & Slope (lag 5) \\
+        & Annual & \multicolumn{2}{c}{Fixed point}
+        & \multicolumn{2}{c}{Five-year lag} & \multicolumn{2}{c}{RMSE (pp)} \\
+        \cmidrule(lr){2-6}\cmidrule(lr){7-7}\cmidrule(lr){8-9}
+        \cmidrule(lr){10-11}\cmidrule(l){12-13}
+        Model & Q--Q $R^2$ & Med. & Mean & SD & Gini
+        & $\bar{W}_1$ & $\rho$ & Slope & $\rho$ & Slope & Dropout & Reentry \\
         \midrule
         \rowcolor{gray!12}
         \textit{dblp (empirical)}
         & \DBLPFourYearQQRtwo & \DBLPFourYearMedianTotal
         & \DBLPFourYearMeanTotal & \DBLPFourYearSDTotal
         & \DBLPFourYearGini & \textemdash
-        & \DBLPRankInitialFinal & \DBLPRankLagFiveFinal & \DBLPRankInitialFourYearSlope & \DBLPRankLagFiveFourYearSlope \\
+        & \DBLPRankInitialFinal & \DBLPRankInitialFourYearSlope
+        & \DBLPRankLagFiveFinal & \DBLPRankLagFiveFourYearSlope
+        & \textemdash & \textemdash \\
         GRW
         & \GRWFourYearQQRtwo & \GRWFourYearMedianTotal
         & \GRWFourYearMeanTotal & \GRWFourYearSDTotal
         & \GRWFourYearGini & \GRWAnnualWassersteinMean
-        & \GRWRankInitialFinal & \GRWRankLagFiveFinal & \GRWRankInitialFourYearSlope & \GRWRankLagFiveFourYearSlope \\
+        & \GRWRankInitialFinal & \GRWRankInitialFourYearSlope
+        & \GRWRankLagFiveFinal & \GRWRankLagFiveFourYearSlope
+        & \GRWDropoutRMSEPoints & \GRWRestartHazardRMSEPoints \\
         AR(1)
         & \AROneFourYearQQRtwo & \AROneFourYearMedianTotal
         & \AROneFourYearMeanTotal & \AROneFourYearSDTotal
         & \AROneFourYearGini & \AROneAnnualWassersteinMean
-        & \AROneRankInitialFinal & \AROneRankLagFiveFinal & \AROneRankInitialFourYearSlope & \AROneRankLagFiveFourYearSlope \\
+        & \AROneRankInitialFinal & \AROneRankInitialFourYearSlope
+        & \AROneRankLagFiveFinal & \AROneRankLagFiveFourYearSlope
+        & \AROneDropoutRMSEPoints & \AROneRestartHazardRMSEPoints \\
         H-AR(1)
         & \HurdleAROneFourYearQQRtwo & \HurdleAROneFourYearMedianTotal
         & \HurdleAROneFourYearMeanTotal & \HurdleAROneFourYearSDTotal
         & \HurdleAROneFourYearGini & \HurdleAROneAnnualWassersteinMean
-        & \HurdleAROneRankInitialFinal & \HurdleAROneRankLagFiveFinal & \HurdleAROneRankInitialFourYearSlope & \HurdleAROneRankLagFiveFourYearSlope \\
+        & \HurdleAROneRankInitialFinal & \HurdleAROneRankInitialFourYearSlope
+        & \HurdleAROneRankLagFiveFinal & \HurdleAROneRankLagFiveFourYearSlope
+        & \HurdleAROneDropoutRMSEPoints & \HurdleAROneRestartHazardRMSEPoints \\
         SE-H
         & \SEHurdleFourYearQQRtwo & \SEHurdleFourYearMedianTotal
         & \SEHurdleFourYearMeanTotal & \SEHurdleFourYearSDTotal
         & \SEHurdleFourYearGini & \SEHurdleAnnualWassersteinMean
-        & \SEHurdleRankInitialFinal & \SEHurdleRankLagFiveFinal & \SEHurdleRankInitialFourYearSlope & \SEHurdleRankLagFiveFourYearSlope \\
+        & \SEHurdleRankInitialFinal & \SEHurdleRankInitialFourYearSlope
+        & \SEHurdleRankLagFiveFinal & \SEHurdleRankLagFiveFourYearSlope
+        & \SEHurdleDropoutRMSEPoints & \SEHurdleRestartHazardRMSEPoints \\
         \bottomrule
     \end{tabular}
 \end{table*}
