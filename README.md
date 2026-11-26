@@ -19,6 +19,8 @@ Install `dblp_models/requirements.txt`, place the original CSV at `dblp_models/a
 
 Every task has input/output/src. Input links point to the preceding task output; dependency links carry the panel and parameter tables forward through that chain. Source columns include `dblp`, `phd_year`, `year`, `CareerAge`, `pubs_adj`. The legacy cohort uses phd_year ≥1980, CareerAge 1–21, the observed age-5 productivity filter, and terminal source-row removal. `age = CareerAge - 1`. The supplied CSV gives 2,086 scholars and 510 complete careers. Missing follow-up is never treated as zero.
 
+The stagewise fits share the transition-start bins in `config.json`: 0–4, 5–7, 8–13, and 14–19. A transition uses the stage of its starting year.
+
 ## Lognormal GRW
 
 The GRW is a temporal counterexample to inferring fixed individual traits from lognormality. Fit one Normal distribution to the observed adjacent-year offset-log increments d = ln(q_next + 0.49) - ln(q + 0.49), pooling transitions from career years 0→1 through 19→20. Each observed transition contributes once. The Normal maximum-likelihood estimates are the sample mean and standard deviation with ddof=0. The fit exports one row with mu, sigma and n in `c_fit/output/lognormal_grw/parameters.csv`.
