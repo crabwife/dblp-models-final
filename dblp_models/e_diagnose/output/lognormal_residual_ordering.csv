@@ -1,0 +1,11 @@
+left,right,fraction_left_higher_qq_r2,fraction_left_closer_to_dblp
+empirical_complete,lognormal_grw,0.182,
+empirical_complete,ar1_s,0.146,
+empirical_complete,hurdle_ar1_s_p,0.992,
+empirical_complete,se_hurdle_s,0.6485,
+lognormal_grw,ar1_s,0.363,0.0
+lognormal_grw,hurdle_ar1_s_p,0.9985,0.003
+lognormal_grw,se_hurdle_s,0.892,0.0
+ar1_s,hurdle_ar1_s_p,0.9965,0.594
+ar1_s,se_hurdle_s,0.8965,0.1265
+hurdle_ar1_s_p,se_hurdle_s,0.0175,0.068
