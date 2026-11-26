@@ -3,6 +3,7 @@
 % chktex-file 1
 
 \usepackage{graphicx}
+\usepackage{colortbl}
 \usepackage{xspace}
 \usepackage{amsmath, amsfonts, amssymb, bbm}
 \input{../../dblp_models/g_report/output/results.tex}
@@ -102,43 +103,45 @@ We assessed model performance by comparing simulated and observed publication ou
     in career years 17--20. The median, mean, standard deviation, and
     Gini coefficient include all totals over the same window.
     Mean annual Wasserstein-1 distance $\bar{W}_1$ compares each model
-    with dblp across career years 0--20. The last two columns report
-    Spearman correlations between annual productivity ranks in the
-    indicated years.}
+    with dblp across career years 0--20. Rank columns report final Spearman
+    correlations and OLS slopes (correlation per year) over endpoint years
+    17--20 for the fixed reference year 0 and the fixed five-year lag.}
     \label{tab:model-comparison}
-    \begin{tabular}{@{}lrrrrrrrr@{}}
+    \setlength{\tabcolsep}{3pt}
+    \begin{tabular}{@{}lrrrrrrrrrr@{}}
         \toprule
         & \multicolumn{5}{c}{Final four years (17--20)}
-        & Annual output & \multicolumn{2}{c}{Rank persistence} \\
-        \cmidrule(lr){2-6}\cmidrule(lr){7-7}\cmidrule(l){8-9}
+        & Annual output & \multicolumn{4}{c}{Rank persistence} \\
+        \cmidrule(lr){2-6}\cmidrule(lr){7-7}\cmidrule(l){8-11}
         Model & Q--Q $R^2$ & Median & Mean & SD & Gini
-        & $\bar{W}_1$ & $\rho(R_0,R_{20})$ & $\rho(R_{15},R_{20})$ \\
+        & $\bar{W}_1$ & $\rho(R_0,R_{20})$ & $\rho(R_{15},R_{20})$ & Slope (year 0) & Slope (lag 5) \\
         \midrule
-        \textit{dblp}
-        & \textit{\DBLPFourYearQQRtwo} & \textit{\DBLPFourYearMedianTotal}
-        & \textit{\DBLPFourYearMeanTotal} & \textit{\DBLPFourYearSDTotal}
-        & \textit{\DBLPFourYearGini} & \textit{\textemdash}
-        & \textit{\DBLPRankInitialFinal} & \textit{\DBLPRankLagFiveFinal} \\
+        \rowcolor{gray!12}
+        \textit{dblp (empirical)}
+        & \DBLPFourYearQQRtwo & \DBLPFourYearMedianTotal
+        & \DBLPFourYearMeanTotal & \DBLPFourYearSDTotal
+        & \DBLPFourYearGini & \textemdash
+        & \DBLPRankInitialFinal & \DBLPRankLagFiveFinal & \DBLPRankInitialFourYearSlope & \DBLPRankLagFiveFourYearSlope \\
         GRW
         & \GRWFourYearQQRtwo & \GRWFourYearMedianTotal
         & \GRWFourYearMeanTotal & \GRWFourYearSDTotal
         & \GRWFourYearGini & \GRWAnnualWassersteinMean
-        & \GRWRankInitialFinal & \GRWRankLagFiveFinal \\
+        & \GRWRankInitialFinal & \GRWRankLagFiveFinal & \GRWRankInitialFourYearSlope & \GRWRankLagFiveFourYearSlope \\
         AR(1)
         & \AROneFourYearQQRtwo & \AROneFourYearMedianTotal
         & \AROneFourYearMeanTotal & \AROneFourYearSDTotal
         & \AROneFourYearGini & \AROneAnnualWassersteinMean
-        & \AROneRankInitialFinal & \AROneRankLagFiveFinal \\
+        & \AROneRankInitialFinal & \AROneRankLagFiveFinal & \AROneRankInitialFourYearSlope & \AROneRankLagFiveFourYearSlope \\
         H-AR(1)
         & \HurdleAROneFourYearQQRtwo & \HurdleAROneFourYearMedianTotal
         & \HurdleAROneFourYearMeanTotal & \HurdleAROneFourYearSDTotal
         & \HurdleAROneFourYearGini & \HurdleAROneAnnualWassersteinMean
-        & \HurdleAROneRankInitialFinal & \HurdleAROneRankLagFiveFinal \\
+        & \HurdleAROneRankInitialFinal & \HurdleAROneRankLagFiveFinal & \HurdleAROneRankInitialFourYearSlope & \HurdleAROneRankLagFiveFourYearSlope \\
         SE-H
         & \SEHurdleFourYearQQRtwo & \SEHurdleFourYearMedianTotal
         & \SEHurdleFourYearMeanTotal & \SEHurdleFourYearSDTotal
         & \SEHurdleFourYearGini & \SEHurdleAnnualWassersteinMean
-        & \SEHurdleRankInitialFinal & \SEHurdleRankLagFiveFinal \\
+        & \SEHurdleRankInitialFinal & \SEHurdleRankLagFiveFinal & \SEHurdleRankInitialFourYearSlope & \SEHurdleRankLagFiveFourYearSlope \\
         \bottomrule
     \end{tabular}
 \end{table*}
@@ -157,8 +160,8 @@ The GRW generated approximately lognormal career totals, yet substantially misre
 Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
 
 % that the median is only overestimated by 200\%, while the mean and standard deviation are overestimated by 50,000\% and 1,670,000\%, is the signature of an extremely overdispersed model. In fact, this direction of error is expected under multiplicative growth, because positive shocks can compound into extreme totals that have little effect on the median. 
-% and the Gini coefficient was \GRWCareerGini rather than \DBLPCareerGini. 
-% (The model also overstated recent rank persistence ($\rho_\text{S}(R_t,R_{t-3})$ of \GRWRankLagThreeFinal vs.\ \DBLPRankLagThreeFinal), while it understated long-term rank persistence ($\rho_\text{S}(R_t, R_0)$ of \GRWRankInitialFinal vs.\ \DBLPRankInitialFinal). \textbf{POSSIBLY UNNECESSARY})
+% and the Gini coefficient was \csname si_GRWCareerGini\endcsname rather than \csname si_DBLPCareerGini\endcsname.
+% (The model also overstated recent rank persistence ($\rho_\text{S}(R_t,R_{t-3})$ of \csname si_GRWRankLagThreeFinal\endcsname vs.\ \csname si_DBLPRankLagThreeFinal\endcsname), while it understated long-term rank persistence ($\rho_\text{S}(R_t, R_0)$ of \GRWRankInitialFinal vs.\ \DBLPRankInitialFinal). \textbf{POSSIBLY UNNECESSARY})
 
 
 \subsection*{First-order autoregressive}\label{subsec_model_AR1}
@@ -175,7 +178,7 @@ This model was far more empirically consistent than the GRW. Numerically, its pr
 
 
 
-% We next allowed the dependence on current productivity to be estimated rather than fixed using a simple autoregressive model. Career totals remained approximately lognormal (QQ $R^2=\AROneCareerQQRtwo$), and mean career output was \AROneCareerMeanTotal, compared with \DBLPCareerMeanTotal empirically. However, the model underestimated inequality (Gini \AROneCareerGini versus \DBLPCareerGini) and the year-20 fraction of inactive researchers (\AROneCareerZeroPercent versus \DBLPFinalYearZeroPercent). Rank persistence was also systemically underestimated. 
+% We next allowed the dependence on current productivity to be estimated rather than fixed using a simple autoregressive model. Career totals remained approximately lognormal (QQ $R^2=\csname si_AROneCareerQQRtwo\endcsname$), and mean career output was \csname si_AROneCareerMeanTotal\endcsname, compared with \csname si_DBLPCareerMeanTotal\endcsname empirically. However, the model underestimated inequality (Gini \csname si_AROneCareerGini\endcsname versus \csname si_DBLPCareerGini\endcsname) and the year-20 fraction of inactive researchers (\csname si_AROneCareerZeroPercent\endcsname versus \csname si_DBLPFinalYearZeroPercent\endcsname). Rank persistence was also systemically underestimated.
 
 \subsection*{Hurdle autoregressive}\label{subsec:model_hurdleAR}
 
