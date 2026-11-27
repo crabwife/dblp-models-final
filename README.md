@@ -31,13 +31,20 @@ and run logs are generated locally.
 lognormality comparison from Figure 1B of the Shockley draft.
 Run `make aarc` from the repo root with the same Python
 environment. The default source is
-`~/Desktop/NSF 26-256/b_trajectorize/output/fields`. Set `AARC_FIELDS_DIR` to
-use a different location. The pipeline links the 13 field exports
-(`secret_<field>_trajectories.csv`), computes one last-four-observed-year total
-per eligible researcher within each field, and compares positive totals on
-the log scale using the Q–Q correlation `r`. As in the draft notebook, the
-window must end at zero-indexed career age 4 or later. The computer science
-point uses the AARC field export. Only aggregates are written.
+`~/Desktop/NSF 26-256/b_trajectorize/output/fields`, with
+`data/field_trajectories/fields` in that NSF repo as a fallback. Set
+`AARC_FIELDS_DIR` to the finest-level field export directory for a different
+checkout. The pipeline uses the hiring-and-retention hierarchy's cleaned
+taxonomy labels for the 13 target fields. It recognizes the corresponding
+`General` aliases and the AARC ID 156 alias `Sociology - Articles-Focused`.
+The CSV records the matched files, sample counts, and missing fields. The
+figure includes fields with an estimable Q–Q correlation.
+
+Each eligible researcher contributes one total over their last four observed
+years within a field. As in the draft notebook, the window ends at zero-indexed
+career age 4 or later, and the Q–Q correlation `r` uses the logs of positive
+totals. The computer science point uses the AARC field export. Only aggregates
+are written.
 
 - `aarc_fields/b_diagnose/output/aarc_field_lognormality.csv`
 - `aarc_fields/c_plot/output/pnas/pnas_aarc_field_lognormality.pdf` (and PNG)
