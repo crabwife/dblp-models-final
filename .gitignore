@@ -49,3 +49,7 @@ manuscript/si/pnas-new.original.bst
 /dblp_models/environment_versions.csv
 /dblp-input-backup.*/
 *.tex.bak
+
+# local AARC links and generated outputs
+/aarc_fields/*/input
+/aarc_fields/*/output

@@ -26,3 +26,18 @@ from the checked-in diagnostics. `make paper` and `make si` build the LaTeX
 sources under `manuscript/`. Use figure paths under `f_plot/output/pnas/` and
 load all generated macros from `g_report/output/results.tex`. Exploratory figures
 and run logs are generated locally.
+
+`aarc_fields/` is a separate notebook pipeline for the empirical fieldwise
+lognormality comparison from Figure 1B of the Shockley draft.
+Run `make aarc` from the repo root with the same Python
+environment. The default source is
+`~/Desktop/NSF 26-256/b_trajectorize/output/fields`. Set `AARC_FIELDS_DIR` to
+use a different location. The pipeline links the 13 field exports
+(`secret_<field>_trajectories.csv`), computes one last-four-observed-year total
+per eligible researcher within each field, and compares positive totals on
+the log scale using the Q–Q correlation `r`. As in the draft notebook, the
+window must end at zero-indexed career age 4 or later. The computer science
+point uses the AARC field export. Only aggregates are written.
+
+- `aarc_fields/b_diagnose/output/aarc_field_lognormality.csv`
+- `aarc_fields/c_plot/output/pnas/pnas_aarc_field_lognormality.pdf` (and PNG)
