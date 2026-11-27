@@ -49,7 +49,7 @@
 \keywords{Scientific productivity $|$ science of science $|$ stochastic processes $|$ temporal dynamics $|$ inequality}
 
 \begin{abstract}
-In 1957, William Shockley observed that the cumulative scientific productivity of his peers was highly unequal and approximately lognormally distributed. He argued that this distribution is fundamental to the creative process, attributing the observed inequality to multiplicative differences in intrinsic individual abilities. We challenge both the mathematical and conceptual foundations of this inference, arguing that differences in scientific productivity can be explained through temporal dynamics without invoking differences in individual ability. We develop and evaluate four stochastic models against longitudinal publication records. All four generated approximately lognormal publication totals without assigning researchers fixed differences in ability, yet differed substantially in their consistency with empirical temporal patterns. A history-dependent hurdle model best reproduced these patterns overall and most closely matched the empirical departures from lognormality. These results demonstrate that stochastic temporal dynamics alone can explain substantial inequality in scientific productivity and that approximate lognormality provides no basis for attributing this inequality to intrinsic differences in ability.\end{abstract}
+In 1957, William Shockley observed that the cumulative scientific productivity of his peers was highly unequal and approximately lognormally distributed. He argued that this distribution is fundamental to the creative process, attributing the observed inequality to multiplicative differences in intrinsic individual abilities. We challenge both the mathematical and conceptual foundations of this inference, arguing that differences in scientific productivity can be explained through temporal dynamics without invoking differences in individual ability. We develop and evaluate four stochastic models against empirical data. All four generated approximately lognormal publication totals without assigning researchers fixed differences in ability, yet differed substantially in their consistency with empirical temporal patterns. A history-dependent hurdle model best reproduced these patterns overall and most closely matched the empirical departures from lognormality. These results demonstrate that stochastic temporal dynamics alone can explain substantial inequality in scientific productivity and that approximate lognormality provides no basis for attributing this inequality to intrinsic differences in ability.\end{abstract}
 
 \dates{This manuscript was compiled on \today}
 \doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
@@ -59,18 +59,18 @@ In 1957, William Shockley observed that the cumulative scientific productivity o
 \thispagestyle{firststyle}
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 \Firstpage
-A central question in the study of scientific productivity is why publication output varies so widely across researchers. Research into this question dates back over a century to Lotka's Law~\cite{origins_of_productivity_frequency_law_lotka1926}. In the intervening century, the study of scientific productivity has attracted scientists from a wide array of fields. In 1957, a year after being awarded the Nobel Prize in Physics, William Shockley turned his attention to scientific productivity~\cite{product_of_factors_explains_lognormality_shockley1957}. He observed that the rates at which researchers produced publications and patents were approximately lognormally distributed, with a minority of scientists producing substantially more than their peers. Crucially, Shockley regarded the lognormal form not merely as a descriptive feature of scientific productivity but as a fundamental characteristic of the creative process itself. He accordingly sought an explanation for the observed inequality in multiplicative differences in individual cognitive and managerial talent.
+A central question in the study of scientific productivity is why publication output varies so widely across researchers, dating back to Lotka's Law~\cite{origins_of_productivity_frequency_law_lotka1926}. In the intervening century, the study of scientific productivity has attracted scientists from a wide array of fields. In 1957, a year after winning the Nobel Prize in Physics, William Shockley turned his attention to scientific productivity~\cite{product_of_factors_explains_lognormality_shockley1957}. He observed that individual scientific productivity was approximately lognormally distributed, with a minority of scientists producing much more than most. Shockley regarded the lognormality not merely as a descriptive feature of scientific productivity but as a fundamental characteristic of the creative process itself. He sought an explanation for the observed inequality in multiplicative differences in individual cognitive talent.
 \subsection*{Shockley's idea}\label{subsec:intro_shockley}
-He gave the following framework for his proposed process. For sufficiently large $n$, assuming finite variance and negligible contributions from extreme fluctuations to the total variance, the sum of independently varying factors can be approximately normally distributed. Because a sum of logarithms is the logarithm of a product, Shockley concluded that the lognormally distributed publication counts $P$ were the product of $n$ independently varying aspects of scientific ability $F$:
+He gave the following framework for his proposed process. For sufficiently large $n$, assuming finite variance and negligible contributions from extremes to the total variance, the sum of independently varying factors can be approximately normally distributed. A sum of logarithms is the logarithm of a product, so Shockley concluded that the lognormal publication counts $P$ were the product of $n$ independent aspects of scientific ability $F$:
 \begin{equation}
 \log P = \sum_{i=1}^{n}\log F_i
 \;\dot{\sim}\; \mathcal{N}(\mu,\sigma^2).
 \label{eq:shockley_model}
 \end{equation}
-Shockley's contribution represented an influential proposal for an explanatory model of scientific productivity~\cite{shockley_in_modern_science_of_science_wang2021}. However, his model has several major shortcomings.
+Shockley's contribution was an influential proposal for an explanatory model of scientific productivity~\cite{shockley_in_modern_science_of_science_wang2021}. However, his model has several major shortcomings.
 
 \subsection*{Atemporality}\label{subsec:intro_atemp}
-Shockley's model describes variation in output across researchers over a fixed window. It leaves unspecified how each researcher's publications accumulate within that window. It lacks a temporal component, despite the fact that the accumulation of publications inherently occurs over time. Shockley's explanation therefore cannot explain any known temporal dynamics of scientific productivity. More fundamentally, explaining the distribution of accumulated output requires distinguishing the process of accumulation from the distribution it produces.
+Shockley's model lacks a temporal component, despite the fact that the accumulation of publications inherently occurs over time. Shockley's explanation therefore cannot explain any known temporal dynamics of scientific productivity. More fundamentally, explaining the distribution of accumulated output requires distinguishing the process of accumulation from the distribution it produces.
 \Endparasplit
 \subsection*{Non-identification}\label{subsec:intro_nonID}
 Shockley infers a multiplicative structure from his observation that log productivity is approximately normally distributed. However, normality after taking logarithms does not establish that the underlying contributions combined multiplicatively: a lognormal distribution can also arise as a \emph{sum} of independent nonnegative random variables~\cite{thorinInfiniteDivisibilityLognormal1977}. Further, while cumulative lognormality can arise through multiplying components, that alone provides no basis for preferring his interpretation of those components as facets of scientific `ability' above anything else. 
@@ -123,12 +123,30 @@ researcher-years in each output bin. Reentry errors are weighted by
 the observed number at risk at each duration, using durations with
 at least 20 observed cases at risk.
 
+We also assessed lognormality across 13 fields in the Academic
+Analytics Research Center (AARC) data
+(Fig.~\ref{fig:aarc-field-lognormality}).
+\begin{figure}[h]
+    \centering
+    \begin{minipage}[t]{0.50\columnwidth}
+        \vspace{0pt}
+        \includegraphics[width=\linewidth]{../../aarc_models/d_eda/output/pnas_aarc_field_lognormality.pdf}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{0.45\columnwidth}
+        \vspace{0pt}
+        \captionsetup{justification=raggedright,singlelinecheck=false,skip=0pt}
+        \caption{\textbf{Lognormality across 13 AARC fields.}
+        QQ $R^2$ ranged from approximately $0.96$ to $0.98$ in 12 fields
+        and was $0.88$ in history. We used positive publication totals
+        over each faculty member's last four observed career years,
+        requiring at least five observed years.}\label{fig:aarc-field-lognormality}
+    \end{minipage}
+\end{figure}
 \begin{table*}[t]
     \centering
     \caption{\textbf{Comparison of observed and simulated productivity.}
     The shaded row contains empirical dblp values. Slopes are changes in
-    Spearman $\rho$ per career year, and RMSE is in percentage points (pp). Dashes indicate comparisons that use dblp as the reference.
-    See \hyperref[sec:empirical_constraints]{Empirical targets and model diagnostics} for metric definitions.}\label{tab:model-comparison}
+    Spearman $\rho$ per career year, and RMSE is in percentage points (pp). Dashes indicate comparisons that use dblp as the reference.}\label{tab:model-comparison}
     \setlength{\tabcolsep}{4pt}
     \begin{tabular}{@{}lrrrrrrrrrrrr@{}}
         \toprule
@@ -178,9 +196,7 @@ at least 20 observed cases at risk.
         \bottomrule
     \end{tabular}
 \end{table*}
-
-\section*{Temporal models}\label{sec:model}
-
+\section*{Temporal models}\label{sec:model} 
 We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics, as well as from mathematical intuition about the nature of scientific productivity over time. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. For brevity, our reporting of results will refer to Table~\ref{tab:model-comparison}.
 
 Models discussed in the main body of this report are generally fitted four times using the career change points (`stages') identified by Zhang et al.\ in their temporal analysis of the same dataset~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}. 
@@ -267,27 +283,32 @@ QQ residual curve, largely reproducing the pattern of deviations (Fig.~\ref{fig:
 
 \section*{Discussion}
 
-Shockley took the approximate lognormality of publication totals as evidence that differences in scientific ability combine multiplicatively. Yet all four models we tested produced approximately lognormal totals without assigning researchers fixed differences in ability, even as they differed sharply in how well they reproduced observed careers. The model that best matched the temporal diagnostics also came closest to reproducing the specific ways DBLP totals \emph{depart} from lognormality. The broad shape that motivated Shockley's account is therefore compatible with several mechanisms, while the dynamics of individual careers help distinguish among them.
+Approximate lognormality was widespread across the AARC fields and
+emerged in all four models fitted to DBLP, despite large differences
+in how well those models reproduced observed careers. The geometric
+random walk illustrates the limitation of evaluating models by
+distributional shape alone. Its totals were approximately lognormal
+even as it substantially overstated output and inequality. HD-H,
+which best matched the temporal diagnostics overall, also most
+closely reproduced the pattern of departures from lognormality.
+The broad distributional form that motivated Shockley's account
+therefore provides little leverage for identifying its source.
 
-Across the same 200 simulation seeds, HD-H and H-AR(1) ranked first and second, respectively, when models were ranked on the diagnostics other than lognormal QQ $R^2$. H-AR(1) scored below the empirical QQ $R^2$ in all 200 runs. Thus, in 185 of 200 runs, both of the models that best matched DBLP across the other diagnostics yielded totals with lower lognormal QQ $R^2$ than DBLP.
-
-Our complementary analyses of the AARC panel, comprising 92,527 faculty across 113 fields, identify additional constraints on explanatory models. Publication activity was more temporally clustered than under shuffled histories, relative productivity ranks retained substantial memory, and the probability of returning to publication declined with the duration of inactivity. Evidence against a first-order Markov description further indicates that current annual output does not contain all available predictive information about subsequent productivity. Together, these findings suggest that productivity reflects persistent states or accumulated history that annual publication counts only partially reveal. Their prevalence and variation across fields can help distinguish general features of research production from effects associated with particular disciplinary practices.
-
-The improved agreement of the self-exciting hurdle model is consistent with this interpretation. Incorporating earlier productivity into both publication activity and positive output brought simulated rank persistence, inactivity, and inequality closer to their empirical values. However, predictive dependence on publication history does not establish that publications themselves cause subsequent productivity. Earlier output may instead reflect unobserved project inventories, collaborations, resources, institutional conditions, or persistent individual differences. The history term summarizes these possibilities without distinguishing among them.
-
-An explanatory model therefore requires mechanisms beyond the temporal regressions we considered here. These models describe how observed output depends statistically on earlier output, but they do not represent how research projects are initiated, developed, abandoned, and completed. A mechanistic model could instead allocate a finite effort budget among unfinished projects, with publications emerging upon completion. Project accumulation, heterogeneous completion times, interruptions, and collaboration could then generate temporal clustering, inactivity, and persistent productivity differences. Such mechanisms would permit tests of whether these regularities arise without fixed differences in researcher ability, and how individual differences interact with stochastic research processes.
-
-Future work should evaluate these mechanisms jointly against CDFs and temporal diagnostics, including rank memory, inactivity-duration-dependent reentry, and publication clustering. Field-specific comparisons could test whether shared mechanisms with different timescales account for disciplinary variation. Stronger evaluation also requires common fitting cohorts, held-out researchers and career periods, uncertainty estimates, and sensitivity to initialization, observation windows, and the treatment of zero output. Publication inactivity must also be distinguished from research inactivity, since publication records cannot completely observe the underlying work.
-
+Incorporating earlier publication history improved agreement with
+observed rank persistence and reentry. Earlier output may carry
+information about ongoing projects, collaborations, resources, or
+persistent individual differences. The history term summarizes that
+predictive information. Distinguishing among these explanations
+would require evidence on the research activity that produces
+publications.
 
 
 % discussion and concluding paragraph go here
 
 % bibliography uses references.bib
-\Endparasplit
 
 
-\matmethods{We used career trajectory data provided by the dblp and by the Academic Analytics Research Center. All modeling was performed in Jupyter notebooks under a Principled Data Processing schema and replicated locally and remotely. The AARC data is subject to a restricted data use agreement with the Science and Humanity Lab at the Vermont Complex Systems Institute. All code is available on GitHub.}
+\matmethods{We used career trajectory data provided by the dblp and prepared by Zhang et al. (2026) and from the Academic Analytics Research Center. The AARC data is subject to a restricted data use agreement with the Science and Humanity Lab at the Vermont Complex Systems Institute. All modeling was performed in Jupyter notebooks under a Principled Data Processing schema and replicated locally and remotely. All code is available on GitHub.}
 
 
 \showmatmethods{} % Display the Materials and Methods section
@@ -296,7 +317,7 @@ Future work should evaluate these mechanisms jointly against CDFs and temporal d
 
 \showacknow{} % Display the acknowledgments section
 
-\bibsplit[3]
+\bibsplit[8]
 %Use \bibsplit to split the references from the body of the text. Value "[3]" represents the number of reference in the left column (Note: Please avoid single column figures & tables on this page.)
 
 % Bibliography
