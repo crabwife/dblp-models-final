@@ -193,20 +193,22 @@ The GRW's failure mode arises from the total persistence of shocks over time. In
 
 Across career stages, $\beta$ increased while $\alpha$ declined (Fig.~\ref{fig:ar1-stage-parameters}). The decline in $\alpha$ was large enough that the implied long-run mean, $\alpha/(1-\beta)$, fell on the log-offset scale. Shock variability was highest in the earliest stage and remained lower thereafter. Later-career shocks were thus modestly smaller and carried forward more strongly, a pattern consistent with the rise in fixed-lag rank correlations in Fig.~\ref{fig:dblp-rank-mixing}A.
 
-The $\operatorname{AR}(1)$ retained approximate cumulative lognormality and brought the mean, median, and standard deviation of publication totals much closer to their empirical values, reducing $\bar{W}_1$ to less than two papers. Although its fixed-lag rank correlations increased over time, it substantially underpredicted both fixed-point and fixed-lag rank persistence. Its errors in dropout and reentry were also larger than those of the GRW. In both models, zero-output years arose when the continuous productivity process crossed a clipping threshold. This motivated a hurdle autoregression that models transitions into and out of publication activity explicitly, following Baccini et al. (2014)\cite{bacciniCrossingHurdleDeterminants2014}.
+The $\operatorname{AR}(1)$ retained approximate cumulative lognormality and brought the mean, median, and standard deviation of publication totals much closer to their empirical values, reducing $\bar{W}_1$ to less than two papers. Although its fixed-lag rank correlations increased over time, it substantially underpredicted both fixed-point and fixed-lag rank persistence. Its errors in dropout and reentry were also larger than those of the GRW, and it heavily underestimated the proportion of zero-publication streaks.
+
+In processes involving count data where a model underestimates zero-count proportions, a hurdle model is a parsimonious choice~\cite{longitudinal_zero_and_positive_outcomes_farewell2017}. Taken together with Baccini et al.'s treatment of publishing/non-publishing as a  seperate process from publication intensity, we moved towards a hurdle autoregression model~\cite{bacciniCrossingHurdleDeterminants2014}.
 
 \subsection*{Hurdle autoregressive}\label{subsec:model_hurdleAR}
 
-To that end, we next fitted a hurdle autoregressive model (H-AR(1)) that separates whether a researcher publishes in a given year from how much they publish. This lets the probability of dropping to zero depend on current output and gives inactive researchers a separate probability of returning to publication. For researchers who continue publishing, output follows an autoregressive process.
+To that end, we next fitted a hurdle autoregressive model (H-AR(1)) that separates whether a researcher publishes in a given year (`extensive margin') from how much they publish (`intensive margin'). This lets the probability of dropping to zero depend on current output and gives inactive researchers a separate probability of returning to publication. For researchers who continue publishing, output follows an autoregressive process. 
 
-H-AR(1) saw marked improvement in empirical consistent over AR(1) in most metrics. It again produced approximate cumulative lognormality, although less so than any other model. It also yielded a significant reduction in dropout and reentry error.
-
-% We then modeled publication activity separately from output, splitting our model into an extensive and conditional intensive margin. 
+H-AR(1) saw marked improvement in empirical consistent over AR(1) in most metrics. It again produced approximate cumulative lognormality, although less so than any other model. It also yielded a significant reduction in dropout and reentry error. However, it still failed on long-run dynamics; by year 20 it retained scarce association with initial ranks, motivating us to include earlier history in prediction. 
 
 \subsection*{Self-exciting hurdle}\label{subsec:model_SE}
-% Finally, we allowed both activity and output to depend on earlier productivity through an exponentially weighted history.
-% Five-fold cross-validation over researchers selected $\hat{\rho}=0.6664$, corresponding to a history-weight half-life of 1.71 years. 
-% Mean career output was 151.5, compared with 153.0 empirically, and the Gini coefficient was 0.341 versus 0.360. The year-20 inactivity fraction was 0.143 versus 0.141. Year-20 lag-three and lag-five rank correlations were 0.611 and 0.553, respectively, compared with empirical values of 0.653 and 0.583. Career totals were approximately lognormal (QQ $R^2=0.967$).
+
+We chose to retain our hurdle structure. The rest of the model's design is motivated by parsimony. The extensive margin is a logistic regression due to its binary outcome; the conditional intensive margin is a linear regression with normal shocks. We incorporate earlier history as an exponentially weighted average up to $t-2$. This encodes the inductive bias that past output becomes less influential with time, with just one parameter needed to estimate the rate of decay.
+
+
+
 
 \section*{Discussion}
 
