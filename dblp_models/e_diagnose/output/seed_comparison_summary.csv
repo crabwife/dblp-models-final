@@ -1,0 +1,13 @@
+rule,model,first,second,qq_below_dblp
+common,AR(1),0,0,0
+common,GRW,0,0,0
+common,H-AR(1),0,200,200
+common,HD-H,200,0,185
+missing_last,AR(1),0,0,0
+missing_last,GRW,0,0,0
+missing_last,H-AR(1),0,200,200
+missing_last,HD-H,200,0,185
+without_reentry,AR(1),0,0,0
+without_reentry,GRW,0,0,0
+without_reentry,H-AR(1),0,200,200
+without_reentry,HD-H,200,0,185
