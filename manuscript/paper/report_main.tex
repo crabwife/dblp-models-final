@@ -69,7 +69,7 @@ He gave the following framework to explain his observation. For sufficiently lar
 \;\dot{\sim}\; \mathcal{N}(\mu,\sigma^2).
 \label{eq:shockley_model}
 \end{equation}
-Shockley's contribution represented an influential proposal for an explanatory model of scientific productivity~\cite{shockley_in_modern_science_of_science_wang2021}. Despite its age and the author's subsequent vocal advocacy of eugenics, it has largely escaped scrutiny, and is frequently cited in modern scientific productivity research~\cite{called_shockley_elegant, impact_hot_streaks_and_disruptive_work_chen2025, franceschetSkewnessComputerScience2010, petersenPersistenceUncertaintyAcademic2012, sajindraTrackingHighImpactResearchers2026, petersenMethodsMeasuringCitations2010}. However, his model has several major shortcomings
+Shockley's contribution represented an influential proposal for an explanatory model of scientific productivity~\cite{shockley_in_modern_science_of_science_wang2021}. Despite its age and the author's subsequent vocal advocacy of eugenics, it has largely escaped scrutiny, and is frequently cited in modern scientific productivity research~\cite{called_shockley_elegant, impact_hot_streaks_and_disruptive_work_chen2025, franceschetSkewnessComputerScience2010, petersenPersistenceUncertaintyAcademic2012, sajindraTrackingHighImpactResearchers2026, petersenMethodsMeasuringCitations2010}. However, his model has several major shortcomings.
 \Endparasplit
 \subsection*{Atemporality}\label{subsec:intro_atemp}
 This model is motivated by an ECDF regularity. However, it lacks a temporal component, despite the fact that the accumulation of publications inherently occurs over time. It therefore cannot explain any known temporal dynamics of scientific productivity. More fundamentally, explaining the distribution of accumulated output requires distinguishing the process of accumulation from the distribution it produces.
@@ -157,7 +157,7 @@ at least 20 observed cases at risk.
         & \HurdleAROneRankInitialFinal & \HurdleAROneRankInitialFourYearSlope
         & \HurdleAROneRankLagFiveFinal & \HurdleAROneRankLagFiveFourYearSlope
         & \HurdleAROneDropoutRMSEPoints & \HurdleAROneRestartHazardRMSEPoints \\
-        SE-H
+        HD-H
         & \SEHurdleFourYearQQRtwo & \SEHurdleFourYearMedianTotal
         & \SEHurdleFourYearMeanTotal & \SEHurdleFourYearSDTotal
         & \SEHurdleFourYearGini & \SEHurdleAnnualWassersteinMean
@@ -171,6 +171,8 @@ at least 20 observed cases at risk.
 \section*{Temporal models}\label{sec:model}
 
 We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics, as well as from mathematical intuition about the nature of scientific productivity over time. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. For brevity, our reporting of results will refer to Table~\ref{tab:model-comparison}.
+
+Models discussed in the main body of this report are generally fitted four times using the career change points (`stages') identified by Zhang et al.\ in their temporal analysis of the same dataset~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}. 
 
 \subsection*{Geometric Random Walk}\label{subsec:model_GRW}
 We began with a geometric random walk (GRW) with IID lognormal multipliers. We fitted a single normal distribution to observed adjacent-year changes in log-offset productivity, pooled over the 20 career-year transitions, and exponentiated independent draws from that distribution.
@@ -199,21 +201,59 @@ In processes involving count data where a model underestimates zero-count propor
 
 \subsection*{Hurdle autoregressive}\label{subsec:model_hurdleAR}
 
-To that end, we next fitted a hurdle autoregressive model (H-AR(1)) that separates whether a researcher publishes in a given year (`extensive margin') from how much they publish (`intensive margin'). This lets the probability of dropping to zero depend on current output and gives inactive researchers a separate probability of returning to publication. For researchers who continue publishing, output follows an autoregressive process. 
+To that end, we next fitted a hurdle autoregressive model H-AR(1) that separates whether a researcher publishes in a given year (`extensive margin') from how much they publish (`intensive margin'). This lets the probability of dropping to zero depend on current output and gives inactive researchers a separate probability of returning to publication. For researchers who continue publishing, output follows an autoregressive process. 
 
 H-AR(1) saw marked improvement in empirical consistent over AR(1) in most metrics. It again produced approximate cumulative lognormality, although less so than any other model. It also yielded a significant reduction in dropout and reentry error. However, it still failed on long-run dynamics; by year 20 it retained scarce association with initial ranks, motivating us to include earlier history in prediction. 
 
-\subsection*{Self-exciting hurdle}\label{subsec:model_SE}
+\subsection*{History-dependent hurdle}\label{subsec:model_SE}
 
-We chose to retain our hurdle structure. The rest of the model's design is motivated by parsimony. The extensive margin is a logistic regression due to its binary outcome; the conditional intensive margin is a linear regression with normal shocks. We incorporate earlier history as an exponentially weighted average up to $t-2$. This encodes the inductive bias that past output becomes less influential with time, with just one parameter needed to estimate the rate of decay.
+We retained the hurdle structure and allowed both margins to depend on earlier publication history, yielding a history-dependent hurdle model (HD-H). The rest of the model's design is motivated by parsimony. The extensive margin is a logistic regression due to its binary outcome; the conditional intensive margin is a linear regression with normal shocks. We incorporate earlier history as an exponentially weighted average up to $t-2$. This encodes the inductive bias that past output becomes less influential with time, with just one parameter needed to estimate the rate of decay.
+
+HD-H's simulated results were highly empirically consistent. It reproduced approximate cumulative lognormality, returned a $\bar{W}_1$ of just over half a paper, and closely matched mean, median, standard deviation, and Gini. It also most closely reproduced the slopes of both fixed-distance and fixed-point rank persistence, and the Spearman $\rho$ of the former, but fell short of GRW in the latter. HD-H also reduced reentry error by approximately 85\%, but its dropout error worsened slightly relative to H-AR(1). 
+
+Notably, HD-H's QQ $R^2$ error, the lowest among all the models, is slightly lower than the empirical value. In a test of the same statistic across 200 seeds, HD-H produced the closest $R^2$ 100\% of the time and remained below the empirical value 92.5\% of the time. Further, the second-most consistent model, H-AR(1), also 
+
+
+
+We therefore examined the QQ residuals across quantiles to assess whether HD-H also reproduced the pattern of departures from lognormality observed in DBLP.
+
+\begin{table}[H]
+\centering
+\begin{minipage}[t]{0.475\columnwidth}
+    \vspace{0pt}
+    \caption{Relative weight on earlier output in HD-H.
+    For each margin, entries divide the coefficient on $H_t$ by
+    that on last year's log-shifted output. A ratio of 1 indicates
+    equal weight per unit.}\label{tab:seh-history-weight}
+\end{minipage}%
+\hspace{0.025\columnwidth}%
+\begin{minipage}[t]{0.50\columnwidth}
+    \vspace{0pt}
+    \setlength{\tabcolsep}{3pt}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrr@{}}
+        \toprule
+        Stage & Extensive & Intensive \\
+        \midrule
+        0--4   & \SEHurdleHistoryRatioExtensiveStageOne
+               & \SEHurdleHistoryRatioIntensiveStageOne \\
+        5--7   & \SEHurdleHistoryRatioExtensiveStageTwo
+               & \SEHurdleHistoryRatioIntensiveStageTwo \\
+        8--13  & \SEHurdleHistoryRatioExtensiveStageThree
+               & \SEHurdleHistoryRatioIntensiveStageThree \\
+        14--19 & \SEHurdleHistoryRatioExtensiveStageFour
+               & \SEHurdleHistoryRatioIntensiveStageFour \\
+        \bottomrule
+    \end{tabular*}
+\end{minipage}
+\end{table}
+
+We found that, when treated as a predictor in both margins, the history term was weighted in rough parity to the productivity of the previous year, except in the first stage. 
+
 
 
 
 
 \section*{Discussion}
-
-The use of a geometric random walk with lognormal shocks was justified by the need to counter William Shockley's specification of a model of multiplying independent factors. In this case, the geometric random walk, taken cumulatively at $t=8$, is algebraically identical to his exact 8-factor specification. In fact, in a s
-
 
 
 Our results show that approximate lognormality places only limited constraints on explanations of scientific productivity. Models with substantially different temporal structures generated approximately lognormal career totals while differing markedly in output levels, inequality, inactivity, and rank persistence. The GRW illustrates this distinction: a temporal multiplicative process reproduced the broad distributional form invoked by Shockley while failing other empirical checks. Lognormality therefore cannot, by itself, identify stable individual traits as the underlying mechanism. This finding does not establish that individual differences are irrelevant; it limits what can be inferred about them from cumulative publication distributions.
