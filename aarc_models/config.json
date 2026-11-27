@@ -1,0 +1,21 @@
+{
+  "first_roster_year": 2011,
+  "last_publication_year": 2023,
+  "min_department_years": 5,
+  "institution_count": 368,
+  "fields": [
+    {"field_id": "biological-sciences", "label": "Biological sciences", "aarc_ids": [26]},
+    {"field_id": "chemistry", "label": "Chemistry", "aarc_ids": [38]},
+    {"field_id": "computer-science", "label": "Computer science", "aarc_ids": [50]},
+    {"field_id": "economics", "label": "Economics", "aarc_ids": [58]},
+    {"field_id": "electrical-engineering", "label": "Electrical engineering", "aarc_ids": [63]},
+    {"field_id": "history", "label": "History", "aarc_ids": [93]},
+    {"field_id": "management", "label": "Management", "aarc_ids": [107]},
+    {"field_id": "mathematics", "label": "Mathematics", "aarc_ids": [114]},
+    {"field_id": "mechanical-engineering", "label": "Mechanical engineering", "aarc_ids": [116]},
+    {"field_id": "physics", "label": "Physics", "aarc_ids": [140]},
+    {"field_id": "political-science", "label": "Political science", "aarc_ids": [144]},
+    {"field_id": "psychology", "label": "Psychology", "aarc_ids": [145]},
+    {"field_id": "sociology", "label": "Sociology", "aarc_ids": [156, 461]}
+  ]
+}

@@ -53,3 +53,5 @@ manuscript/si/pnas-new.original.bst
 # local AARC links and generated outputs
 /aarc_fields/*/input
 /aarc_fields/*/output
+/aarc_models/*/input
+/aarc_models/*/output

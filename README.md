@@ -48,3 +48,38 @@ are written.
 
 - `aarc_fields/b_diagnose/output/aarc_field_lognormality.csv`
 - `aarc_fields/c_plot/output/pnas/pnas_aarc_field_lognormality.pdf` (and PNG)
+
+### AARC raw-data pipeline
+
+Run `make aarc-raw` from the repo root. This runs the notebooks in
+`aarc_models/` in order. It links the raw rosters, rank and taxonomy tables,
+articles, and conference proceedings from `~/Desktop/SHL/SHL_aarc`. Put the
+original `phd_granting_institutions.csv` there. To use other locations, set
+`AARC_RAW_DIR` and `AARC_INSTITUTIONS`.
+
+The cohort follows [prep_aarc](https://github.com/crabwife/prep_aarc): the 368
+employing institutions, 2011–2023 rosters, assistant/associate/full professor
+ranks, departments observed in at least five years, and first appearances
+as assistant professor after an observed prior census year. The roster
+schema uses the earlier prep's latest-employment rule for concurrent
+institutions. Field membership is determined from the retained hire-year
+assistant-professor rows. A researcher may have more than one field.
+`aarc_models/config.json` maps AARC IDs to the 13 cleaned field labels,
+including History and both Sociology variants. The 13 fields are fixed in
+advance, so the NSF taxonomy-level selection thresholds do not apply.
+
+The trajectory CSV is
+`aarc_models/c_trajectorize/output/secret_aarc_13_field_trajectories.csv`.
+It uses the legacy NSF `PersonId::hire_year` convention for `dblp_id`, a
+`field_id`, and career-year columns `1`–`12`. Year 1 is the inferred hire
+year. Counts are deduplicated separately within articles and conference
+proceedings. Zero means no matched work in a year through 2023, and blank
+means that career year falls after 2023. The cohort includes faculty with no
+matched works.
+
+`aarc_models/d_eda/output/` contains the empirical summary, Q–Q points, rank
+persistence, dropout bins, reentry hazards, and the fieldwise Q–Q figure.
+Totals use the last four years for faculty with at least five observed
+years, matching the earlier draft cutoff. Q–Q statistics use positive totals.
+Rank correlations and slopes use the fixed 12-year cohort. Dropout and reentry
+use all observed adjacent pairs. The pooled summaries count each person once.
