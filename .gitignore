@@ -12,7 +12,7 @@ venv/
 .vscode/
 .idea/
 
-# source and prepared data; matches directory symlinks too
+# source and prepared data
 **/a_import/input
 **/a_import/output
 **/b_prepare/input
@@ -23,7 +23,7 @@ venv/
 *.npz
 **/d_simulate/output/ar6_6/prefix_sources.csv
 
-# LaTeX auxiliary files
+# aux files
 *.aux
 *.fdb_latexmk
 *.fls
@@ -34,7 +34,7 @@ venv/
 *.bbl
 *.blg
 
-# LaTeX build directories
+# build directories
 manuscript/build/
 manuscript/paper/build/
 manuscript/si/build/
@@ -43,7 +43,7 @@ manuscript/si/build/
 manuscript/paper/references.overleaf.bib
 manuscript/si/pnas-new.original.bst
 
-# exploratory figures and local pipeline records
+# exploratory figs and local pipeline records
 /dblp_models/f_plot/output/exploratory/
 /dblp_models/pipeline_run.csv
 /dblp_models/environment_versions.csv
