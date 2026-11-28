@@ -190,27 +190,6 @@ Analytics Research Center (AARC) data
     \end{tabular}
 \end{table*}
 
-\begin{figure*}[t]
-    \centering
-    \begin{minipage}[t]{0.28\textwidth}
-        \vspace{0pt}
-        {\sffamily\bfseries\fontsize{8.5}{10}\selectfont A\enspace AARC lognormal fit\par}
-        \includegraphics[width=\linewidth]{../../aarc_models/d_eda/output/pnas_aarc_field_lognormality.pdf}
-    \end{minipage}\hfill%
-    \begin{minipage}[t]{0.70\textwidth}
-        \vspace{0pt}
-        \includegraphics[width=\linewidth]{../../dblp_models/f_plot/output/pnas/pnas_dblp_qq_residuals_combined_panels.pdf}
-    \end{minipage}
-    \caption{\textbf{Lognormal fit and departures from lognormality.}
-    (A) AARC QQ $R^2$ for positive publication totals over each faculty member's
-    last four observed career years, requiring at least five observed years.
-    QQ $R^2$ was approximately $0.96$--$0.98$ in 12 fields and $0.88$ in history.
-    (B) QQ residuals for DBLP and HD-H among positive totals in career years
-    17--20, with pointwise 95\% bootstrap intervals.
-    (C) RMS gap between each model's residual curve and DBLP's across the 1st
-    through 99th percentiles.}\label{fig:lognormal-fit}
-\end{figure*}
-
 \section*{Temporal models}\label{sec:model} 
 We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics, as well as from mathematical intuition about the nature of scientific productivity over time. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. For brevity, our reporting of results will refer to Table~\ref{tab:model-comparison}.
 
@@ -244,7 +223,26 @@ HD-H's simulated results were highly empirically consistent. It returned a $\bar
 
 Across 200 seeds, HD-H always produced the most empirically-consistent lognormal QQ $R^2$, and returned a value below it in 185 runs. We therefore examined where the simulated and empirical totals departed
 from lognormality. HD-H had the smallest RMS gap from the empirical
-QQ residual curve, largely reproducing the pattern of deviations (Fig.~\ref{fig:lognormal-fit}B--C).
+QQ residual curve (Fig.~\ref{fig:lognormal-fit}B).
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.52\columnwidth}
+        \vspace{0pt}
+        {\sffamily\bfseries\fontsize{8.5}{10}\selectfont A\enspace AARC fields\par}
+        \includegraphics[width=\linewidth]{../../aarc_models/d_eda/output/pnas_aarc_field_lognormality.pdf}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{0.46\columnwidth}
+        \vspace{0pt}
+        {\sffamily\bfseries\fontsize{8.5}{10}\selectfont B\enspace DBLP models\par}
+        \includegraphics[width=\linewidth]{../../dblp_models/f_plot/output/pnas/pnas_dblp_qq_rms_gap.pdf}
+    \end{minipage}
+    \caption{\textbf{Lognormal fit and departures from lognormality.}
+    (A) AARC QQ $R^2$ for positive totals in each faculty member's last four
+    observed career years, requiring at least five observed years.
+    (B) RMS gap from DBLP's QQ residual curve over percentiles 1--99 for
+    positive totals in career years 17--20.}\label{fig:lognormal-fit}
+\end{figure}
 
 \section*{Discussion}
 
