@@ -120,9 +120,7 @@ matching the length of Shockley's observation window, we report the
 median, mean, standard deviation, and Gini coefficient, and assess
 lognormality among positive totals using QQ $R^2$. We quantify agreement
 in annual output using the Wasserstein-1 distance between simulated and
-observed distributions at each career year. We average these distances
-($\bar{W}_1$) over years 0--20 and also summarize them within the career
-stages identified by Zhang et al.~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}.
+observed distributions, averaged over all years.
 For each of the two rank-persistence curves (fixed year~0 and fixed
 five-year lag), we report the Spearman correlation at endpoint year~20
 and the OLS slope over endpoint years 17--20. We summarize agreement
@@ -209,7 +207,7 @@ Analytics Research Center (AARC) data
 \section*{Temporal models}\label{sec:model} 
 We developed and tested several models of scientific productivity. Each model was developed in response to observed shortcomings in preceding models. Our models were designed by drawing from the literature of external fields with similar mathematical abstractions, including control theory, econometrics, and biostatistics, as well as from mathematical intuition about the nature of scientific productivity over time. Each model is fitted and evaluated against the dblp dataset using the above constraints and targets. For brevity, our reporting of results will refer to Table~\ref{tab:model-comparison}.
 
-Models discussed in the main body of this report are generally fitted four times using the career change points (`stages') identified by Zhang et al.\ in their temporal analysis of the same dataset~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}. 
+% Models discussed in the main body of this report are generally fitted four times using the career change points (`stages') identified by Zhang et al.\ in their temporal analysis of the same dataset~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}. 
 
 \subsection*{Geometric Random Walk}\label{subsec:model_GRW}
 We began with a geometric random walk (GRW) with IID lognormal multipliers. We fitted a single normal distribution to observed adjacent-year changes in log-offset productivity, pooled over the 20 career-year transitions, and exponentiated independent draws from that distribution.
@@ -219,7 +217,7 @@ The GRW generated approximately lognormal career totals, yet substantially misre
 Thus, reproducing approximate lognormality did not yield an adequate model of productivity. The GRW, then, provides a twofold counterexample to the uniqueness of Shockley's explanation: successive stochastic shocks can generate an approximately lognormal cumulative distribution without assigning researchers fixed differences in ability, and reproducing an approximately lognormal cumulative distribution identifies neither a specific nor a consistent model. This does not exclude contributions from individual traits or establish the GRW as a sufficient explanation; it demonstrates that distributional form alone cannot identify Shockley's proposed mechanism.
 
 \subsection*{First-order autoregressive}\label{subsec_model_AR1}
-The GRW's failure mode arises from the total persistence of shocks over time. In this view, it corresponds to the unit-persistence case ($\beta=1$) of the first-order autoregressive model $X_{t+1}=\alpha+\beta X_t+\epsilon_{t+1}$. To allow the effects of shocks to decay, and therefore reduce the overestimation of GRW, we fitted an $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ were freely estimated within each career stage.
+The GRW's failure mode arises from the total persistence of shocks over time. In this view, it corresponds to the unit-persistence case ($\beta=1$) of the first-order autoregressive model $X_{t+1}=\alpha+\beta X_t+\epsilon_{t+1}$. To allow the effects of shocks to decay, and therefore reduce the overestimation of GRW, we fitted an $\operatorname{AR}(1)$ model in which $\alpha$ and $\beta$ were freely estimated.
 
 AR(1) retained approximate cumulative lognormality and brought the mean, median, and standard deviation of publication totals much closer to their empirical values, reducing $\bar{W}_1$ to less than two papers. Although its fixed-lag rank correlations increased over time, it substantially underpredicted both fixed-point and fixed-lag rank persistence. Its errors in dropout and reentry were also larger than those of the GRW, and it heavily underestimated the proportion of zero-publication streaks.
 
