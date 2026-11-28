@@ -65,7 +65,7 @@ Shockley proposed that productivity $P$ was the product of independent,
 positive factors $F_i$ representing aspects of scientific ability.
 Since $\log P = \sum_{i=1}^{n}\log F_i$, a central limit argument
 explains how $\log P$ could be approximately normal.
-Shockley's contribution was an influential proposal for an explanatory model of scientific productivity~\cite{shockley_in_modern_science_of_science_wang2021}. However, his model has several major shortcomings.
+Shockley's contribution was an influential proposal for an explanatory model of scientific productivity~\cite{shockley_in_modern_science_of_science_wang2021}. However, his model has several major shortcomings:
 
 \subsection*{Atemporality}\label{subsec:intro_atemp}
 Shockley's model lacks a temporal component, despite the fact that the accumulation of publications inherently occurs over time. It therefore cannot explain temporal dynamics of scientific productivity. 
@@ -129,8 +129,11 @@ researcher-years in each output bin. Reentry errors are weighted by
 the observed number at risk at each duration, using durations with
 at least 20 observed cases at risk.
 
-We also assessed lognormality across 13 fields in the Academic
-Analytics Research Center (AARC) data
+To assess whether approximate lognormality extends beyond computer
+science, we examined positive publication totals over faculty members'
+last four observed career years across 13 fields in the Academic
+Analytics Research Center (AARC) data. Lognormal QQ $R^2$ ranged from
+approximately $0.96$ to $0.98$ in 12 fields and was $0.88$ in history
 (Fig.~\ref{fig:lognormal-fit}A).
 
 \begin{figure}[h]
@@ -155,8 +158,7 @@ Analytics Research Center (AARC) data
 \begin{table*}[t]
     \centering
     \caption{\textbf{Comparison of observed and simulated productivity.}
-    The shaded row contains empirical dblp values. Slopes are changes in
-    Spearman $\rho$ per career year, and RMSE is in percentage points (pp). Dashes indicate comparisons that use dblp as the reference.}\label{tab:model-comparison}
+    Slopes are changes in Spearman $\rho$ per year, and RMSE is in percentage points (pp).}\label{tab:model-comparison}
     \setlength{\tabcolsep}{4pt}
     \begin{tabular}{@{}lrrrrrrrrrrrr@{}}
         \toprule
@@ -268,7 +270,12 @@ publications.
 % bibliography uses references.bib
 
 
-\matmethods{CS career trajectory data provided by dblp and prepared by Zhang et al. (2026). Multi-field AARC data is subject to a restricted data use agreement. Modeling was performed with Python 3.13. All code is available on GitHub.}
+\matmethods{We used computer science publication trajectories that
+Zhang et al.~\cite{random_walk_reproduces_productivity_trajectories_zhang2026}
+compiled from DBLP. Access to the AARC data is governed by a restricted
+data use agreement. Models were implemented in Python 3.13.
+Analysis code is available at
+\url{https://github.com/crabwife/dblp-models-final}.}
 
 
 \showmatmethods{} % Display the Materials and Methods section

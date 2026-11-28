@@ -11,88 +11,220 @@
 \begin{document}
 
 %% Comment out or remove this line before generating final copy for submission; this will also remove the warning re: "Consecutive odd pages found".
-\instructionspage  
+%\instructionspage  
 
 \maketitle
 
 %% Adds the main heading for the SI text. Comment out this line if you do not have any supporting information text.
 \SItext
+\subsection*{Cohort construction}
 
+\paragraph{DBLP.}
+We used the adjusted annual publication counts prepared by Zhang et al.
+We retained researchers whose PhD year was 1980 or later, dropped each
+researcher's final source record, and retained source career ages 1--21,
+indexed here as years 0--20. For researchers with a retained record at
+source career age 5, we excluded those whose cumulative adjusted output
+by that age was below three. We computed cumulative output before
+restricting records to the analysis window.
 
-\subsection*{Subhead}
-Type or paste text here. This should be additional explanatory text such as an extended technical description of results, full details of mathematical models, etc.   
+We kept observed zero-output years as zeros and treated unobserved years
+as missing. An observed transition required records in two consecutive
+career years. The complete-career cohort comprised the 510 researchers
+with observations in all 21 years. We used this cohort as the empirical
+reference for publication totals, annual output distributions, rank
+persistence, and the reentry error in Table~1.
 
-\section*{Heading}
-\subsection*{Subhead}
-Type or paste text here. You may break this section up into subheads as needed (e.g., one section on ``Materials'' and one on ``Methods'').
+\paragraph{AARC.}
+We used department, program, and medical faculty rosters from 368
+institutions over 2011--2023. We retained assistant, associate, and full
+professors in units observed in at least five roster years. We indexed
+career year 1 to the first retained roster appearance, requiring that
+the researcher appeared as an assistant professor and that the
+preceding census year was represented in the rosters. We assigned field
+membership from the taxonomy codes at entry. Faculty could contribute
+to more than one of the 13 fields.
+
+We counted matched articles and conference proceedings through 2023,
+deduplicating works within each publication type for each researcher.
+A year with no matched publications through 2023 counted as zero.
+For faculty with at least five observed career years, we summed output
+over their last four observed years and computed QQ $R^2$ separately
+by field using positive totals.
 
 \section*{Stochastic Models}
-\subsection*{Lognormal GRW}
-Here, $P_t$ denotes annual productivity at career year $t$, and $\epsilon=0.49$ keeps the logarithmic transformation finite at zero. We estimated a single $\hat\mu$ and $\hat\sigma^2$ by fitting a normal distribution by maximum likelihood to the observed increments $\log(P_{t+1}+\epsilon)-\log(P_t+\epsilon)$, pooling all 20 adjacent career-year transitions. Initial productivity was sampled from the empirical year-zero distribution.
 
+Let $P_t$ denote annual adjusted publication output at career year
+$t$, with $t=0,\ldots,20$. We use $Y_t=\log(P_t+\epsilon)$, where
+$\epsilon=0.49$ keeps the transformation finite at zero. For the
+stage-specific models, $k=k(t)$ indexes the stage of the transition
+from $t$ to $t+1$. The four stages comprise transition-start years
+0--4, 5--7, 8--13, and 14--19. The GRW, AR(1), and H-AR(1) draw
+on all available observed adjacent-year pairs. HD-H was fitted to
+the 510 researchers observed in every career year.
+
+\subsection*{Lognormal geometric random walk}
+
+We fitted a single normal distribution by maximum likelihood to the
+observed increments $Y_{t+1}-Y_t$, pooling across the 20
+transition-start years. We sampled $P_0$ with replacement from the
+observed year-zero outputs. The simulated update was
 \begin{equation}
-P_{t+1}=\max\{0,(P_t+\epsilon)e^{\eta_t}-\epsilon\},\qquad
+P_{t+1}=\max\{0,(P_t+\epsilon)e^{\eta_t}-\epsilon\},
+\qquad
 \eta_t\overset{\mathrm{iid}}{\sim}
 \mathcal{N}(\hat\mu,\hat\sigma^2).
 \label{eq:grw}
 \end{equation}
 
-\subsection*{First-order autoregressive}
-Writing $Y_t=\log(P_t+\epsilon)$, we modeled
+\subsection*{First-order autoregression}
+
+We fitted $Y_{t+1}$ against $Y_t$ by least squares within each stage.
+The innovation variance $\hat\sigma_k^2$ is the mean squared residual
+in that stage. We drew $P_0$ from an exponential distribution with
+mean equal to the mean observed year-zero output. The simulated
+update was
 \begin{equation}
-Y_{t+1}=a_k+b_kY_t+Z_t,\qquad
-Z_t\overset{\mathrm{ind.}}{\sim}\mathcal{N}(0,\hat\sigma^2_k).
+\begin{aligned}
+Y_{t+1}^{*} &= a_k+b_kY_t+Z_t,
+& Z_t &\overset{\mathrm{ind.}}{\sim}\mathcal{N}(0,\hat\sigma_k^2),\\
+P_{t+1} &= \max\{0,\exp(Y_{t+1}^{*})-\epsilon\}.
+\end{aligned}
 \label{eq:ar1}
 \end{equation}
-where $Z_t$ are independent standard normal variables and $k=k(t)$ indexes career stages comprising transition-start years 0, 1--4, 5--7, and 8--19.Coefficients were estimated separately within each stage by least squares, with residual variances estimated using the mean squared residual. Initial productivity was drawn from an exponential distribution whose mean matched observed year-zero productivity.
+The next transition uses $Y_{t+1}=\log(P_{t+1}+\epsilon)$ after
+clipping output at zero.
 
-\subsection*{Hurdle autoregressive}
+\subsection*{Hurdle autoregression}
+
+We modeled dropout and reentry as
 \begin{equation}
+\begin{aligned}
 \Pr(P_{t+1}=0\mid P_t>0)
-=
-\operatorname{logit}^{-1}
-\{c_k+d\log(P_t+\epsilon)\},
+&=\operatorname{logit}^{-1}\!\left(c_k+d\log(P_t+\epsilon)\right),\\
+\Pr(P_{t+1}>0\mid P_t=0)&=\hat r_k.
+\end{aligned}
 \end{equation}
-with stage-specific intercepts and a shared coefficient $d\leq0$. For inactive researchers, reentry occurred with a stage-specific probability estimated from observed zero-to-positive transitions. Conditional on remaining active, productivity followed
+We estimated the stage-specific intercepts $c_k$ and shared slope
+$d\leq0$ jointly by maximum likelihood. We estimated $\hat r_k$ as
+the fraction of observed transitions starting at zero that ended
+with positive output in stage $k$.
+
+For transitions that remained active, we simulated
 \begin{equation}
-\log P_{t+1}=a_k+b_k\log P_t+Z_t.
+\log P_{t+1}=a_k+b_k\log P_t+Z_t,
+\qquad
+Z_t\overset{\mathrm{ind.}}{\sim}\mathcal{N}(0,\hat\sigma_k^2).
 \end{equation}
-Positive output upon reentry was drawn from an exponential distribution fitted to observed reentry output. Initial activity matched the observed year-zero activity fraction, with positive initial output drawn from a fitted exponential distribution.
-\subsection*{Self-exciting hurdle}
+We fitted these regressions by least squares to positive-to-positive
+transitions within each stage and estimated each innovation variance
+as the mean squared residual. Upon reentry, we drew positive output
+from an exponential distribution with mean equal to the pooled mean
+of observed reentry outputs. At initialization, the probability of
+being active equaled the observed year-zero active fraction. For
+active draws, initial output was exponential with mean equal to the
+mean of observed positive year-zero outputs. Inactive draws had zero
+output.
+
+\subsection*{History-dependent hurdle}
+
+To predict output at $t+1$, we used current log output
+$X_t=\log(1+P_t)$, current activity $w_t=\mathbf{1}\{P_t>0\}$,
+and an exponentially weighted average of output through year $t-1$,
 \begin{equation}
 H_t=
 \frac{\sum_{j=0}^{t-1}\rho^{t-1-j}\log(1+P_j)}
      {\sum_{j=0}^{t-1}\rho^{t-1-j}},
-\qquad H_0=0.
+\qquad t\geq1,\qquad H_0=0.
 \end{equation}
-This history excludes current productivity, which enters separately. Then, defining $w = \mathbbm{1}\{q_{t-1}>0\}$, activity was computed as
-
+The activity equation was
 \begin{equation}
-\operatorname{logit}\Pr(q_t>0) = \alpha_s+\beta_s\log(1+q_{t-1}) +\gamma_sw+\delta_s H_t.
+\operatorname{logit}\Pr(P_{t+1}>0\mid P_t,H_t)
+=\alpha_k+\beta_kX_t+\gamma_kw_t+\delta_kH_t.
 \label{eq:se_hurdle_s_ext}
 \end{equation}
-Conditional on $q_t > 0$,  output was computed as
+Conditional on positive output, we modeled
 \begin{equation}
-    \log q_t = a_s+b_s\log(1+q_{t-1})+c_s(1- w)+d_sH_t+\eta_t.
-    \label{eq:se_hurdle_s_pos_int}
+\log P_{t+1}=a_k+b_kX_t+c_k(1-w_t)+d_kH_t+\eta_t,
+\qquad
+\eta_t\overset{\mathrm{ind.}}{\sim}\mathcal{N}(0,\hat\sigma_k^2).
+\label{eq:se_hurdle_s_pos_int}
 \end{equation}
-Coefficients were stage-specific, an architecture inherited from SPAARW, with history effects $d_k,h_k$ constrained to be nonnegative. Numerical evaluation bounded the simulated log-intensity between $-30$ and $30$.
-Initial productivity was sampled from observed year-zero values.
-\subsection*{Materials}
-Add a materials subsection if you need to.
+We fitted the activity equation by ridge-penalized logistic regression
+and the positive-output equation by least squares, with
+$\delta_k,d_k\geq0$. We standardized the continuous predictors within
+each stage for fitting and expressed the resulting coefficients on
+the original predictor scales. The innovation standard deviation was
+the root mean square of the centered residuals for positive log
+output, with a floor of $10^{-8}$.
 
-\subsection*{Methods}
-Add a methods subsection if you need to.
+We selected one shared $\rho$ from 51 equally spaced values in
+$[0,0.98]$ using fivefold cross-validation with folds defined by
+researcher. The score combined the Bernoulli negative log likelihood
+for activity and the Gaussian negative log likelihood for positive
+log output, averaged per transition. The selected value was
+$\hat\rho=0.686$. We then refitted the model on the full
+complete-career cohort.
+
+We sampled $P_0$ with replacement from observed year-zero outputs
+in that cohort. In simulation, we clipped the activity linear
+predictor to $[-35,35]$ before applying the inverse logit and clipped
+the simulated positive log output to $[-30,30]$ before
+exponentiation. Inactive draws had zero output.
+
+
+\subsection*{Diagnostic definitions}
+
+\paragraph{Publication totals and lognormality.}
+For DBLP and each model, we summed annual output over career years
+17--20. The median, mean, standard deviation, and Gini coefficient
+included zero totals. We calculated QQ $R^2$ as the squared Pearson
+correlation between the ordered log-positive totals and their
+theoretical normal quantiles.
+
+To compare departures from lognormality, we standardized the log-positive
+totals within each sample using its mean and sample standard deviation.
+At each integer percentile from 1 to 99, we subtracted the standard
+normal quantile from the corresponding sample quantile. For each model,
+we calculated the root mean square of the differences between its
+residuals and the DBLP residuals at those same percentiles.
+
+\paragraph{Annual output and rank persistence.}
+We calculated the Wasserstein-1 distance between the observed and
+simulated annual output distributions for each career year, including
+zeros. We averaged these distances with equal weight over years 0--20,
+including initialization. For rank persistence, we calculated Spearman
+correlations of annual output with year-zero output and with output
+five years earlier. We report the correlations at year 20 and fit
+ordinary least squares slopes over years 1--20 and 5--20, respectively.
+
+\paragraph{Dropout and reentry.}
+We pooled observed adjacent-year pairs and obtained common output bins
+from the deciles of positive starting-year output, collapsing duplicate
+cut points. Within each bin, dropout was the fraction of transitions
+ending at zero. We calculated the model RMSE using the empirical number
+of transitions in each bin as the weight.
+
+We defined reentry at duration $d$ as the probability of positive
+output in the year after $d$ consecutive observed zero-output years.
+A missing observation interrupted the spell. Fig.~1C pools all
+available observed pairs. For the reentry RMSE in Table~1, we used
+the complete-career empirical hazards and retained durations with
+at least 20 empirical researcher-years at risk. We weighted each
+duration by its empirical risk count. Both RMSEs are reported in
+percentage points.
+
+\subsection*{Simulation variability}
+
+We reran each model with seeds 0--199, generating 10,000 trajectories
+per model and seed while holding the fitted parameters and initialization
+rules fixed. For each run, we calculated QQ $R^2$ for positive output
+totals over career years 17--20. At each seed, we identified the closest
+model by the smallest absolute difference from the empirical
+QQ $R^2$. This analysis measures variation across simulation runs
+conditional on the fitted models.
 
 
 %%% Add this line AFTER all your figures and tables
 \FloatBarrier
-
-
-%\movie{A third movie, just for kicks.}
-
-%\dataset{dataset_one.txt}{Type or paste legend here.}
-
-%\bibliography{references}
-
 \end{document}
